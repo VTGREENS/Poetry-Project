@@ -1,23 +1,30 @@
-require('dotenv').config();
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
+const homeAboutController = require("./controllers/home.about.controller");
+const postPoemController = require("./controllers/post.poem.controller");
+const worksDigitalController = require("./controllers/works.digital.controller");
 
 const adminController = require ('./controllers/admin.controller');
 const newsletterController = require('./controllers/newsletter.controller');
 const worksPhysicalController = require('./controllers/works.physical.controller');
 
 // ! Connect to the DB
-const mongoose = require('mongoose');
-mongoose.set('strictQuery', false);
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
 mongoose.connect(process.env.DATABASEURL);
 const db = mongoose.connection;
 
-db.once('open', () => console.log('Connected to Poetry Project DB'));
+db.once("open", () => console.log("Connected to Poetry Project DB"));
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/about", homeAboutController);
+app.use("/post", postPoemController);
+app.use("/digital", worksDigitalController);
 app.use('/admin', adminController);
 app.use('/newsletter', newsletterController);
 app.use('/worksphysical', worksPhysicalController);
