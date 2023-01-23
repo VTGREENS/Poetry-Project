@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Admin = require('../models/admin.model');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 // ! Validate Session needed here
 
