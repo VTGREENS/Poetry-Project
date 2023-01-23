@@ -28,7 +28,7 @@ app.use("/post", postPoemController);
 app.use("/digital", worksDigitalController);
 app.use('/admin', adminController);
 app.use('/newsletter', newsletterController);
-app.use('/worksphysical', worksPhysicalController);
+app.use('/physical', worksPhysicalController);
 
 // If using validation method in app.js, do not use it in another controller or route. It is important to not have a validate method above the user controller. Best method is to validate each item individually and not globablly
 // app.use(validateSession);

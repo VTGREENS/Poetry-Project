@@ -2,7 +2,7 @@ const router = require("express").Router();
 const PostPoem = require("../models/post.poem.model");
 
 //! Allows admin to add a new post/poem
-router.post("/post", async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const postPoem = new PostPoem({
       title: req.body.title,
@@ -23,7 +23,7 @@ router.post("/post", async (req, res) => {
 });
 
 //! Allows admin to view all posts/poems
-router.get("/post/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const postPoems = await PostPoem.find();
     res.json({ messages: postPoems, message: "Retrieved Posts/Poems." });
@@ -33,17 +33,17 @@ router.get("/post/", async (req, res) => {
 });
 
 //! Allows admin to view one post/poem
-router.get("/post/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const postPoems = await PostPoem.findById({ _id: req.params.id });
-    res.json({ messages: postPoems, message: "Retrieved Post/Poem." });
+    const postPoem = await PostPoem.findById({ _id: req.params.id });
+    res.json({ postPoem: postPoem, message: "Retrieved Post/Poem." });
   } catch (error) {
     res.json({ message: error.message });
   }
 });
 
 //! Allows admin to update post/poem
-router.patch("/post/update/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const filter = { _id: req.params.id };
     const update = req.body;
@@ -56,7 +56,7 @@ router.patch("/post/update/:id", async (req, res) => {
 
     res.json({
       message: postPoem ? "Post/Poem updated" : "Post/Poem was not updated",
-      message: postPoem ? message : {},
+      
     });
   } catch (error) {
     res.json({ message: error.message });
@@ -64,7 +64,7 @@ router.patch("/post/update/:id", async (req, res) => {
 });
 
 //! Allows admin to delete a post/poem
-router.delete("/post/delete/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   try {
     const postPoemRecord = await PostPoem.findById(req.params.id);
 
