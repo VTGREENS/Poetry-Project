@@ -10,7 +10,7 @@ const PostPoemSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    date: Date,
+    type: Date,
     required: true,
   },
   body: {
