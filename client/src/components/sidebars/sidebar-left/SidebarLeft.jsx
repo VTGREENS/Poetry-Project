@@ -13,8 +13,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import OutlinedCard from '../../cards/Card';
-import ActionAreaCard from '../../cards/CardImage';
 
 const drawerWidth = 240;
 
@@ -46,8 +44,7 @@ export default function PermanentDrawerLeft() {
       >
         <Toolbar />
         <Divider />
-        <OutlinedCard />
-        {/* <List>
+        <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
@@ -58,10 +55,9 @@ export default function PermanentDrawerLeft() {
               </ListItemButton>
             </ListItem>
           ))}
-        </List> */}
+        </List>
         <Divider />
-        <ActionAreaCard />
-        {/* <List>
+        <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
@@ -72,7 +68,7 @@ export default function PermanentDrawerLeft() {
               </ListItemButton>
             </ListItem>
           ))}
-        </List> */}
+        </List>
       </Drawer>
       <Box
         component="main"
