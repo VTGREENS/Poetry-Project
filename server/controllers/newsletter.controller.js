@@ -22,7 +22,7 @@ router.post('/signup', async (req, res) => {
 });
 
 // Delete Recipient Email from Newsletter list
-router.delete('/:id', async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
   try {
     let deletedNewsletter = await Newsletter.deleteOne({
       _id: req.params.id,
@@ -31,7 +31,7 @@ router.delete('/:id', async (req, res) => {
     res.json({
       deletedNewsletter: deletedNewsletter,
       message:
-        deletedNewsletter.deleteCount > 0
+        deletedNewsletter.deletedCount > 0
           ? 'Recipient will no longer receive Newsletter'
           : 'Recipient Email Addess not found',
     });

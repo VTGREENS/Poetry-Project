@@ -2,7 +2,7 @@ const router = require("express").Router();
 const WorksDigital = require("../models/works.digital.model");
 
 //! Allows admin to add new digital work
-router.post("/digital/create", async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const worksDigital = new WorksDigital({
       title: req.body.title,
@@ -20,7 +20,7 @@ router.post("/digital/create", async (req, res) => {
 });
 
 //! Allows admin to view all digital works
-router.get("/digital/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const worksDigital = await WorksDigital.find();
     res.json({ messages: worksDigital, message: "Retrieved Digital Works." });
@@ -30,7 +30,7 @@ router.get("/digital/", async (req, res) => {
 });
 
 //! Allows admin to view one Digital Work
-router.get("/digital/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const worksDigital = await WorksDigital.findById({ _id: req.params.id });
     res.json({ messages: worksDigital, message: "Retrieved Digital Work." });
@@ -40,7 +40,7 @@ router.get("/digital/:id", async (req, res) => {
 });
 
 //! Allows admin to update Digital Work
-router.patch("/digital/update/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const filter = { _id: req.params.id };
     const update = req.body;
@@ -55,7 +55,7 @@ router.patch("/digital/update/:id", async (req, res) => {
       message: worksDigital
         ? "Digital Work updated"
         : "Digital Work was not updated",
-      message: worksDigital ? message : {},
+      
     });
   } catch (error) {
     res.json({ message: error.message });
@@ -63,7 +63,7 @@ router.patch("/digital/update/:id", async (req, res) => {
 });
 
 //! Allows admin to delete a Digital Work
-router.delete("/digital/delete/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   try {
     const worksDigitalRecord = await WorksDigital.findById(req.params.id);
 

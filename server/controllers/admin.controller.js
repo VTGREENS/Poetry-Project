@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Admin = require('../models/admin.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// ! Validate Session needed here
+const validateSession = require ('../middleware/validate-session');
 
 // Create New Admin
 router.post('/signup', async (req, res) => {
@@ -18,7 +18,7 @@ router.post('/signup', async (req, res) => {
     // Save Admin
     const newAdmin = await admin.save();
     // Create token
-    const token = jwt.sign({ id: newUser._id }, process.env.JWT, {
+    const token = jwt.sign({ id: newAdmin._id }, process.env.JWT, {
       expiresIn: 60 * 60 * 72,
     });
 
@@ -58,8 +58,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Update Admin
-// ! Needs Validate Session Middleware
-router.put('/update/:id', async (req, res) => {
+router.put('/update/:id', validateSession,  async (req, res) => {
   try {
     let filter = {
       _id: req.params.id,
@@ -73,13 +72,12 @@ router.put('/update/:id', async (req, res) => {
       message: admin ? admin : {},
     });
   } catch (error) {
-    res.json({ message: error.message });
+    res.json({ message: error.message});
   }
 });
 
 // Delete Admin
-// ! Needs Validate Session Middleware
-router.delete('/:id', async (req, res) => {
+router.delete('/delete/:id', validateSession, async (req, res) => {
   try {
     const adminRecord = await Admin.findById(req.params.id);
     const isValidOwner = req.admin._id == adminRecord.id;
@@ -87,7 +85,7 @@ router.delete('/:id', async (req, res) => {
     // Validate Owner
     if (!isValidOwner) {
       throw new error(
-        "The Id supplied for the Admin record is not owned by this user. Admin wasn't deleted"
+        "The id supplied for the Admin record is not owned by this user. Admin wasn't deleted"
       );
     }
 
@@ -97,8 +95,7 @@ router.delete('/:id', async (req, res) => {
 
     res.json({
       deletedAdmin: deletedAdmin,
-      message:
-        deletedAdmin.deleteCount > 0 ? 'Admin deleted' : 'Admin was not found',
+      message: deletedAdmin.deletedCount > 0 ? 'Admin deleted' : 'Admin was not found'
     });
   } catch (error) {
     res.json({ message: error.message });
