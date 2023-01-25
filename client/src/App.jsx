@@ -1,11 +1,5 @@
-import BasicCard from "./components/digital-works/CreateDigitalWorksCard"
-
 function App() {
-  return ( 
-    <>
-    <BasicCard />
-    </>
-   );
+  return ( );
 }
 
 export default App;
