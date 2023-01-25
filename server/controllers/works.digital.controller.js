@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const WorksDigital = require("../models/works.digital.model");
+const validateSession = require("../middleware/validate-session")
 
 //! Allows admin to add new digital work
 router.post("/create", async (req, res) => {
