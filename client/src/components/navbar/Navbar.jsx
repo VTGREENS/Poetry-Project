@@ -4,10 +4,19 @@ function Navbar() {
     return (
       <div className='navbar'>
         <a href='' className='nav-link'>
-          About
+          About/ Home
         </a>
         <a href='' className='nav-link'>
-          Pricing
+          Gallery
+        </a>
+        <a href='' className='nav-link'>
+          Newsletter
+        </a>
+        <a href='' className='nav-link'>
+          Digital Works
+        </a>
+        <a href='' className='nav-link'>
+          Store/ Physical Works
         </a>
         <a href='' className='nav-link'>
           Contact

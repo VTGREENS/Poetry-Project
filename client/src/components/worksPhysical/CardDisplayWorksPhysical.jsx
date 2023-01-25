@@ -37,7 +37,7 @@ const CardDisplayWorksPhysical = (props) => {
           title='To Daughter A Devil'
         />
         <CardContent>
-          <Typography  gutterBottom variant='h5' component='div'>
+          <Typography align='center' gutterBottom variant='h5' component='div'>
             To Daughter A Devil
           </Typography>
           <Typography variant='body2' color='text.secondary'>
@@ -54,7 +54,7 @@ const CardDisplayWorksPhysical = (props) => {
           <Button size='small'>Direct</Button>
         </CardActions>
       </Card>
-      );
+      
     </>
   );
 };

@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import CardDisplayWorksPhysical from './CardDisplayWorksPhysical';
 import CreateWorksPhysical from './CreateWorksPhysical';
-
 import EditWorksPhysical from './EditWorksPhysical';
 
 const IndexWorksPhysical = (props) => {
   const [worksPhysical, setWorksPhysical] = useState([]);
-  const fetchWorksPhysical = async () => {
-    const url = `https//localhost:4000/physical/`;
-    let myHeaders = new Headers();
+  const fetchWorksPhysical = async() => {
+    const url = `http://localhost:4000/physical/`;
+    // let myHeaders = new Headers();
     const requestOptions = {
       method: 'GET',
-      headers: myHeaders,
+      // headers: myHeaders,
     };
     try {
       const response = await fetch(url, requestOptions);
@@ -33,9 +32,9 @@ const IndexWorksPhysical = (props) => {
     <>
     
       <h1>Hello From IndexWorksPhysical</h1>
-      <CreateWorksPhysical />
-      <EditWorksPhysical />
-      <CardDisplayWorksPhysical />
+      <CreateWorksPhysical worksPhysical={worksPhysical} fetchWorksPhysical={fetchWorksPhysical} token={props.token}/>
+      {/* <EditWorksPhysical /> */}
+      <CardDisplayWorksPhysical worksPhysical={worksPhysical} fetchWorksPhysical={fetchWorksPhysical}/>
     </>
   );
 };

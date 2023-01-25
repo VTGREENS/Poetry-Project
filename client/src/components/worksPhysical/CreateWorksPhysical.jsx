@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { FormControl, TextField, Button, Box } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 
 const CreateWorksPhysical = (props) => {
   
@@ -11,18 +11,19 @@ const CreateWorksPhysical = (props) => {
   const linksRef = useRef();
   const signedPriceRef = useRef();
   const linkSignedRef = useRef();
-  const formRef = useRef();
+  // const formRef = useRef();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const image = imageRef.current.value;
-    const imageAltText = imageAltTextRef.current.value;
-    const title = titleRef.current.value;
-    const description = descriptionRef.current.value;
-    const msrp = msrpRef.current.value;
-    const links = linksRef.current.value;
-    const signedPrice = signedPriceRef.current.value;
-    const linkSigned = linkSignedRef.current.value;
+    console.log(imageRef.current)
+    const image = imageRef?.current?.value;
+    const imageAltText = imageAltTextRef?.current?.value;
+    const title = titleRef?.current?.value;
+    const description = descriptionRef?.current?.value;
+    const msrp = msrpRef?.current?.value;
+    const links = linksRef?.current?.value;
+    const signedPrice = signedPriceRef?.current?.value;
+    const linkSigned = linkSignedRef?.current?.value;
 
     let url = 'http://localhost:4000/physical/create';
 
@@ -52,10 +53,10 @@ const CreateWorksPhysical = (props) => {
       const data = await response.json();
       props.fetchWorksPhysical();
       console.log(data);
-      formRef.current.reset();
+      // formRef.current.reset();
 
       if (data.message === 'Physical Works Created') {
-        // props.updatePhysicalWorks(data.worksPhysical.title);
+      
       } else {
         alert(data.message);
       }
@@ -69,57 +70,58 @@ const CreateWorksPhysical = (props) => {
     <>
     <h2>Hello from CreateWorksPhysical</h2>
   
-      <FormControl onSubmit={handleSubmit} innerref={formRef}>
+      <form onSubmit={handleSubmit} >
+        
         <TextField
           id='image'
           label='image URL'
           variant='outlined'
-          innerref={imageRef}
+          inputRef={imageRef}
         />
         <TextField
           id='imageAltText'
           label='image Alt Text'
           variant='outlined'
-          innerref={imageAltTextRef}
+          inputRef={imageAltTextRef}
         />
         <TextField
           id='title'
           label='title'
           variant='outlined'
-          innerref={titleRef}
+          inputRef={titleRef}
         />
         <TextField
           id='description'
           label='description'
           variant='outlined'
-          innerref={descriptionRef}
+          inputRef={descriptionRef}
         />
         <TextField
           id='msrp'
           label='msrp'
           variant='outlined'
-          innerref={msrpRef}
+          inputRef={msrpRef}
         />
         <TextField
           id='links'
           label='links'
           variant='outlined'
-          innerref={linksRef}
+          inputRef={linksRef}
         />
         <TextField
           id='signedPrice'
           label='signedPrice'
           variant='outlined'
-          innerref={signedPriceRef}
+          inputRef={signedPriceRef}
         />
         <TextField
           id='linkSigned'
           label='linkSigned'
           variant='outlined'
-          innerref={linkSignedRef}
+          inputRef={linkSignedRef}
         />
         <Button type="submit" variant='contained' color="success">Submit Physical Works</Button>
-      </FormControl>
+      </form>
     </>
   );
 };
