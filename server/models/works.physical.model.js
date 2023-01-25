@@ -13,6 +13,10 @@ const WorksPhysicalSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   msrp: {
     type: String,
     required: true,
@@ -23,11 +27,11 @@ const WorksPhysicalSchema = new mongoose.Schema({
   } ],
   signedPrice: {
     type: String,
-    required: true,
+    required: false,
   },
   linkSigned: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 

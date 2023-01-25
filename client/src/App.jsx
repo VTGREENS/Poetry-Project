@@ -1,5 +1,13 @@
+import IndexWorksPhysical from "./components/worksPhysical/IndexWorksPhysical";
+
 function App() {
-  return ( );
+  return (
+    <>
+    <IndexWorksPhysical />
+    
+  
+    </>
+  );
 }
 
 export default App;

@@ -1,14 +1,16 @@
 const router = require('express').Router();
 const WorksPhysical = require('../models/works.physical.model');
+const validateSession = require ('../middleware/validate-session');
 
 // Create Physical Works Post
-router.post('/create', async (req, res) => {
-  console.log('physical works create');
+router.post('/create', validateSession, async (req, res) => {
+  
   try {
     const worksPhysical = new WorksPhysical({
       image: req.body.image,
       imageAltText: req.body.imageAltText,  
       title: req.body.title,
+      description: req.body.title,
       msrp: req.body.msrp,
       links: req.body.links,
       signedPrice: req.body.signedPrice,
@@ -28,7 +30,7 @@ router.post('/create', async (req, res) => {
 });
 
 // Update Physical Works
-router.put('/update/:id', async (req, res) => {
+router.put('/update/:id', validateSession, async (req, res) => {
   try {
     let filter = {
       _id: req.params.id,
@@ -53,7 +55,7 @@ router.put('/update/:id', async (req, res) => {
 });
 
 // Delete Physical Works
-router.delete('/:id', async (req, res) => {
+router.delete('/delete/:id', validateSession, async (req, res) => {
   try {
     let deletedWorksPhysical = await WorksPhysical.deleteOne({
       _id: req.params.id,
@@ -62,7 +64,7 @@ router.delete('/:id', async (req, res) => {
     res.json({
       deletedWorksPhysical: deletedWorksPhysical,
       message:
-        deletedWorksPhysical.deleteCount > 0
+        deletedWorksPhysical.deletedCount > 0
           ? 'Physical Works Deleted'
           : 'Physical Works Not Found',
     });
@@ -70,5 +72,27 @@ router.delete('/:id', async (req, res) => {
     res.json({ message: error.message });
   }
 });
+
+// Get All
+router.get("/", async (req, res) => {
+try {
+  const worksPhysical = await WorksPhysical.find();
+  res.json({ messages: worksPhysical, message:"Retrieved Physical works" });
+
+} catch (error) {
+  res.json({ message: error.message })
+}
+});
+
+// Get One
+router.get("/:id", async (req, res) =>{
+  try {
+    const workPhysical = await WorksPhysical.findById({ _id:req.params.id });
+    res.json({ messages: workPhysical, message: "Retrieved Physical Work"})
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+})
+
 
 module.exports = router;
