@@ -1,14 +1,16 @@
 const router = require('express').Router();
 const WorksPhysical = require('../models/works.physical.model');
+const validateSession = require ('../middleware/validate-session');
 
 // Create Physical Works Post
-router.post('/create', async (req, res) => {
+router.post('/create', validateSession, async (req, res) => {
   
   try {
     const worksPhysical = new WorksPhysical({
       image: req.body.image,
       imageAltText: req.body.imageAltText,  
       title: req.body.title,
+      description: req.body.title,
       msrp: req.body.msrp,
       links: req.body.links,
       signedPrice: req.body.signedPrice,
@@ -28,7 +30,7 @@ router.post('/create', async (req, res) => {
 });
 
 // Update Physical Works
-router.put('/update/:id', async (req, res) => {
+router.put('/update/:id', validateSession, async (req, res) => {
   try {
     let filter = {
       _id: req.params.id,
@@ -53,7 +55,7 @@ router.put('/update/:id', async (req, res) => {
 });
 
 // Delete Physical Works
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id', validateSession, async (req, res) => {
   try {
     let deletedWorksPhysical = await WorksPhysical.deleteOne({
       _id: req.params.id,
