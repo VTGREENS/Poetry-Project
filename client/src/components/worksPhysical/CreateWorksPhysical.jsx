@@ -8,20 +8,23 @@ const CreateWorksPhysical = (props) => {
   const titleRef = useRef();
   const descriptionRef = useRef();
   const msrpRef = useRef();
-  const linksRef = useRef();
+  const linkAmazonRef = useRef();
+  const linkUPRef = useRef();
+  const linkBaNRef = useRef();
   const signedPriceRef = useRef();
   const linkSignedRef = useRef();
-  // const formRef = useRef();
+  
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(imageRef.current)
     const image = imageRef?.current?.value;
     const imageAltText = imageAltTextRef?.current?.value;
     const title = titleRef?.current?.value;
     const description = descriptionRef?.current?.value;
     const msrp = msrpRef?.current?.value;
-    const links = linksRef?.current?.value;
+    const linkAmazon = linkAmazonRef?.current?.value;
+    const linkUP = linkUPRef?.current?.value;
+    const linkBaN = linkBaNRef?.current?.value;
     const signedPrice = signedPriceRef?.current?.value;
     const linkSigned = linkSignedRef?.current?.value;
 
@@ -33,7 +36,9 @@ const CreateWorksPhysical = (props) => {
       title,
       description,
       msrp,
-      links,
+      linkAmazon,
+      linkUP,
+      linkBaN,
       signedPrice,
       linkSigned,
     });
@@ -51,9 +56,9 @@ const CreateWorksPhysical = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      props.fetchWorksPhysical();
+      // props.fetchWorksPhysical();
       console.log(data);
-      // formRef.current.reset();
+      
 
       if (data.message === 'Physical Works Created') {
       
@@ -68,7 +73,7 @@ const CreateWorksPhysical = (props) => {
   }
   return (
     <>
-    <h2>Hello from CreateWorksPhysical</h2>
+    <h2>Complete Input Fields to Create Physical Work</h2>
   
       <form onSubmit={handleSubmit} >
         
@@ -103,10 +108,22 @@ const CreateWorksPhysical = (props) => {
           inputRef={msrpRef}
         />
         <TextField
-          id='links'
-          label='links'
+          id='linkAmazon'
+          label='linkAmazon'
           variant='outlined'
-          inputRef={linksRef}
+          inputRef={linkAmazonRef}
+        />
+         <TextField
+          id='linkUP'
+          label='linkUP'
+          variant='outlined'
+          inputRef={linkUPRef}
+        />
+         <TextField
+          id='linkBaN'
+          label='linkBaN'
+          variant='outlined'
+          inputRef={linkBaNRef}
         />
         <TextField
           id='signedPrice'

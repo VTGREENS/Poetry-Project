@@ -5,6 +5,7 @@ import {
   Typography,
   CardActions,
   Button,
+  Box,
 } from '@mui/material';
 
 // Physical Works Table hosts delete Physical Works function and rendors the data from the create Physical Works function
@@ -29,32 +30,78 @@ const CardDisplayWorksPhysical = (props) => {
 
   return (
     <>
-      <h4>Hello from card display works physical</h4>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          sx={{ height: 240 }}
-          image='https://res.cloudinary.com/dgn8ptcxp/image/upload/v1674141868/cute_cat.jpg'
-          title='To Daughter A Devil'
-        />
-        <CardContent>
-          <Typography align='center' gutterBottom variant='h5' component='div'>
-            To Daughter A Devil
-          </Typography>
-          <Typography variant='body2' color='text.secondary'>
-            To Daughter a Devil explores women in horror and the horror in being
-            woman. Each poem puts a magnifying glass to the female body and uses
-            the most beautiful and the most terrifying parts to paint a picture
-            of growing up and learning to live with — and possibly love — the
-            evil that lives inside of us.
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size='small'>Uncsolicited Press</Button>
-          <Button size='small'>Amazon</Button>
-          <Button size='small'>Direct</Button>
-        </CardActions>
-      </Card>
-      
+      {props.worksPhysical.map((workPhysical) => (
+        <Card key={workPhysical._id} sx={{ display: 'flex' }}>
+          <CardMedia
+            component='img'
+            image={workPhysical.image}
+            alt={workPhysical.imageAltText}
+          />
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              alignItems: 'flex-start',
+            }}
+          >
+            <CardContent className={classes.content}>
+              <Typography variant='h3'>{workPhysical.title}</Typography>
+              <Typography gutterBottom variant='subtitle'>
+                {attribution}
+              </Typography>
+              <Typography gutterBottom variant='body1'>
+                {workPhysical.description}
+              </Typography>
+              <Typography id={workPhysical.id + 'signedPrice'}>
+                Signed Price: ${workPhysical.signedPrice}
+              </Typography>
+              <Typography id={workPhysical.id + 'msrp'} gutterBottom variant='body1'>
+                MSRP: ${workPhysical.msrp}
+              </Typography>
+              <CardActions>
+                <Button
+                  variant='contained'
+                  href={workPhysical.signedLink}
+                  aria-label='Purchase signed copy from Megan Mary Moore'
+                  aria-describedby={workPhysical.id + 'signedPrice'}
+                  size='small'
+                >
+                  Signed Copy
+                </Button>
+                <Button
+                  variant='contained'
+                  href={workPhysical.linkUP}
+                  aria-label='Purchase from Unsolicited press'
+                  aria-describedby={workPhysical.id + 'msrp'}
+                  size='small'
+                >
+                  Unsolicited Press
+                </Button>
+                <Button
+                  variant='contained'
+                  href={workPhysical.linkAmazon}
+                  aria-label='Purchase on Amazon dot com'
+                  aria-describedby={workPhysical.id + 'msrp'}
+                  size='small'
+                >
+                  Amazon
+                </Button>
+                <Button
+                  variant='contained'
+                  href={workPhysical.linkBaN}
+                  aria-label='Purchase on Barnes and Noble dot com'
+                  aria-describedby={workPhysical.id + 'msrp'}
+                  size='small'
+                >
+                  Barnes & Noble
+                </Button>
+              </CardActions>
+            </CardContent>
+          </Box>
+        </Card>
+      ))}
+      ;
     </>
   );
 };

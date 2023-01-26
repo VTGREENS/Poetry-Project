@@ -1,4 +1,4 @@
-import { FormControl, TextField, Button } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
@@ -39,8 +39,8 @@ const EditWorksPhysical = (props) => {
       method: 'PUT',
     };
     try {
-      let response = await fetch(url, requestOptions);
-      let data = await response.json();
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
       console.log(data);
       if (data.message === 'Physical Works Info Updated') {
         // ! Navigate somewhere?
@@ -84,7 +84,7 @@ const EditWorksPhysical = (props) => {
   return (
     <>
     <h3>Hello from Edit Works Physical</h3>
-      <FormControl onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <TextField
           id='image'
           label='image URL'
@@ -141,8 +141,8 @@ const EditWorksPhysical = (props) => {
           value = {linkSigned}
           onChange = {(e) => setLinkSigned(e.target.value)}
         />
-        <Button  variant='contained'>Submit Edit</Button>
-      </FormControl>
+        <Button type="submit" variant='contained'>Submit Edit</Button>
+      </form>
     </>
   );
 };

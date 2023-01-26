@@ -7,15 +7,15 @@ const IndexWorksPhysical = (props) => {
   const [worksPhysical, setWorksPhysical] = useState([]);
   const fetchWorksPhysical = async() => {
     const url = `http://localhost:4000/physical/`;
-    // let myHeaders = new Headers();
+    let myHeaders = new Headers();
     const requestOptions = {
       method: 'GET',
-      // headers: myHeaders,
+      headers: myHeaders,
     };
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      setWorksPhysical(data.worksPhysical);
+      setWorksPhysical(data);
     } catch (error) {
       console.log(error.message);
     }
@@ -32,9 +32,9 @@ const IndexWorksPhysical = (props) => {
     <>
     
       <h1>Hello From IndexWorksPhysical</h1>
-      <CreateWorksPhysical worksPhysical={worksPhysical} fetchWorksPhysical={fetchWorksPhysical} token={props.token}/>
-      {/* <EditWorksPhysical /> */}
-      <CardDisplayWorksPhysical worksPhysical={worksPhysical} fetchWorksPhysical={fetchWorksPhysical}/>
+      <CreateWorksPhysical worksPhysical={worksPhysical}  token={props.token}/>
+      {/* <EditWorksPhysical worksPhysical={worksPhysical} fetchWorksPhysical={fetchWorksPhysical} token={props.token}/> */}
+      {/* <CardDisplayWorksPhysical worksPhysical={worksPhysical} /> */}
     </>
   );
 };
