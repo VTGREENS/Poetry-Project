@@ -12,7 +12,7 @@ router.post("/create", async (req, res) => {
     });
     const newWorksDigital = await worksDigital.save();
     res.status(200).json({
-      message: newWorksDigital,
+      worksDigital: newWorksDigital,
       message: "Your Digital Work has been added",
     });
   } catch (error) {
@@ -24,7 +24,7 @@ router.post("/create", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const worksDigital = await WorksDigital.find();
-    res.json({ messages: worksDigital, message: "Retrieved Digital Works." });
+    res.json({ worksDigital: worksDigital, message: "Retrieved Digital Works." });
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const worksDigital = await WorksDigital.findById({ _id: req.params.id });
-    res.json({ messages: worksDigital, message: "Retrieved Digital Work." });
+    res.json({ worksDigital: worksDigital, message: "Retrieved Digital Work." });
   } catch (error) {
     res.json({ message: error.message });
   }

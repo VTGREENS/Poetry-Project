@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import { FormGroup } from '@mui/material';
+import React, { useRef } from 'react';
+import { Card, CardContent, FormGroup } from '@mui/material';
 import { FormLabel } from '@mui/material';
 import { OutlinedInput } from '@mui/material';
-import { Button, Form } from "reactstrap";
+import { TextField, Button } from '@mui/material';
 
 const CreateDigitalWorks = (props) => {
     const titleRef = useRef();
@@ -31,37 +31,55 @@ const CreateDigitalWorks = (props) => {
         const requestOptions = {
             headers: myHeaders,
             body: bodyObject,
-            method: "POST",
+            method: 'POST',
           };
 
           try {
             const response = await fetch(url, requestOptions);
             const data = await response.json();
             props.fetchDigitalWorks();
-            formRef.current.reset();
-            console.log("Successfully added a new Digital Work");
+            console.log(data);
+            // formRef.current.reset();
+      
+            if (data.message === 'Digital Works Created') {
+            
+            } else {
+              alert(data.message);
+            }
+      
+            
           } catch (error) {
-            console.log(error.message);
+            console.log(error.message)
           }
         }
 
     return ( 
       <>
-        <Form onSubmit={handleSubmit} innerRef={formRef}>
-        <FormGroup>
-          <FormLabel>Title</FormLabel>
-          <OutlinedInput innerRef={titleRef} />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel>Url Link</FormLabel>
-          <OutlinedInput innerRef={linkUrlRef} type="textarea" />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel>Image Url</FormLabel>
-          <OutlinedInput innerRef={imageUrlRef} />
-        </FormGroup>
-          <Button color="primary">Submit Digital Work</Button>
-      </Form>
+      <Card sx={{ maxWidth: 250 }}>
+        <CardContent>
+        <form onSubmit={handleSubmit} >
+        <TextField
+          id='title'
+          label='Title'
+          variant='outlined'
+          inputRef={titleRef}
+        />
+        <TextField
+          id='linkUrl'
+          label='Link Url'
+          variant='outlined'
+          inputRef={linkUrlRef}
+        />
+        <TextField
+          id='imageUrl'
+          label='Image Url'
+          variant='outlined'
+          inputRef={imageUrlRef}
+        />
+        <Button type="submit" variant='contained' color="success">Submit Digital Work</Button>
+      </form>
+      </CardContent>
+      </Card>
     </>
      );
 }

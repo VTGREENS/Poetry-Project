@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from "react-router-dom"
-import IndexWorksPhysical from "./components/worksPhysical/IndexWorksPhysical";
+// import IndexWorksPhysical from "./components/worksPhysical/IndexWorksPhysical";
+import IndexDigitalWorks from './components/digital-works/IndexDigitalWorks';
 
 function App() {
   // TODO Remove sampleToken after implementing AUTH
@@ -24,8 +25,8 @@ function App() {
   return (
     <>
     
-    <IndexWorksPhysical  token={sessionToken}/>
-
+    {/* <IndexWorksPhysical  token={sessionToken}/> */}
+<IndexDigitalWorks token={sessionToken} />
 
     
     
