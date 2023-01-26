@@ -12,7 +12,9 @@ router.post('/create', validateSession, async (req, res) => {
       title: req.body.title,
       description: req.body.title,
       msrp: req.body.msrp,
-      links: req.body.links,
+      linkAmazon: req.body.linkAmazon,
+      linkUP: req.body.linkUP,
+      linkBaN: req.body.linkBaN,
       signedPrice: req.body.signedPrice,
       linkSigned: req.body.linkSigned,
     });

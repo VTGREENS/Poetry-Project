@@ -21,10 +21,18 @@ const WorksPhysicalSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  links: [ {
+  linkAmazon: {
     type: String,
-    required: true,
-  } ],
+    required: false,
+  } ,
+  linkUP: {
+    type: String,
+    required: false,
+  } ,
+  linkBaN: {
+    type: String,
+    required: false,
+  } ,
   signedPrice: {
     type: String,
     required: false,
