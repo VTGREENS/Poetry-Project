@@ -6,13 +6,14 @@ const CreateWorksPhysical = (props) => {
   const imageRef = useRef();
   const imageAltTextRef = useRef();
   const titleRef = useRef();
+  const attributionRef = useRef();
   const descriptionRef = useRef();
   const msrpRef = useRef();
-  const linkAmazonRef = useRef();
-  const linkUPRef = useRef();
-  const linkBaNRef = useRef();
+  const amazonLinkRef = useRef();
+  const unsolicitedPressLinkRef = useRef();
+  const barnesAndNobleLinkRef = useRef();
   const signedPriceRef = useRef();
-  const linkSignedRef = useRef();
+  const signedLinkRef = useRef();
   
 
   async function handleSubmit(e) {
@@ -20,13 +21,14 @@ const CreateWorksPhysical = (props) => {
     const image = imageRef?.current?.value;
     const imageAltText = imageAltTextRef?.current?.value;
     const title = titleRef?.current?.value;
+    const attribution = attributionRef?.current?.value;
     const description = descriptionRef?.current?.value;
     const msrp = msrpRef?.current?.value;
-    const linkAmazon = linkAmazonRef?.current?.value;
-    const linkUP = linkUPRef?.current?.value;
-    const linkBaN = linkBaNRef?.current?.value;
+    const amazonLink = amazonLinkRef?.current?.value;
+    const unsolicitedPressLink = unsolicitedPressLinkRef?.current?.value;
+    const barnesAndNobleLink = barnesAndNobleLinkRef?.current?.value;
     const signedPrice = signedPriceRef?.current?.value;
-    const linkSigned = linkSignedRef?.current?.value;
+    const signedLink = signedLinkRef?.current?.value;
 
     let url = 'http://localhost:4000/physical/create';
 
@@ -34,13 +36,14 @@ const CreateWorksPhysical = (props) => {
       image,
       imageAltText,
       title,
+      attribution,
       description,
       msrp,
-      linkAmazon,
-      linkUP,
-      linkBaN,
+      amazonLink,
+      unsolicitedPressLink,
+      barnesAndNobleLink,
       signedPrice,
-      linkSigned,
+      signedLink,
     });
 
     let myHeaders = new Headers();
@@ -61,7 +64,7 @@ const CreateWorksPhysical = (props) => {
       
 
       if (data.message === 'Physical Works Created') {
-      
+      // TODO Navigate!
       } else {
         alert(data.message);
       }
@@ -95,6 +98,12 @@ const CreateWorksPhysical = (props) => {
           variant='outlined'
           inputRef={titleRef}
         />
+          <TextField
+          id='attribution'
+          label='attribution'
+          variant='outlined'
+          inputRef={attributionRef}
+        />
         <TextField
           id='description'
           label='description'
@@ -108,22 +117,22 @@ const CreateWorksPhysical = (props) => {
           inputRef={msrpRef}
         />
         <TextField
-          id='linkAmazon'
-          label='linkAmazon'
+          id='amazonLink'
+          label='amazonLink'
           variant='outlined'
-          inputRef={linkAmazonRef}
+          inputRef={amazonLinkRef}
         />
          <TextField
-          id='linkUP'
-          label='linkUP'
+          id='unsolicitedPressLink'
+          label='unsolicitedPressLink'
           variant='outlined'
-          inputRef={linkUPRef}
+          inputRef={unsolicitedPressLinkRef}
         />
          <TextField
-          id='linkBaN'
-          label='linkBaN'
+          id='barnesAndNobleLink'
+          label='barnesAndNobleLink'
           variant='outlined'
-          inputRef={linkBaNRef}
+          inputRef={barnesAndNobleLinkRef}
         />
         <TextField
           id='signedPrice'
@@ -132,10 +141,10 @@ const CreateWorksPhysical = (props) => {
           inputRef={signedPriceRef}
         />
         <TextField
-          id='linkSigned'
-          label='linkSigned'
+          id='signedLink'
+          label='signedLink'
           variant='outlined'
-          inputRef={linkSignedRef}
+          inputRef={signedLinkRef}
         />
         <Button type="submit" variant='contained' color="success">Submit Physical Works</Button>
       </form>

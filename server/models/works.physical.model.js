@@ -13,6 +13,10 @@ const WorksPhysicalSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  attribution:{
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
@@ -21,15 +25,15 @@ const WorksPhysicalSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  linkAmazon: {
+  amazonLink: {
     type: String,
     required: false,
   } ,
-  linkUP: {
+  unsolicitedPressLink: {
     type: String,
     required: false,
   } ,
-  linkBaN: {
+  barnesAndNobleLink: {
     type: String,
     required: false,
   } ,
@@ -37,7 +41,7 @@ const WorksPhysicalSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  linkSigned: {
+  signedLink: {
     type: String,
     required: false,
   },
