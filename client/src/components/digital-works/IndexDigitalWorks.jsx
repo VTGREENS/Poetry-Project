@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import CreateDigitalWorks from "./CreateDigitalWorks";
 
 const IndexDigitalWorks = (props) => {
@@ -18,30 +19,19 @@ const IndexDigitalWorks = (props) => {
             console.log(error.message);
         }
     };
-
-useEffect(() => {
-    if(props.token){
-    fetchDigitalWorks();
-    }
-}, [props.token]);
+    useEffect(() => {
+        fetchDigitalWorks();
+      }, []);
+    
+      useEffect(() => {
+        console.log("digitalWorks state", digitalWorks)
+      }, [digitalWorks]);
 
 
     return (  
     <>
-    <CreateDigitalWorks token={props.token} fetchDigitalWorks={fetchDigitalWorks} />
-        {/* <Container>
-            <Row>
-                <Col  md="4">
-                <MovieCreate token={props.token} fetchMovies={fetchMovies}/>
-                </Col>
-                <Col md="8">
-                <MovieTable 
-                    movies={movies} 
-                    token={props.token} 
-                    fetchMovies={fetchMovies}/>
-                </Col>
-            </Row>
-        </Container> */}
+    <CreateDigitalWorks  token={props.token}
+                fetchDigitalWorks={fetchDigitalWorks} />
     </>
     );
 };

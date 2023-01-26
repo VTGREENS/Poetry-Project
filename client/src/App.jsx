@@ -1,10 +1,10 @@
-import IndexWorksPhysical from "./components/worksPhysical/IndexWorksPhysical";
+import BasicCard from "./components/digital-works/CreateDigitalWorksCard";
 
 function App() {
   return (
     <>
-    <IndexWorksPhysical />
-    
+   
+    <BasicCard />
   
     </>
   );
