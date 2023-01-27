@@ -7,13 +7,15 @@ import {
   Button,
   Box,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 // Physical Works Table hosts delete Physical Works function and rendors the data from the create Physical Works function
-const CardDisplayWorksPhysical = ({image, imageAltText, title, attribution, description, msrp, amazonLink, unsolicitedPressLink, barnesAndNobleLink, signedPrice, signedLink, _id}) => {
+const CardDisplayWorksPhysical = ({image, imageAltText, title, attribution, description, msrp, amazonLink, unsolicitedPressLink, barnesAndNobleLink, signedPrice, signedLink, _id, token}) => {
+  const navigate = useNavigate();
   async function deleteWorksPhysical(_id) {
     const url = `http://localhost:4000/physical/delete/${_id}`;
     let myHeaders = new Headers();
-
+    myHeaders.append("Authorization", token);
     let requestOptions = {
       headers: myHeaders,
       method: 'DELETE',
@@ -31,7 +33,7 @@ const CardDisplayWorksPhysical = ({image, imageAltText, title, attribution, desc
     <>
     
      <Card sx={{ display: "flex" }}>
-  <CardMedia component="img" image={image} alt={imageAltText} />
+  <CardMedia sx={{width:"30vw"}} component="img" image={image} alt={imageAltText} />
   <Box
     sx={{
       display: "flex",
@@ -94,7 +96,11 @@ const CardDisplayWorksPhysical = ({image, imageAltText, title, attribution, desc
       </CardActions>
     </CardContent>
   </Box>
-</Card>;
+</Card>
+<>
+<Button type='submit' variant= "contained" color="success" onClick={() => navigate(`/physical/update/${_id}`)}>Update</Button>
+<Button type='submit' variant= "contained" color="error" onClick={() => deleteWorksPhysical(_id)}>Delete</Button>
+</>
     </>
   );
 };

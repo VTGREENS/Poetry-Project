@@ -5,17 +5,17 @@ import React, { useState, useEffect } from 'react';
 // Edit Physical Works
 const EditWorksPhysical = (props) => {
   const { id } = useParams();
-  const [image, setImage] = useState();
-  const [imageAltText, setImageAltText] = useState();
-  const [title, setTitle] = useState();
-  const [attribution, setAttribution] = useState();
-  const [description, setDescription] = useState();
-  const [msrp, setMsrp] = useState();
-  const [amazonLink, setAmazonLink] = useState();
-  const [unsolicitedPressLink, setUnsolicitedPressLink] = useState();
-  const [barnesAndNobleLink, setBarnesAndNobleLink] = useState();
-  const [signedPrice, setSignedPrice] = useState();
-  const [signedLink, setSignedLink] = useState();
+  const [image, setImage] = useState("");
+  const [imageAltText, setImageAltText] = useState("");
+  const [title, setTitle] = useState("");
+  const [attribution, setAttribution] = useState("");
+  const [description, setDescription] = useState("");
+  const [msrp, setMsrp] = useState("");
+  const [amazonLink, setAmazonLink] = useState("");
+  const [unsolicitedPressLink, setUnsolicitedPressLink] = useState("");
+  const [barnesAndNobleLink, setBarnesAndNobleLink] = useState("");
+  const [signedPrice, setSignedPrice] = useState("");
+  const [signedLink, setSignedLink] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -49,7 +49,7 @@ const EditWorksPhysical = (props) => {
       const data = await response.json();
       console.log(data);
       if (data.message === 'Physical Works Info Updated') {
-        // ! Navigate somewhere?
+        // navigate('/physical/');
       } else {
         alert(data.message);
       }
@@ -71,30 +71,31 @@ const EditWorksPhysical = (props) => {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
       console.log(data);
-      setImage(data.image);
-      setImageAltText(data.imageAltText);
-      setTitle(data.title);
-      setAttribution(data.attribution);
-      setDescription(data.description);
-      setMsrp(data.msrp);
-      setAmazonLink(data.amazonLink);
-      setUnsolicitedPressLink(data.unsolicitedPressLink);
-      setBarnesAndNobleLink(data.barnesAndNobleLink);
-      setSignedPrice(data.signedPrice);
-      setSignedLink(data.signedLink);
+      setImage(data.workPhysical.image);
+      setImageAltText(data.workPhysical.imageAltText);
+      setTitle(data.workPhysical.title);
+      setAttribution(data.workPhysical.attribution);
+      setDescription(data.workPhysical.description);
+      setMsrp(data.workPhysical.msrp);
+      setAmazonLink(data.workPhysical.amazonLink);
+      setUnsolicitedPressLink(data.workPhysical.unsolicitedPressLink);
+      setBarnesAndNobleLink(data.workPhysical.barnesAndNobleLink);
+      setSignedPrice(data.workPhysical.signedPrice);
+      setSignedLink(data.workPhysical.signedLink);
     } catch (error) {
       console.log(error.message);
     }
   };
   useEffect(() => {
     fetchWorkPhysical();
-  });
+  },[]);
 
   return (
     <>
       <h3>Hello from Edit Works Physical</h3>
       <form onSubmit={handleSubmit}>
         <TextField
+          
           id='image'
           label='image URL'
           variant='outlined'
@@ -171,7 +172,7 @@ const EditWorksPhysical = (props) => {
           value={signedLink}
           onChange={(e) => setSignedLink(e.target.value)}
         />
-        <Button type='submit' variant='contained'>
+        <Button type='submit' variant='contained' color='success'>
           Submit Edit
         </Button>
       </form>

@@ -50,6 +50,7 @@ const IndexWorksPhysical = (props) => {
           signedPrice={workPhysical.signedPrice}
           signedLink={workPhysical.signedLink}
           _id={workPhysical._id}
+          token={props.token}
         />
       ))}
     </>
