@@ -5,12 +5,13 @@ import {
   Typography,
   CardActions,
   Button,
+  Box,
 } from '@mui/material';
 
 // Physical Works Table hosts delete Physical Works function and rendors the data from the create Physical Works function
-const CardDisplayWorksPhysical = (props) => {
-  async function deleteWorksPhysical(id) {
-    const url = `http://localhost:4000/physical/delete/${id}`;
+const CardDisplayWorksPhysical = ({image, imageAltText, title, attribution, description, msrp, amazonLink, unsolicitedPressLink, barnesAndNobleLink, signedPrice, signedLink, _id}) => {
+  async function deleteWorksPhysical(_id) {
+    const url = `http://localhost:4000/physical/delete/${_id}`;
     let myHeaders = new Headers();
 
     let requestOptions = {
@@ -21,7 +22,6 @@ const CardDisplayWorksPhysical = (props) => {
       let response = await fetch(url, requestOptions);
       let data = await response.json();
       console.log(data);
-      props.fetchWorksPhysical();
     } catch (error) {
       console.log(error);
     }
@@ -29,32 +29,72 @@ const CardDisplayWorksPhysical = (props) => {
 
   return (
     <>
-      <h4>Hello from card display works physical</h4>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          sx={{ height: 240 }}
-          image='https://res.cloudinary.com/dgn8ptcxp/image/upload/v1674141868/cute_cat.jpg'
-          title='To Daughter A Devil'
-        />
-        <CardContent>
-          <Typography align='center' gutterBottom variant='h5' component='div'>
-            To Daughter A Devil
-          </Typography>
-          <Typography variant='body2' color='text.secondary'>
-            To Daughter a Devil explores women in horror and the horror in being
-            woman. Each poem puts a magnifying glass to the female body and uses
-            the most beautiful and the most terrifying parts to paint a picture
-            of growing up and learning to live with — and possibly love — the
-            evil that lives inside of us.
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size='small'>Uncsolicited Press</Button>
-          <Button size='small'>Amazon</Button>
-          <Button size='small'>Direct</Button>
-        </CardActions>
-      </Card>
-      
+    
+     <Card sx={{ display: "flex" }}>
+  <CardMedia component="img" image={image} alt={imageAltText} />
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+    }}
+  >
+    <CardContent className="card-content">
+      <Typography variant="h3">{title}</Typography>
+      <Typography gutterBottom variant="subtitle">
+        {attribution}
+      </Typography>
+      <Typography gutterBottom variant="body1">
+        {description}
+      </Typography>
+      <Typography _id={_id + "signedPrice"}>
+        Signed Price: ${signedPrice}
+      </Typography>
+      <Typography _id={_id + "msrp"} gutterBottom variant="body1">
+        MSRP: ${msrp}
+      </Typography>
+      <CardActions>
+        <Button
+          variant="contained"
+          href={signedLink}
+          aria-label="Purchase signed copy from Megan Mary Moore"
+          aria-describedby={_id + "signedPrice"}
+          size="small"
+        >
+          Signed Copy
+        </Button>
+        {unsolicitedPressLink ? <Button
+          variant="contained"
+          href={unsolicitedPressLink}
+          aria-label="Purchase from Unsolicited press"
+          aria-describedby={_id + "msrp"}
+          size="small"
+        >
+          Unsolicited Press
+        </Button> :null}
+        {amazonLink ? <Button
+          variant="contained"
+          href={amazonLink}
+          aria-label="Purchase on Amazon dot com"
+          aria-describedby={_id + "msrp"}
+          size="small"
+        >
+          Amazon
+        </Button> : null}
+        {barnesAndNobleLink ? <Button
+          variant="contained"
+          href={barnesAndNobleLink}
+          aria-label="Purchase on Barnes and Noble dot com"
+          aria-describedby={_id + "msrp"}
+          size="small"
+        >
+          Barnes & Noble
+        </Button> :null}
+      </CardActions>
+    </CardContent>
+  </Box>
+</Card>;
     </>
   );
 };

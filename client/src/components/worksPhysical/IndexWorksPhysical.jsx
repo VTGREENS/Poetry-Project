@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import CardDisplayWorksPhysical from './CardDisplayWorksPhysical';
 import CreateWorksPhysical from './CreateWorksPhysical';
-import EditWorksPhysical from './EditWorksPhysical';
+
 
 const IndexWorksPhysical = (props) => {
   const [worksPhysical, setWorksPhysical] = useState([]);
-  const fetchWorksPhysical = async() => {
+  const fetchWorksPhysical = async () => {
     const url = `http://localhost:4000/physical/`;
-    // let myHeaders = new Headers();
+    let myHeaders = new Headers();
     const requestOptions = {
       method: 'GET',
-      // headers: myHeaders,
+      headers: myHeaders,
     };
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      setWorksPhysical(data.worksPhysical);
+      const works = await data.worksPhysical
+      setWorksPhysical(await works);
+      console.log(worksPhysical)
     } catch (error) {
       console.log(error.message);
     }
@@ -25,16 +27,31 @@ const IndexWorksPhysical = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log("worksPhysical state", worksPhysical)
+    console.log('worksPhysical state', worksPhysical);
   }, [worksPhysical]);
 
   return (
     <>
-    
       <h1>Hello From IndexWorksPhysical</h1>
-      <CreateWorksPhysical worksPhysical={worksPhysical} fetchWorksPhysical={fetchWorksPhysical} token={props.token}/>
-      {/* <EditWorksPhysical /> */}
-      <CardDisplayWorksPhysical worksPhysical={worksPhysical} fetchWorksPhysical={fetchWorksPhysical}/>
+      <CreateWorksPhysical worksPhysical={worksPhysical} token={props.token} />
+
+      {worksPhysical?.map((workPhysical) => (
+        <CardDisplayWorksPhysical
+          key={workPhysical._id}
+          image={workPhysical.image}
+          imageAltText={workPhysical.imageAltText}
+          title={workPhysical.title}
+          attribution={workPhysical.attribution}
+          description={workPhysical.description}
+          msrp={workPhysical.msrp}
+          amazonLink={workPhysical.amazonLink}
+          unsolicitedPressLink={workPhysical.unsolicitedPressLink}
+          barnesAndNobleLink={workPhysical.barnesAndNobleLink}
+          signedPrice={workPhysical.signedPrice}
+          signedLink={workPhysical.signedLink}
+          _id={workPhysical._id}
+        />
+      ))}
     </>
   );
 };

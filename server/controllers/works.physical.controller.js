@@ -10,11 +10,14 @@ router.post('/create', validateSession, async (req, res) => {
       image: req.body.image,
       imageAltText: req.body.imageAltText,  
       title: req.body.title,
-      description: req.body.title,
+      attribution: req.body.attribution,
+      description: req.body.description,
       msrp: req.body.msrp,
-      links: req.body.links,
+      amazonLink: req.body.amazonLink,
+      unsolicitedPressLink: req.body.unsolicitedPressLink,
+      barnesAndNobleLink: req.body.barnesAndNobleLink,
       signedPrice: req.body.signedPrice,
-      linkSigned: req.body.linkSigned,
+      signedLink: req.body.signedLink,
     });
 
     // Save Physical Works
@@ -77,7 +80,7 @@ router.delete('/delete/:id', validateSession, async (req, res) => {
 router.get("/", async (req, res) => {
 try {
   const worksPhysical = await WorksPhysical.find();
-  res.json({ messages: worksPhysical, message:"Retrieved Physical works" });
+  res.json({ worksPhysical: worksPhysical, message:"Retrieved Physical works" });
 
 } catch (error) {
   res.json({ message: error.message })
@@ -88,7 +91,7 @@ try {
 router.get("/:id", async (req, res) =>{
   try {
     const workPhysical = await WorksPhysical.findById({ _id:req.params.id });
-    res.json({ messages: workPhysical, message: "Retrieved Physical Work"})
+    res.json({ workPhysical: workPhysical, message: "Retrieved Physical Work"})
   } catch (error) {
     res.json({ message: error.message });
   }
