@@ -1,9 +1,30 @@
-import BasicCard from "./components/digital-works/CreateDigitalWorksCard";
 
-function App() {
+import React, { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+
+ function App() {
+  // TODO Remove sampleToken after implementing AUTH aasdf
+  let sampleToken =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NDY1OTI1NSwiZXhwIjoxNjc0OTE4NDU1fQ.KteRMKZ0aUfc3iBBjHchvM91JIsZNne1TGcQKFrprOM';
+  const [sessionToken, setSessionToken] = useState(sampleToken);
+
+  const updateToken = (newToken) => {
+    localStorage.setItem('token', newToken);
+    setSessionToken(newToken);
+    console.log(newToken);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      setSessionToken(localStorage.getItem('token'));
+    }
+  }, []);
+
+
   return (
     <>
-    <IndexWorksPhysical />
+   
     
   
     </>
