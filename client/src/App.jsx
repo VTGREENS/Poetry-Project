@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import IndexWorksPhysical from './components/worksPhysical/IndexWorksPhysical';
 
  function App() {
-  // TODO Remove sampleToken after implementing AUTH
+  // TODO Remove sampleToken after implementing AUTH aasdf
   let sampleToken =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NDY1OTI1NSwiZXhwIjoxNjc0OTE4NDU1fQ.KteRMKZ0aUfc3iBBjHchvM91JIsZNne1TGcQKFrprOM';
   const [sessionToken, setSessionToken] = useState(sampleToken);
