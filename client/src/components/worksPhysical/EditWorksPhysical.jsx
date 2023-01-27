@@ -1,4 +1,4 @@
-import { FormControl, TextField, Button } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
@@ -8,11 +8,14 @@ const EditWorksPhysical = (props) => {
   const [image, setImage] = useState();
   const [imageAltText, setImageAltText] = useState();
   const [title, setTitle] = useState();
+  const [attribution, setAttribution] = useState();
   const [description, setDescription] = useState();
   const [msrp, setMsrp] = useState();
-  const [links, setLinks] = useState();
+  const [amazonLink, setAmazonLink] = useState();
+  const [unsolicitedPressLink, setUnsolicitedPressLink] = useState();
+  const [barnesAndNobleLink, setBarnesAndNobleLink] = useState();
   const [signedPrice, setSignedPrice] = useState();
-  const [linkSigned, setLinkSigned] = useState();
+  const [signedLink, setSignedLink] = useState();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,16 +25,19 @@ const EditWorksPhysical = (props) => {
       image,
       imageAltText,
       title,
+      attribution,
       description,
       msrp,
-      links,
+      amazonLink,
+      unsolicitedPressLink,
+      barnesAndNobleLink,
       signedPrice,
-      linkSigned,
+      signedLink,
     });
 
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append("Authorization", props.token);
+    myHeaders.append('Authorization', props.token);
 
     const requestOptions = {
       headers: myHeaders,
@@ -39,8 +45,8 @@ const EditWorksPhysical = (props) => {
       method: 'PUT',
     };
     try {
-      let response = await fetch(url, requestOptions);
-      let data = await response.json();
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
       console.log(data);
       if (data.message === 'Physical Works Info Updated') {
         // ! Navigate somewhere?
@@ -52,8 +58,8 @@ const EditWorksPhysical = (props) => {
     }
   }
   //Fetch Physical Works
-  // TODO move to WorksPhysicalIndex
-  const fetchWorksPhysical = async () => {
+  // TODO move to WorksPhysicalIndex -singular maybe should be here? Token or ID needed?
+  const fetchWorkPhysical = async () => {
     const url = `http://localhost:4000/physical/${id}`;
     let myHeaders = new Headers();
 
@@ -65,84 +71,110 @@ const EditWorksPhysical = (props) => {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
       console.log(data);
-      setImage(data.worksPhysical.image);
-      setImageAltText(data.worksPhysical.imageAltText);
-      setTitle(data.worksPhysical.title);
-      setDescription(data.worksPhysical.description);
-      setMsrp(data.worksPhysical.msrp);
-      setLinks(data.worksPhysical.links);
-      setSignedPrice(data.worksPhysical.signedPrice);
-      setLinkSigned(data.worksPhysical.linkSigned);
+      setImage(data.image);
+      setImageAltText(data.imageAltText);
+      setTitle(data.title);
+      setAttribution(data.attribution);
+      setDescription(data.description);
+      setMsrp(data.msrp);
+      setAmazonLink(data.amazonLink);
+      setUnsolicitedPressLink(data.unsolicitedPressLink);
+      setBarnesAndNobleLink(data.barnesAndNobleLink);
+      setSignedPrice(data.signedPrice);
+      setSignedLink(data.signedLink);
     } catch (error) {
       console.log(error.message);
     }
   };
   useEffect(() => {
-    fetchWorksPhysical();
+    fetchWorkPhysical();
   });
 
   return (
     <>
-    <h3>Hello from Edit Works Physical</h3>
-      <FormControl onSubmit={handleSubmit}>
+      <h3>Hello from Edit Works Physical</h3>
+      <form onSubmit={handleSubmit}>
         <TextField
           id='image'
           label='image URL'
           variant='outlined'
-          value = {image}
-          onChange = {(e) => setImage(e.target.value)}
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
         />
         <TextField
           id='imageAltText'
           label='image Alt Text'
           variant='outlined'
-          value = {imageAltText}
-          onChange = {(e) => setImageAltText(e.target.value)}
+          value={imageAltText}
+          onChange={(e) => setImageAltText(e.target.value)}
         />
         <TextField
           id='title'
           label='title'
           variant='outlined'
-          value = {title}
-          onChange = {(e) => setTitle(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <TextField
+          id='attribution'
+          label='attribution'
+          variant='outlined'
+          value={title}
+          onChange={(e) => setAttribution(e.target.value)}
         />
         <TextField
           id='description'
           label='description'
           variant='outlined'
-          value = {description}
-          onChange = {(e) => setDescription(e.target.value)}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
         <TextField
           id='msrp'
           label='msrp'
           variant='outlined'
-          value = {msrp}
-          onChange = {(e) => setMsrp(e.target.value)}
+          value={msrp}
+          onChange={(e) => setMsrp(e.target.value)}
         />
         <TextField
-          id='links'
-          label='links'
+          id='amazonLink'
+          label='amazonLink'
           variant='outlined'
-          value = {links}
-          onChange = {(e) => setLinks(e.target.value)}
+          value={amazonLink}
+          onChange={(e) => setAmazonLink(e.target.value)}
+        />
+        <TextField
+          id='unsolcitedPressLink'
+          label='unsolicitedPressLink'
+          variant='outlined'
+          value={unsolicitedPressLink}
+          onChange={(e) => setUnsolicitedPressLink(e.target.value)}
+        />
+        <TextField
+          id='barnesAndNobleLink'
+          label='barnesAndNobleLink'
+          variant='outlined'
+          value={barnesAndNobleLink}
+          onChange={(e) => setBarnesAndNobleLink(e.target.value)}
         />
         <TextField
           id='signedPrice'
           label='signedPrice'
           variant='outlined'
-          value = {signedPrice}
-          onChange = {(e) => setSignedPrice(e.target.value)}
+          value={signedPrice}
+          onChange={(e) => setSignedPrice(e.target.value)}
         />
         <TextField
           id='linkSigned'
           label='linkSigned'
           variant='outlined'
-          value = {linkSigned}
-          onChange = {(e) => setLinkSigned(e.target.value)}
+          value={signedLink}
+          onChange={(e) => setSignedLink(e.target.value)}
         />
-        <Button  variant='contained'>Submit Edit</Button>
-      </FormControl>
+        <Button type='submit' variant='contained'>
+          Submit Edit
+        </Button>
+      </form>
     </>
   );
 };
