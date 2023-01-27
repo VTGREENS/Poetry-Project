@@ -1,14 +1,14 @@
 const router = require('express').Router();
 const WorksPhysical = require('../models/works.physical.model');
-const validateSession = require ('../middleware/validate-session');
+const validateSession = require('../middleware/validate-session');
+
 
 // Create Physical Works Post
 router.post('/create', validateSession, async (req, res) => {
-  
   try {
     const worksPhysical = new WorksPhysical({
       image: req.body.image,
-      imageAltText: req.body.imageAltText,  
+      imageAltText: req.body.imageAltText,
       title: req.body.title,
       attribution: req.body.attribution,
       description: req.body.description,
@@ -35,13 +35,13 @@ router.post('/create', validateSession, async (req, res) => {
 // Update Physical Works
 router.put('/update/:id', validateSession, async (req, res) => {
   try {
-    let filter = {
+    const filter = {
       _id: req.params.id,
     };
 
-    let update = req.body;
-    let updated = { new: true };
-    let worksPhysical = await WorksPhysical.findOneAndUpdate(
+    const update = req.body;
+    const updated = { new: true };
+    const worksPhysical = await WorksPhysical.findOneAndUpdate(
       filter,
       update,
       updated
@@ -51,6 +51,7 @@ router.put('/update/:id', validateSession, async (req, res) => {
       message: worksPhysical
         ? 'Physical Works Info Updated'
         : 'Physical Works Not Updated',
+      worksPhysical: worksPhysical ? worksPhysical : {},
     });
   } catch (error) {
     res.json({ message: error.message });
@@ -60,7 +61,7 @@ router.put('/update/:id', validateSession, async (req, res) => {
 // Delete Physical Works
 router.delete('/delete/:id', validateSession, async (req, res) => {
   try {
-    let deletedWorksPhysical = await WorksPhysical.deleteOne({
+    const deletedWorksPhysical = await WorksPhysical.deleteOne({
       _id: req.params.id,
     });
 
@@ -77,25 +78,30 @@ router.delete('/delete/:id', validateSession, async (req, res) => {
 });
 
 // Get All
-router.get("/", async (req, res) => {
-try {
-  const worksPhysical = await WorksPhysical.find();
-  res.json({ worksPhysical: worksPhysical, message:"Retrieved Physical works" });
-
-} catch (error) {
-  res.json({ message: error.message })
-}
-});
-
-// Get One
-router.get("/:id", async (req, res) =>{
+router.get('/', async (req, res) => {
   try {
-    const workPhysical = await WorksPhysical.findById({ _id:req.params.id });
-    res.json({ workPhysical: workPhysical, message: "Retrieved Physical Work"})
+    const worksPhysical = await WorksPhysical.find();
+    res.json({
+      worksPhysical: worksPhysical,
+      message: 'Retrieved Physical works',
+    });
   } catch (error) {
     res.json({ message: error.message });
   }
-})
+});
 
+// Get One
+router.get('/:id', async (req, res) => {
+  console.log(req.params.id)
+  try {
+    const workPhysical = await WorksPhysical.findById({ _id: req.params.id });
+    res.json({
+      workPhysical: workPhysical,
+      message: 'Retrieved Physical Work',
+    });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+});
 
 module.exports = router;
