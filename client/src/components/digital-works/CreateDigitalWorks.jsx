@@ -5,24 +5,24 @@ import { OutlinedInput } from '@mui/material';
 import { TextField, Button } from '@mui/material';
 
 const CreateDigitalWorks = (props) => {
-    const titleRef = useRef();
-    const linkUrlRef = useRef();
-    const imageUrlRef = useRef();
-    const formRef = useRef();
+  const titleRef = useRef();
+  const linkUrlRef = useRef();
+  const imageUrlRef = useRef();
+  const formRef = useRef();
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-        const title = titleRef.current.value;
-        const linkUrl = linkUrlRef.current.value;
-        const imageUrl = imageUrlRef.current.value;
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const title = titleRef.current.value;
+    const linkUrl = linkUrlRef.current.value;
+    const imageUrl = imageUrlRef.current.value;
 
-        let url = `http://localhost:4000/digital/create`;
+    let url = `http://localhost:4000/digital/create`;
 
-        let bodyObject = JSON.stringify({
-            title,
-            linkUrl,
-            imageUrl,
-          });
+    let bodyObject = JSON.stringify({
+      title,
+      linkUrl,
+      imageUrl,
+    });
 
           let myHeaders = new Headers();
           myHeaders.append("Content-Type", "application/json");
@@ -81,7 +81,7 @@ const CreateDigitalWorks = (props) => {
       </CardContent>
       </Card>
     </>
-     );
-}
- 
+  );
+};
+
 export default CreateDigitalWorks;
