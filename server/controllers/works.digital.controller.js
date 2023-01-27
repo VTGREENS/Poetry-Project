@@ -33,8 +33,8 @@ router.get("/", async (req, res) => {
 //! Allows admin to view one Digital Work
 router.get("/:id", async (req, res) => {
   try {
-    const worksDigital = await WorksDigital.findById({ _id: req.params.id });
-    res.json({ worksDigital: worksDigital, message: "Retrieved Digital Work." });
+    const workDigital = await WorksDigital.findById({ _id: req.params.id });
+    res.json({ workDigital: workDigital, message: "Retrieved Digital Work." });
   } catch (error) {
     res.json({ message: error.message });
   }

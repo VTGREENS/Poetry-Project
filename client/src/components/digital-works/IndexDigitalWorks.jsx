@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CreateDigitalWorks from './CreateDigitalWorks';
 import DisplayDigitalWorksCard from './DisplayDigitalWorks';
-
+import EditDigitalWorks from './EditDigitalWorks';
 const IndexDigitalWorks = (props) => {
     const [digitalWorks, setDigitalWorks] = useState([]);
     const fetchDigitalWorks = async()=>{
@@ -26,20 +26,20 @@ const IndexDigitalWorks = (props) => {
           fetchDigitalWorks();
         }, []);
       
-        // useEffect(() => {
-        //   console.log("DigitalWorks state", digitalWorks)
-        // }, [digitalWorks]);
 
         console.log(digitalWorks)
 
     return (  
     <>
     <CreateDigitalWorks digitalWorks={digitalWorks} token={props.token} fetchDigitalWorks={fetchDigitalWorks}  />
+    <br />
     {
     digitalWorks?.worksDigital?.map((digitalWork) => (
-    <DisplayDigitalWorksCard key={digitalWork._id} fetchDigitalWorks={fetchDigitalWorks}  token={props.token}  title={digitalWork.title} linkUrl={digitalWork.linkUrl} imageUrl={digitalWork.imageUrl} />
+    <DisplayDigitalWorksCard key={digitalWork._id} fetchDigitalWorks={fetchDigitalWorks}  token={props.token}  title={digitalWork.title} linkUrl={digitalWork.linkUrl} imageUrl={digitalWork.imageUrl} _id={digitalWork._id} />
     ))
     }
+    
+    
     </>
     );
 };

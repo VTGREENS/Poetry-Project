@@ -1,6 +1,9 @@
-import IndexWorksPhysical from './components/worksPhysical/IndexWorksPhysical';
+
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import IndexDigitalWorks from './components/digital-works/IndexDigitalWorks';
+import EditDigitalWorks from './components/digital-works/EditDigitalWorks';
+import IndexWorksPhysical from './components/worksPhysical/IndexWorksPhysical';
 import EditWorksPhysical from './components/worksPhysical/EditWorksPhysical';
 
 
@@ -25,12 +28,12 @@ import EditWorksPhysical from './components/worksPhysical/EditWorksPhysical';
 
   return (
     <>
-    <Routes>
+   <Routes>
+    <Route path="/digital" element={<IndexDigitalWorks token={sessionToken}/>}/>
+    <Route path="/digital/update/:id" element={<EditDigitalWorks token={sessionToken}/>}/>
     <Route path="/physical" element={<IndexWorksPhysical token={sessionToken}/> }/>
     <Route path="/physical/update/:id" element={<EditWorksPhysical token={sessionToken}/>}/>
-    </Routes>
-    
-  
+   </Routes>
     </>
   );
 }
