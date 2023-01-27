@@ -55,7 +55,7 @@ const CreateDigitalWorks = (props) => {
 
     return ( 
       <>
-      <Card sx={{ maxWidth: 250 }}>
+      <Card sx={{ maxWidth: 250, padding: 5, border: "solid" }}>
         <CardContent>
         <form onSubmit={handleSubmit} >
         <TextField

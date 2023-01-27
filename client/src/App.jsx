@@ -1,12 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
+import IndexDigitalWorks from './components/digital-works/IndexDigitalWorks';
+import EditDigitalWorks from './components/digital-works/EditDigitalWorks';
 
  function App() {
   // TODO Remove sampleToken after implementing AUTH aasdf
   let sampleToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NDY1OTI1NSwiZXhwIjoxNjc0OTE4NDU1fQ.KteRMKZ0aUfc3iBBjHchvM91JIsZNne1TGcQKFrprOM';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NDgzNDM0OCwiZXhwIjoxNjc1MDkzNTQ4fQ.eooB-ITJU71ikuA2617X8ck6DYslReTueXZc6fuBz0U';
   const [sessionToken, setSessionToken] = useState(sampleToken);
 
   const updateToken = (newToken) => {
@@ -25,7 +25,10 @@ import { Route, Routes } from 'react-router-dom';
   return (
     <>
    
-    
+   <Routes>
+    <Route path="/digital" element={<IndexDigitalWorks token={sessionToken}/>}/>
+    <Route path="/digital/update/:id" element={<EditDigitalWorks token={sessionToken}/>}/>
+   </Routes>
   
     </>
   );
