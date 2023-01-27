@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import IndexWorksPhysical from './components/worksPhysical/IndexWorksPhysical';
+
 
  function App() {
   // TODO Remove sampleToken after implementing AUTH aasdf
@@ -20,9 +21,12 @@ import IndexWorksPhysical from './components/worksPhysical/IndexWorksPhysical';
     }
   }, []);
 
+
   return (
     <>
-      <IndexWorksPhysical token={sessionToken} />
+   
+    
+  
     </>
   );
 }

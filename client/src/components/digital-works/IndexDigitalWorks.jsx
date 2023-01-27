@@ -1,11 +1,13 @@
-import CreateDigitalWorks from "./CreateDigitalWorks";
+import React, { useState, useEffect } from 'react';
+import CreateDigitalWorks from './CreateDigitalWorks';
+import DisplayDigitalWorksCard from './DisplayDigitalWorks';
 
 const IndexDigitalWorks = (props) => {
     const [digitalWorks, setDigitalWorks] = useState([]);
     const fetchDigitalWorks = async()=>{
         const url = `http://localhost:4000/digital/`
         let myHeaders = new Headers();
-        myHeaders.append("Authorization", props.token);
+        // myHeaders.append("Authorization", props.token);
         const requestOptions = {
             method: "GET",
             headers: myHeaders,
@@ -13,35 +15,31 @@ const IndexDigitalWorks = (props) => {
         try {
             const response = await fetch(url, requestOptions);
             const data = await response.json();
-            setDigitalWorks(data.digitalWorks);
-        } catch (error) {
+            setDigitalWorks(data);
+            
+            
+          } catch (error) {
             console.log(error.message);
-        }
-    };
+          }
+        };
+        useEffect(() => {
+          fetchDigitalWorks();
+        }, []);
+      
+        // useEffect(() => {
+        //   console.log("DigitalWorks state", digitalWorks)
+        // }, [digitalWorks]);
 
-useEffect(() => {
-    if(props.token){
-    fetchDigitalWorks();
-    }
-}, [props.token]);
-
+        console.log(digitalWorks)
 
     return (  
     <>
-    <CreateDigitalWorks token={props.token} fetchDigitalWorks={fetchDigitalWorks} />
-        {/* <Container>
-            <Row>
-                <Col  md="4">
-                <MovieCreate token={props.token} fetchMovies={fetchMovies}/>
-                </Col>
-                <Col md="8">
-                <MovieTable 
-                    movies={movies} 
-                    token={props.token} 
-                    fetchMovies={fetchMovies}/>
-                </Col>
-            </Row>
-        </Container> */}
+    <CreateDigitalWorks digitalWorks={digitalWorks} token={props.token} fetchDigitalWorks={fetchDigitalWorks}  />
+    {
+    digitalWorks?.worksDigital?.map((digitalWork) => (
+    <DisplayDigitalWorksCard key={digitalWork._id} fetchDigitalWorks={fetchDigitalWorks}  token={props.token}  title={digitalWork.title} linkUrl={digitalWork.linkUrl} imageUrl={digitalWork.imageUrl} />
+    ))
+    }
     </>
     );
 };
