@@ -32,8 +32,8 @@ const IndexWorksPhysical = (props) => {
 
   return (
     <>
-      <h1>Hello From IndexWorksPhysical</h1>
-      <CreateWorksPhysical worksPhysical={worksPhysical} token={props.token} />
+      
+      <CreateWorksPhysical worksPhysical={worksPhysical} token={props.token} fetchWorksPhysical={fetchWorksPhysical}/>
 
       {worksPhysical?.map((workPhysical) => (
         <CardDisplayWorksPhysical
@@ -51,6 +51,7 @@ const IndexWorksPhysical = (props) => {
           signedLink={workPhysical.signedLink}
           _id={workPhysical._id}
           token={props.token}
+          fetchWorksPhysical={fetchWorksPhysical}
         />
       ))}
     </>

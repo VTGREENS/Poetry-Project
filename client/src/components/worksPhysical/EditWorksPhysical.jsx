@@ -1,5 +1,5 @@
 import { TextField, Button } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 // Edit Physical Works
@@ -16,6 +16,7 @@ const EditWorksPhysical = (props) => {
   const [barnesAndNobleLink, setBarnesAndNobleLink] = useState("");
   const [signedPrice, setSignedPrice] = useState("");
   const [signedLink, setSignedLink] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -47,6 +48,7 @@ const EditWorksPhysical = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
+      navigate('/physical');
       console.log(data);
       if (data.message === 'Physical Works Info Updated') {
         // navigate('/physical/');
@@ -58,7 +60,7 @@ const EditWorksPhysical = (props) => {
     }
   }
   //Fetch Physical Works
-  // TODO move to WorksPhysicalIndex -singular maybe should be here? Token or ID needed?
+  // TODO Token or ID needed?
   const fetchWorkPhysical = async () => {
     const url = `http://localhost:4000/physical/${id}`;
     let myHeaders = new Headers();

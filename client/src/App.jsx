@@ -5,6 +5,8 @@ import IndexDigitalWorks from './components/digital-works/IndexDigitalWorks';
 import EditDigitalWorks from './components/digital-works/EditDigitalWorks';
 import IndexWorksPhysical from './components/worksPhysical/IndexWorksPhysical';
 import EditWorksPhysical from './components/worksPhysical/EditWorksPhysical';
+import IndexPostPoem from './components/postPoem/IndexPostPoem';
+import EditPostPoem from './components/postPoem/EditPostPoem';
 
 
  function App() {
@@ -33,6 +35,8 @@ import EditWorksPhysical from './components/worksPhysical/EditWorksPhysical';
     <Route path="/digital/update/:id" element={<EditDigitalWorks token={sessionToken}/>}/>
     <Route path="/physical" element={<IndexWorksPhysical token={sessionToken}/> }/>
     <Route path="/physical/update/:id" element={<EditWorksPhysical token={sessionToken}/>}/>
+    <Route path="/post" element={<IndexPostPoem token={sessionToken}/>}/>
+    <Route path="/post/update/:id" element={<EditPostPoem token={sessionToken}/>}/>
    </Routes>
     </>
   );

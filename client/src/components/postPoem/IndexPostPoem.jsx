@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import CardDisplayPostPoem from './CardDisplayPostPoem';
 import CreatePostPoem from './CreatePostPoem';
 
 const IndexPostPoem = (props) => {
-  const [postPoem, setPostPoem] = useState();
+  const [postPoem, setPostPoem] = useState([]);
   const fetchPostPoems = async () => {
     const url = `http://localhost:4000/post/`;
+    let myHeaders = new Headers();
     const requestOptions = {
       method: 'GET',
+      headers: myHeaders,
     };
     try {
       const response = await fetch(url, requestOptions);
@@ -25,8 +28,24 @@ const IndexPostPoem = (props) => {
 
   return (
     <>
-      <h1>hello from index post poem</h1>
-      <CreatePostPoem />
+      
+      <CreatePostPoem postPoem={postPoem} token={props.token} fetchPostPoems={fetchPostPoems}/>
+      
+
+      {postPoem?.postPoems?.map((postPoem) => (
+        <CardDisplayPostPoem
+          key={postPoem._id}
+          title={postPoem.title}
+          attribution={postPoem.attribution}
+          date={postPoem.date}
+          body={postPoem.body}
+          publishedLink={postPoem.publishedLink}
+          buyLink={postPoem.buyLink}
+          _id={postPoem._id}
+          token={props.token}
+          fetchPostPoems={fetchPostPoems}
+        />
+      ))}
     </>
   );
 };

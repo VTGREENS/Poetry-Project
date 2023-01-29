@@ -1,31 +1,35 @@
 import React, { useRef } from 'react';
+import { TextField, Button } from '@mui/material';
+
+
 
 const CreatePostPoem = (props) => {
   const titleRef = useRef();
-  const authorRef = useRef();
+  const attributionRef = useRef();
   const dateRef = useRef();
   const bodyRef = useRef();
-  const linkPublishedRef = useRef();
-  const linkBuyRef = useRef();
+  const publishedLinkRef = useRef();
+  const buyLinkRef = useRef();
+  
 
   async function handleSubmit(e) {
     e.preventDefault();
     const title = titleRef?.current?.value;
-    const author = authorRef?.current?.value;
+    const attribution = attributionRef?.current?.value;
     const date = dateRef?.current?.value;
     const body = bodyRef?.current?.value;
-    const linkPublished = linkPublishedRef?.current?.value;
-    const linkBuy = linkBuyRef?.current?.value;
+    const publishedLink = publishedLinkRef?.current?.value;
+    const buyLink = buyLinkRef?.current?.value;
 
     let url = 'http://localhost:4000/post/create';
 
     let bodyObject = JSON.stringify({
       title,
-      author,
+      attribution,
       date,
       body,
-      linkPublished,
-      linkBuy,
+      publishedLink,
+      buyLink,
     });
 
     let myHeaders = new Headers();
@@ -41,9 +45,11 @@ const CreatePostPoem = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
+      props.fetchPostPoems();
       console.log(data);
 
       if (data.message === 'Your post has been added') {
+       
       } else {
         alert(data.message);
       }
@@ -52,12 +58,54 @@ const CreatePostPoem = (props) => {
     }
   }
 
-  return(
+  return (
     <>
-    <h2>Hello from Create Post Poem</h2>
+      
+      <form onSubmit={handleSubmit}>
+        <TextField
+          id='title'
+          label='title'
+          variant='outlined'
+          inputRef={titleRef}
+        />
+        <TextField
+          id='attribution'
+          label='attribution'
+          variant='outlined'
+          inputRef={attributionRef}
+        />
+        
+        <TextField
+          id='date'
+          label='date'
+          variant='outlined'
+          inputRef={dateRef}
+        />
+       
+        <TextField
+          id='body'
+          label='body'
+          variant='outlined'
+          inputRef={bodyRef}
+        />
+        <TextField
+          id='publishedLink'
+          label='published Link'
+          variant='outlined'
+          inputRef={publishedLinkRef}
+        />
+        <TextField
+          id='buyLink'
+          label='buy Link'
+          variant='outlined'
+          inputRef={buyLinkRef}
+        />
+        <Button type='submit' variant='contained' color='success'>
+          Post Poem
+        </Button>
+      </form>
     </>
-
-  )
+  );
 };
 
 export default CreatePostPoem;

@@ -5,7 +5,7 @@ const PostPoemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  author: {
+  attribution: {
     type: String,
     required: true,
   },
@@ -17,11 +17,11 @@ const PostPoemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  linkPublished: {
+  publishedLink: {
     type: String,
     required: false,
   },
-  linkBuy: {
+  buyLink: {
     type: String,
     required: false,
   },

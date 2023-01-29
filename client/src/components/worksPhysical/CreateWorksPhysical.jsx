@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { TextField, Button } from '@mui/material';
 
 const CreateWorksPhysical = (props) => {
-  
   const imageRef = useRef();
   const imageAltTextRef = useRef();
   const titleRef = useRef();
@@ -14,7 +13,6 @@ const CreateWorksPhysical = (props) => {
   const barnesAndNobleLinkRef = useRef();
   const signedPriceRef = useRef();
   const signedLinkRef = useRef();
-  
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -48,7 +46,7 @@ const CreateWorksPhysical = (props) => {
 
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append("Authorization", props.token);
+    myHeaders.append('Authorization', props.token);
 
     const requestOptions = {
       headers: myHeaders,
@@ -59,27 +57,22 @@ const CreateWorksPhysical = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      // props.fetchWorksPhysical();
+      props.fetchWorksPhysical();
       console.log(data);
-      
 
       if (data.message === 'Physical Works Created') {
-      // TODO Navigate!
       } else {
         alert(data.message);
       }
-
-      
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   }
   return (
     <>
-    <h2>Complete Input Fields to Create Physical Work</h2>
-  
-      <form onSubmit={handleSubmit} >
-        
+      <h2>Complete Input Fields to Create Physical Work</h2>
+
+      <form onSubmit={handleSubmit}>
         <TextField
           id='image'
           label='image URL'
@@ -98,7 +91,7 @@ const CreateWorksPhysical = (props) => {
           variant='outlined'
           inputRef={titleRef}
         />
-          <TextField
+        <TextField
           id='attribution'
           label='attribution'
           variant='outlined'
@@ -122,13 +115,13 @@ const CreateWorksPhysical = (props) => {
           variant='outlined'
           inputRef={amazonLinkRef}
         />
-         <TextField
+        <TextField
           id='unsolicitedPressLink'
           label='unsolicitedPressLink'
           variant='outlined'
           inputRef={unsolicitedPressLinkRef}
         />
-         <TextField
+        <TextField
           id='barnesAndNobleLink'
           label='barnesAndNobleLink'
           variant='outlined'
@@ -146,7 +139,9 @@ const CreateWorksPhysical = (props) => {
           variant='outlined'
           inputRef={signedLinkRef}
         />
-        <Button type="submit" variant='contained' color="success">Submit Physical Works</Button>
+        <Button type='submit' variant='contained' color='success'>
+          Submit Physical Works
+        </Button>
       </form>
     </>
   );
