@@ -8,6 +8,7 @@ import {
   Box,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { css } from '@emotion/react';
 
 // CardDisplayPostPoem houses delete function, displays posted poems onto IndexPostPoem.
 const CardDisplayPostPoem = ({
@@ -17,9 +18,10 @@ const CardDisplayPostPoem = ({
   body,
   publishedLink,
   buyLink,
+  imageLink,
   token,
   _id,
-  fetchPostPoems
+  fetchPostPoems,
 }) => {
   const navigate = useNavigate();
   async function deletePostPoem(_id) {
@@ -42,9 +44,8 @@ const CardDisplayPostPoem = ({
 
   return (
     <>
-     
       <Card sx={{ display: 'flex' }}>
-        <CardMedia sx={{ width: '30vw' }} />
+        <CardMedia sx={{ width: '30vw' }} component='img' image={imageLink} />
         <Box
           sx={{
             display: 'flex',
@@ -54,9 +55,9 @@ const CardDisplayPostPoem = ({
           }}
         >
           <CardContent className='card-content'>
-            <Typography variant='h3'>{title}</Typography>
+            <Typography variant='h4'>{title}</Typography>
             <Typography gutterBottom variant='h5'>
-              {attribution},  {date}
+              {attribution} {date}
             </Typography>
             <Typography gutterBottom variant='body1'>
               {body}
@@ -85,28 +86,30 @@ const CardDisplayPostPoem = ({
                   Buy Collection
                 </Button>
               ) : null}
+              {/* <div css={css`display: block;`}> </div> */}
+            </CardActions>
+            <CardActions>
+              <Button
+                type='submit'
+                variant='contained'
+                color='success'
+                onClick={() => navigate(`/post/update/${_id}`)}
+              >
+                Update
+              </Button>
+              <Button
+                type='submit'
+                variant='contained'
+                color='error'
+                onClick={() => deletePostPoem(_id)}
+              >
+                Delete
+              </Button>
             </CardActions>
           </CardContent>
         </Box>
       </Card>
-      <>
-        <Button
-          type='submit'
-          variant='contained'
-          color='success'
-          onClick={() => navigate(`/post/update/${_id}`)}
-        >
-          Update
-        </Button>
-        <Button
-          type='submit'
-          variant='contained'
-          color='error'
-          onClick={() => deletePostPoem(_id)}
-        >
-          Delete
-        </Button>
-      </>
+      <></>
     </>
   );
 };

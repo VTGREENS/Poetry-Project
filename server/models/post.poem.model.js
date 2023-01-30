@@ -11,7 +11,7 @@ const PostPoemSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    required: true,
+    required: false,
   },
   body: {
     type: String,
@@ -25,6 +25,10 @@ const PostPoemSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  imageLink:{
+    type: String,
+    required: false,
+  }
 });
 
 module.exports = mongoose.model("PostPoem", PostPoemSchema);

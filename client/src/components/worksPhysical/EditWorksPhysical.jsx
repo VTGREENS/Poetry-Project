@@ -122,7 +122,7 @@ const EditWorksPhysical = (props) => {
           id='attribution'
           label='attribution'
           variant='outlined'
-          value={title}
+          value={attribution}
           onChange={(e) => setAttribution(e.target.value)}
         />
         <TextField

@@ -10,6 +10,7 @@ const CreatePostPoem = (props) => {
   const bodyRef = useRef();
   const publishedLinkRef = useRef();
   const buyLinkRef = useRef();
+  const imageLinkRef = useRef();
   
 
   async function handleSubmit(e) {
@@ -20,6 +21,7 @@ const CreatePostPoem = (props) => {
     const body = bodyRef?.current?.value;
     const publishedLink = publishedLinkRef?.current?.value;
     const buyLink = buyLinkRef?.current?.value;
+    const imageLink = imageLinkRef?.current?.value;
 
     let url = 'http://localhost:4000/post/create';
 
@@ -30,6 +32,7 @@ const CreatePostPoem = (props) => {
       body,
       publishedLink,
       buyLink,
+      imageLink,
     });
 
     let myHeaders = new Headers();
@@ -81,13 +84,16 @@ const CreatePostPoem = (props) => {
           variant='outlined'
           inputRef={dateRef}
         />
-       
+       <br />
+      
         <TextField
           id='body'
           label='body'
           variant='outlined'
+          multiline
           inputRef={bodyRef}
         />
+        <br />
         <TextField
           id='publishedLink'
           label='published Link'
@@ -99,6 +105,12 @@ const CreatePostPoem = (props) => {
           label='buy Link'
           variant='outlined'
           inputRef={buyLinkRef}
+        />
+        <TextField
+          id='imageLink'
+          label='image Link'
+          variant='outlined'
+          inputRef={imageLinkRef}
         />
         <Button type='submit' variant='contained' color='success'>
           Post Poem

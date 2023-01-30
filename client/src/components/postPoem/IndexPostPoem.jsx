@@ -41,6 +41,7 @@ const IndexPostPoem = (props) => {
           body={postPoem.body}
           publishedLink={postPoem.publishedLink}
           buyLink={postPoem.buyLink}
+          imageLink={postPoem.imageLink}
           _id={postPoem._id}
           token={props.token}
           fetchPostPoems={fetchPostPoems}

@@ -7,12 +7,13 @@ import IndexWorksPhysical from './components/worksPhysical/IndexWorksPhysical';
 import EditWorksPhysical from './components/worksPhysical/EditWorksPhysical';
 import IndexPostPoem from './components/postPoem/IndexPostPoem';
 import EditPostPoem from './components/postPoem/EditPostPoem';
+import Navbar from './components/navbar/Navbar';
 
 
  function App() {
   // TODO Remove sampleToken after implementing AUTH aasdf
   let sampleToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NDgzNDM0OCwiZXhwIjoxNjc1MDkzNTQ4fQ.eooB-ITJU71ikuA2617X8ck6DYslReTueXZc6fuBz0U';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NTA5NDc4NSwiZXhwIjoxNjc1MzUzOTg1fQ.-AjZQqrCgNF9RfSVV8S9qfEun_m9E7MKM9fXPEeeir8';
   const [sessionToken, setSessionToken] = useState(sampleToken);
 
   const updateToken = (newToken) => {
@@ -31,6 +32,7 @@ import EditPostPoem from './components/postPoem/EditPostPoem';
   return (
     <>
    <Routes>
+    <Route path= "/" element={<Navbar/>}/>
     <Route path="/digital" element={<IndexDigitalWorks token={sessionToken}/>}/>
     <Route path="/digital/update/:id" element={<EditDigitalWorks token={sessionToken}/>}/>
     <Route path="/physical" element={<IndexWorksPhysical token={sessionToken}/> }/>
