@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import {useNavigate, useParams } from "react-router-dom";
-import { Card, CardContent } from '@mui/material';
-import { TextField, Button, Box } from '@mui/material';
-
+import { useNavigate, useParams } from "react-router-dom";
+import { Card, CardContent } from "@mui/material";
+import { TextField, Button, Box } from "@mui/material";
 
 const EditDigitalWorks = (props) => {
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [linkUrl, setLinkUrl] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -19,6 +19,7 @@ const EditDigitalWorks = (props) => {
       title,
       linkUrl,
       imageUrl,
+      description,
     });
 
     let myHeaders = new Headers();
@@ -32,49 +33,50 @@ const EditDigitalWorks = (props) => {
     };
 
     try {
-        const response = await fetch(url, requestOptions);
-        const data = await response.json();
-        navigate('/digital')
-        console.log(data);
-        if (data.message === 'Digital Work updated'){
-            // navigate('/digital')
-        } else {
-            alert(data.message)
-        }
-      } catch (error) {
-        console.log(error);
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      navigate("/digital");
+      console.log(data);
+      if (data.message === "Digital Work updated") {
+        // navigate('/digital')
+      } else {
+        alert(data.message);
       }
+    } catch (error) {
+      console.log(error);
     }
-    const fetchDigitalWork = async () => {
-        const url = `http://localhost:4000/digital/${id}`;
-        let myHeaders = new Headers();
-        myHeaders.append("Authorization", props.token);
-    
-        const requestOptions = {
-          method: "GET",
-          headers: myHeaders,
-        };
+  }
+  const fetchDigitalWork = async () => {
+    const url = `http://localhost:4000/digital/${id}`;
+    let myHeaders = new Headers();
+    myHeaders.append("Authorization", props.token);
 
-        try {
-            const response = await fetch(url, requestOptions);
-            const data = await response.json();
-            console.log(data)
-            setTitle(data.workDigital.title);
-            setLinkUrl(data.workDigital.linkUrl);
-            setImageUrl(data.workDigital.imageUrl);
-          } catch (err) {
-            console.log(err.message);
-          }
-        };
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+    };
 
-        useEffect(() => {
-              fetchDigitalWork();
-          }, []);
-      
-          return (
-            <>
-<Card sx={{ Display: "flex", padding: 5, border: "solid" }}>
-<Box
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      console.log(data);
+      setTitle(data.workDigital.title);
+      setLinkUrl(data.workDigital.linkUrl);
+      setImageUrl(data.workDigital.imageUrl);
+      setDescription(data.workDigital.description);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchDigitalWork();
+  }, []);
+
+  return (
+    <>
+      <Card sx={{ Display: "flex", padding: 5, border: "solid" }}>
+        <Box
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -82,37 +84,49 @@ const EditDigitalWorks = (props) => {
             alignItems: "flex-start",
           }}
         >
-        <CardContent>
-        <form onSubmit={handleSubmit} >
-        <TextField
-          id='title'
-          label='Title'
-          variant='outlined'
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-        />
-        <TextField
-          id='linkUrl'
-          label='Link Url'
-          variant='outlined'
-          value={linkUrl}
-          onChange={(event) => setLinkUrl(event.target.value)}
-        />
-        <TextField
-          id='imageUrl'
-          label='Image Url'
-          variant='outlined'
-          value={imageUrl}
-          onChange={(event) => setImageUrl(event.target.value)}
-        />
-        <Button color='success' type="submit" variant='contained' >Submit Edit</Button>
-      </form>
-      </CardContent>
-      </Box>
+          <CardContent>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                multiline
+                id="title"
+                label="Title"
+                variant="outlined"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+              />
+              <TextField
+                multiline
+                id="linkUrl"
+                label="Link Url"
+                variant="outlined"
+                value={linkUrl}
+                onChange={(event) => setLinkUrl(event.target.value)}
+              />
+              <TextField
+                multiline
+                id="imageUrl"
+                label="Image Url"
+                variant="outlined"
+                value={imageUrl}
+                onChange={(event) => setImageUrl(event.target.value)}
+              />
+              <TextField
+                multiline
+                id="description"
+                label="Description"
+                variant="outlined"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+              />
+              <Button color="success" type="submit" variant="contained">
+                Submit Edit
+              </Button>
+            </form>
+          </CardContent>
+        </Box>
       </Card>
-      <br />
-            </>
-          );
-        };
+    </>
+  );
+};
 
-          export default EditDigitalWorks;
+export default EditDigitalWorks;
