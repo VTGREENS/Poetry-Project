@@ -12,6 +12,7 @@ router.post("/create", validateSession, async (req, res) => {
       body: req.body.body,
       publishedLink: req.body.publishedLink,
       buyLink: req.body.buyLink,
+      imageLink: req.body.imageLink
     });
     const newPostPoem = await postPoem.save();
     res.status(200).json({

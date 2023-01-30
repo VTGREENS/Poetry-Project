@@ -11,6 +11,7 @@ const EditPostPoem = (props) => {
   const [body, setBody] = useState('');
   const [publishedLink, setPublishedLink] = useState('');
   const [buyLink, setBuyLink] = useState('');
+  const [imageLink, setImageLink] = useState('');
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -24,6 +25,7 @@ const EditPostPoem = (props) => {
       body,
       publishedLink,
       buyLink,
+      imageLink,
     });
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -51,27 +53,28 @@ const EditPostPoem = (props) => {
   // Fetch Single Poem Post
 
   const fetchPoemPost = async () => {
-    const url= `http://localhost:4000/post/${id}`;
+    const url = `http://localhost:4000/post/${id}`;
     let myHeaders = new Headers();
 
     const requestOptions = {
       method: 'GET',
       headers: myHeaders,
     };
-  
-  try {
-    const response = await fetch(url, requestOptions);
-    const data = await response.json();
-    console.log(data);
-    setTitle(data.postPoem.title)
-    setAttribution(data.postPoem.attribution)
-    setDate(data.postPoem.date)
-    setBody(data.postPoem.body)
-    setPublishedLink(data.postPoem.publishedLink)
-    setBuyLink(data.postPoem.buyLink) 
-  } catch (error) {
-    console.log(error.message); 
-  } 
+
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      console.log(data);
+      setTitle(data.postPoem.title);
+      setAttribution(data.postPoem.attribution);
+      setDate(data.postPoem.date);
+      setBody(data.postPoem.body);
+      setPublishedLink(data.postPoem.publishedLink);
+      setBuyLink(data.postPoem.buyLink);
+      setImageLink(data.postPoem.imageLink);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   useEffect(() => {
@@ -79,7 +82,7 @@ const EditPostPoem = (props) => {
   }, []);
   return (
     <>
-     <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <TextField
           id='title'
           label='title'
@@ -93,33 +96,31 @@ const EditPostPoem = (props) => {
           variant='outlined'
           value={attribution}
           onChange={(e) => setAttribution(e.target.value)}
-          
         />
-        
+
         <TextField
           id='date'
           label='date'
           variant='outlined'
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          
         />
-       
+        <br />
         <TextField
           id='body'
           label='body'
           variant='outlined'
+          multiline
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          
         />
+        <br />
         <TextField
           id='publishedLink'
           label='published Link'
           variant='outlined'
           value={publishedLink}
           onChange={(e) => setPublishedLink(e.target.value)}
-          
         />
         <TextField
           id='buyLink'
@@ -127,17 +128,19 @@ const EditPostPoem = (props) => {
           variant='outlined'
           value={buyLink}
           onChange={(e) => setBuyLink(e.target.value)}
-          
+        />
+        <TextField
+          id='imageLink'
+          label='image Link'
+          variant='outlined'
+          value={imageLink}
+          onChange={(e) => setImageLink(e.target.value)}
         />
         <Button type='submit' variant='contained' color='success'>
           Edit Poem Post
         </Button>
       </form>
-    
-    
     </>
-
-
-  )
+  );
 };
 export default EditPostPoem;

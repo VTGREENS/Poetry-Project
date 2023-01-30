@@ -3,22 +3,27 @@ import React from 'react';
 function Navbar() {
     return (
       <div className='navbar'>
-        <a href='' className='nav-link'>
+        <a href='/home' className='nav-link'>
           About/ Home
         </a>
-        <a href='' className='nav-link'>
-          Gallery
+        <br />
+        <a href='/post' className='nav-link'>
+          Post Poem
         </a>
+        <br />
         <a href='' className='nav-link'>
           Newsletter
         </a>
-        <a href='' className='nav-link'>
+        <br />
+        <a href='/digital' className='nav-link'>
           Digital Works
         </a>
-        <a href='' className='nav-link'>
+        <br />
+        <a href='/physical' className='nav-link'>
           Store/ Physical Works
         </a>
-        <a href='' className='nav-link'>
+        <br />
+        <a href='/contact' className='nav-link'>
           Contact
         </a>
       </div>
