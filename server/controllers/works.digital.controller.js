@@ -9,6 +9,7 @@ router.post("/create", async (req, res) => {
       title: req.body.title,
       linkUrl: req.body.linkUrl,
       imageUrl: req.body.imageUrl,
+      description: req.body.description,
     });
     const newWorksDigital = await worksDigital.save();
     res.status(200).json({

@@ -17,6 +17,7 @@ const DisplayDigitalWorksCard = ({
   title,
   linkUrl,
   imageUrl,
+  description,
 }) => {
   const navigate = useNavigate();
   async function deleteDigitalWorks(id) {
@@ -40,8 +41,8 @@ const DisplayDigitalWorksCard = ({
 
   return (
     <>
-      <Card sx={{ display: "flex", padding: 5, border: "solid" }}>
-      <CardMedia sx={{width:"30vw"}} component="img" image={imageUrl} />
+      <Card sx={{ display: "flex", padding: 1}}>
+        <CardMedia sx={{ width: "30vw" }} component="img" image={imageUrl} />
         <Box
           sx={{
             display: "flex",
@@ -51,7 +52,10 @@ const DisplayDigitalWorksCard = ({
           }}
         >
           <CardContent>
-            <Typography variant="h4">{title}</Typography>
+            <Typography variant="h5">{title}</Typography>
+            <Typography multiline gutterBottom variant="body1">
+              {description}
+            </Typography>
             <Typography gutterBottom variant="subtitle">
               <CardActions>
                 <Button
@@ -63,25 +67,26 @@ const DisplayDigitalWorksCard = ({
                   Link to Publication
                 </Button>
               </CardActions>
+              <CardActions>
+              <Button
+                  color="success"
+                  variant="contained"
+                  onClick={() => navigate(`/digital/update/${_id}`)}
+                >
+                  Edit
+                </Button>
+                <Button
+                  color="error"
+                  variant="contained"
+                  onClick={() => deleteDigitalWorks(_id)}
+                >
+                  DELETE
+                </Button>
+              </CardActions>
             </Typography>
-            </CardContent>
+          </CardContent>
         </Box>
       </Card>
-            <Button
-              color="success"
-              variant="contained"
-              onClick={() => navigate(`/digital/update/${_id}`)}
-            >
-              Edit
-            </Button>
-            <Button
-              color="error"
-              variant="contained"
-              onClick={() => deleteDigitalWorks(_id)}
-            >
-              DELETE
-            </Button>
-        
     </>
   );
 };
