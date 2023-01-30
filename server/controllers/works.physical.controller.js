@@ -41,17 +41,17 @@ router.put('/update/:id', validateSession, async (req, res) => {
 
     const update = req.body;
     const updated = { new: true };
-    const worksPhysical = await WorksPhysical.findOneAndUpdate(
+    const workPhysical = await WorksPhysical.findOneAndUpdate(
       filter,
       update,
       updated
     );
 
     res.json({
-      message: worksPhysical
-        ? 'Physical Works Info Updated'
-        : 'Physical Works Not Updated',
-      worksPhysical: worksPhysical ? worksPhysical : {},
+      message: workPhysical
+        ? 'Physical Work Info Updated'
+        : 'Physical Work Not Updated',
+      workPhysical: workPhysical ? workPhysical : {},
     });
   } catch (error) {
     res.json({ message: error.message });
@@ -61,14 +61,14 @@ router.put('/update/:id', validateSession, async (req, res) => {
 // Delete Physical Works
 router.delete('/delete/:id', validateSession, async (req, res) => {
   try {
-    const deletedWorksPhysical = await WorksPhysical.deleteOne({
+    const deletedWorkPhysical = await WorksPhysical.deleteOne({
       _id: req.params.id,
     });
 
     res.json({
-      deletedWorksPhysical: deletedWorksPhysical,
+      deletedWorkPhysical: deletedWorkPhysical,
       message:
-        deletedWorksPhysical.deletedCount > 0
+        deletedWorkPhysical.deletedCount > 0
           ? 'Physical Works Deleted'
           : 'Physical Works Not Found',
     });
@@ -83,7 +83,7 @@ router.get('/', async (req, res) => {
     const worksPhysical = await WorksPhysical.find();
     res.json({
       worksPhysical: worksPhysical,
-      message: 'Retrieved Physical works',
+      message: 'Retrieved Physical Works',
     });
   } catch (error) {
     res.json({ message: error.message });

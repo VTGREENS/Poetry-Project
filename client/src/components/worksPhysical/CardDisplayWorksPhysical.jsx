@@ -10,7 +10,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 // Physical Works Table hosts delete Physical Works function and rendors the data from the create Physical Works function
-const CardDisplayWorksPhysical = ({image, imageAltText, title, attribution, description, msrp, amazonLink, unsolicitedPressLink, barnesAndNobleLink, signedPrice, signedLink, _id, token}) => {
+const CardDisplayWorksPhysical = ({image, imageAltText, title, attribution, description, msrp, amazonLink, unsolicitedPressLink, barnesAndNobleLink, signedPrice, signedLink, _id, token, fetchWorksPhysical}) => {
   const navigate = useNavigate();
   async function deleteWorksPhysical(_id) {
     const url = `http://localhost:4000/physical/delete/${_id}`;
@@ -23,6 +23,7 @@ const CardDisplayWorksPhysical = ({image, imageAltText, title, attribution, desc
     try {
       let response = await fetch(url, requestOptions);
       let data = await response.json();
+      fetchWorksPhysical();
       console.log(data);
     } catch (error) {
       console.log(error);
