@@ -45,7 +45,7 @@ const CardDisplayWorksPhysical = ({image, imageAltText, title, attribution, desc
   >
     <CardContent className="card-content">
       <Typography variant="h3">{title}</Typography>
-      <Typography gutterBottom variant="subtitle">
+      <Typography gutterBottom variant="h5">
         {attribution}
       </Typography>
       <Typography gutterBottom variant="body1">
