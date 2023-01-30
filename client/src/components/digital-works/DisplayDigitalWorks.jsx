@@ -11,7 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const DisplayDigitalWorksCard = ({
-  _id, 
+  _id,
   fetchDigitalWorks,
   token,
   title,
@@ -40,9 +40,8 @@ const DisplayDigitalWorksCard = ({
 
   return (
     <>
-      <Card
-        sx={{ display: "flex", maxWidth: 250, padding: 5, border: "solid",  }}
-      >
+      <Card sx={{ display: "flex", padding: 5, border: "solid" }}>
+      <CardMedia sx={{width:"30vw"}} component="img" image={imageUrl} />
         <Box
           sx={{
             display: "flex",
@@ -52,25 +51,37 @@ const DisplayDigitalWorksCard = ({
           }}
         >
           <CardContent>
-            <Typography variant="h3">{title}</Typography>
+            <Typography variant="h4">{title}</Typography>
             <Typography gutterBottom variant="subtitle">
-              {linkUrl}
-            </Typography>
-            <Typography gutterBottom variant="body1">
-              {imageUrl}
-            </Typography>
-            <Button variant="contained" onClick={() => navigate(`/digital/update/${_id}`)}>
-                  Edit
+              <CardActions>
+                <Button
+                  variant="contained"
+                  href={linkUrl}
+                  aria-label="Link"
+                  size="small"
+                >
+                  Link to Publication
                 </Button>
-                <br />
-                <br />
-            <Button variant="contained" onClick={() => deleteDigitalWorks(_id)}>
-              DELETE
-            </Button>
-          </CardContent>
+              </CardActions>
+            </Typography>
+            </CardContent>
         </Box>
       </Card>
-        <br />
+            <Button
+              color="success"
+              variant="contained"
+              onClick={() => navigate(`/digital/update/${_id}`)}
+            >
+              Edit
+            </Button>
+            <Button
+              color="error"
+              variant="contained"
+              onClick={() => deleteDigitalWorks(_id)}
+            >
+              DELETE
+            </Button>
+        
     </>
   );
 };
