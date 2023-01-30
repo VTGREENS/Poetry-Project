@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Card, CardContent, FormGroup } from '@mui/material';
-import { FormLabel } from '@mui/material';
-import { OutlinedInput } from '@mui/material';
-import { TextField, Button } from '@mui/material';
+import {useNavigate, useParams } from "react-router-dom";
+import { Card, CardContent } from '@mui/material';
+import { TextField, Button, Box } from '@mui/material';
 
 
 const EditDigitalWorks = (props) => {
   const { id } = useParams();
-//   const [digitalWork, setDigitalWork] = useState("");
   const [title, setTitle] = useState("");
   const [linkUrl, setLinkUrl] = useState("");
   const [imageUrl, setImageUrl] = useState("");
- 
+  const navigate = useNavigate();
+
   async function handleSubmit(e) {
     e.preventDefault();
     let url = `http://localhost:4000/digital/update/${id}`;
@@ -36,9 +34,10 @@ const EditDigitalWorks = (props) => {
     try {
         const response = await fetch(url, requestOptions);
         const data = await response.json();
+        navigate('/digital')
         console.log(data);
         if (data.message === 'Digital Work updated'){
-            // navigate('/digital/')
+            // navigate('/digital')
         } else {
             alert(data.message)
         }
@@ -74,7 +73,15 @@ const EditDigitalWorks = (props) => {
       
           return (
             <>
-<Card sx={{ maxWidth: 250, padding: 5, border: "solid" }}>
+<Card sx={{ Display: "flex", padding: 5, border: "solid" }}>
+<Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+          }}
+        >
         <CardContent>
         <form onSubmit={handleSubmit} >
         <TextField
@@ -98,9 +105,10 @@ const EditDigitalWorks = (props) => {
           value={imageUrl}
           onChange={(event) => setImageUrl(event.target.value)}
         />
-        <Button color='success' type="submit" variant='contained' color="success">Submit Edit</Button>
+        <Button color='success' type="submit" variant='contained' >Submit Edit</Button>
       </form>
       </CardContent>
+      </Box>
       </Card>
       <br />
             </>
