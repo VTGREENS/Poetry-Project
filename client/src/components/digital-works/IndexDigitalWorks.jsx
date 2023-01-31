@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CreateDigitalWorks from "./CreateDigitalWorks";
 import DisplayDigitalWorksCard from "./DisplayDigitalWorks";
-import EditDigitalWorks from "./EditDigitalWorks";
+
 const IndexDigitalWorks = (props) => {
   const [digitalWorks, setDigitalWorks] = useState([]);
   const fetchDigitalWorks = async () => {
