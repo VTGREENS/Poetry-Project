@@ -2,7 +2,7 @@ const router = require("express").Router();
 const HomeAbout = require("../models/home.about.model");
 
 //! This allows admin to create content
-router.post("/about/create", async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const homeAbout = new HomeAbout({
       aboutContentImage: req.body.aboutContentImage,
@@ -19,17 +19,17 @@ router.post("/about/create", async (req, res) => {
 });
 
 //! This allows admin to get content
-router.get("/about/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const homeAbouts = await HomeAbout.find();
-    res.json({ messages: homeAbouts, message: "success" });
+    const homeAbout = await HomeAbout.find();
+    res.json({ result: homeAbout, message: "success" });
   } catch (error) {
     res.json({ message: error.message });
   }
 });
 
 //! This allows admin to edit content
-router.patch("about/update", async (req, res) => {
+router.patch("/update/:id", async (req, res) => {
   try {
     const filter = { _id: req.params.id };
     const update = req.body;
@@ -41,8 +41,7 @@ router.patch("about/update", async (req, res) => {
     );
 
     res.json({
-      message: homeAbout ? "Message updated" : "Message was not updated",
-      message: homeAbout ? message : {},
+      message: homeAbout ? "Home/About was updated" : "Home/About was not updated"
     });
   } catch (error) {
     res.json({ message: error.message });
