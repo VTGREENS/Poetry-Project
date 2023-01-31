@@ -11,6 +11,7 @@ const CreatePostPoem = (props) => {
   const publishedLinkRef = useRef();
   const buyLinkRef = useRef();
   const imageLinkRef = useRef();
+  const featuredInRef = useRef();
   
 
   async function handleSubmit(e) {
@@ -22,6 +23,7 @@ const CreatePostPoem = (props) => {
     const publishedLink = publishedLinkRef?.current?.value;
     const buyLink = buyLinkRef?.current?.value;
     const imageLink = imageLinkRef?.current?.value;
+    const featuredIn = featuredInRef?.current?.value;
 
     let url = 'http://localhost:4000/post/create';
 
@@ -71,6 +73,7 @@ const CreatePostPoem = (props) => {
           variant='outlined'
           inputRef={titleRef}
         />
+        <br />
         <TextField
           id='attribution'
           label='attribution'
@@ -106,14 +109,22 @@ const CreatePostPoem = (props) => {
           variant='outlined'
           inputRef={buyLinkRef}
         />
+        <br />
         <TextField
           id='imageLink'
           label='image Link'
           variant='outlined'
           inputRef={imageLinkRef}
         />
+        <TextField
+          id='featuredIn'
+          label='featured In'
+          variant='outlined'
+          inputRef={imageLinkRef}
+        />
+        <br />
         <Button type='submit' variant='contained' color='success'>
-          Post Poem
+          Create Post
         </Button>
       </form>
     </>

@@ -12,6 +12,7 @@ const EditPostPoem = (props) => {
   const [publishedLink, setPublishedLink] = useState('');
   const [buyLink, setBuyLink] = useState('');
   const [imageLink, setImageLink] = useState('');
+  const [featuredIn, setFeaturedIn] = useState('');
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -26,6 +27,7 @@ const EditPostPoem = (props) => {
       publishedLink,
       buyLink,
       imageLink,
+      featuredIn
     });
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -72,6 +74,7 @@ const EditPostPoem = (props) => {
       setPublishedLink(data.postPoem.publishedLink);
       setBuyLink(data.postPoem.buyLink);
       setImageLink(data.postPoem.imageLink);
+      setFeaturedIn(data.postPoem.featuredIn);
     } catch (error) {
       console.log(error.message);
     }
@@ -135,6 +138,13 @@ const EditPostPoem = (props) => {
           variant='outlined'
           value={imageLink}
           onChange={(e) => setImageLink(e.target.value)}
+        />
+        <TextField
+          id='featuredIn'
+          label='Featured In'
+          variant='outlined'
+          value={featuredIn}
+          onChange={(e) => setFeaturedIn(e.target.value)}
         />
         <Button type='submit' variant='contained' color='success'>
           Edit Poem Post
