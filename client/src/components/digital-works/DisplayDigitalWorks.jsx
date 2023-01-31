@@ -54,8 +54,11 @@ const DisplayDigitalWorksCard = ({
         >
           <CardContent>
             <Typography variant="h5">{title}</Typography>
+            
             <Typography multiline gutterBottom variant="body1">
+              <pre>
               {description}
+              </pre>
             </Typography>
             <Typography gutterBottom variant="subtitle">
               <CardActions>
