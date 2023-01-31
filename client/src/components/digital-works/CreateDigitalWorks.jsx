@@ -1,14 +1,11 @@
 import React, { useRef } from "react";
-import { Card, CardContent, FormGroup, CardActions } from "@mui/material";
-import { FormLabel } from "@mui/material";
-import { OutlinedInput } from "@mui/material";
+import { Card, CardContent, CardActions } from "@mui/material";
 import { TextField, Button } from "@mui/material";
 
 const CreateDigitalWorks = (props) => {
   const titleRef = useRef();
   const linkUrlRef = useRef();
   const imageUrlRef = useRef();
-  const formRef = useRef();
   const descriptionRef = useRef();
 
   async function handleSubmit(e) {
@@ -42,7 +39,6 @@ const CreateDigitalWorks = (props) => {
       const data = await response.json();
       props.fetchDigitalWorks();
       console.log(data);
-      // formRef.current.reset();
 
       if (data.message === "Digital Works Created") {
       } else {
