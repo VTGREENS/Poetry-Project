@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const PostPoemSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
+    required: false,
   },
   attribution: {
     type: String,
-    required: true,
+    required: false,
   },
   date: {
     type: Date,
@@ -15,7 +15,7 @@ const PostPoemSchema = new mongoose.Schema({
   },
   body: {
     type: String,
-    required: true,
+    required: false,
   },
   publishedLink: {
     type: String,
@@ -26,6 +26,10 @@ const PostPoemSchema = new mongoose.Schema({
     required: false,
   },
   imageLink:{
+    type: String,
+    required: false,
+  },
+  featuredIn:{
     type: String,
     required: false,
   }
