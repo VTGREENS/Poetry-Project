@@ -13,7 +13,7 @@ import Layout from './components/layout/Layout';
  function App() {
   // TODO Remove sampleToken after implementing AUTH aasdf
   let sampleToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NTA5NDc4NSwiZXhwIjoxNjc1MzUzOTg1fQ.-AjZQqrCgNF9RfSVV8S9qfEun_m9E7MKM9fXPEeeir8';
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NTE5NTAwOSwiZXhwIjoxNjc1NDU0MjA5fQ.KvTiTYCWGCejhFGp-H6YF69Y1zqc78Dp-k7eTc4oUHU';
   const [sessionToken, setSessionToken] = useState(sampleToken);
 
   const updateToken = (newToken) => {
