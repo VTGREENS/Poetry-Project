@@ -47,7 +47,7 @@ const CardDisplayPostPoem = ({
     <>
       <Card sx={{ display: 'flex' }}>
         {imageLink ? (
-          <CardMedia sx={{ width: '40vw' }} component='img' image={imageLink} />
+          <CardMedia sx={{ width: '30vw' }} component='img' image={imageLink} />
         ) : null}
 
         <Box
@@ -66,7 +66,7 @@ const CardDisplayPostPoem = ({
               </Typography>
             ) : null}
             {body ? (
-              <Typography gutterBottom variant='body1'>
+              <Typography sx={{ whiteSpace: 'pre-wrap' }}gutterBottom variant='body1' component='body'>
                 {body}
               </Typography>
             ) : null}

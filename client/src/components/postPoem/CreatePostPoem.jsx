@@ -1,7 +1,11 @@
 import React, { useRef } from 'react';
-import { TextField, Button } from '@mui/material';
-
-
+import {
+  TextField,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+} from '@mui/material';
 
 const CreatePostPoem = (props) => {
   const titleRef = useRef();
@@ -12,7 +16,6 @@ const CreatePostPoem = (props) => {
   const buyLinkRef = useRef();
   const imageLinkRef = useRef();
   const featuredInRef = useRef();
-  
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -54,7 +57,6 @@ const CreatePostPoem = (props) => {
       console.log(data);
 
       if (data.message === 'Your post has been added') {
-       
       } else {
         alert(data.message);
       }
@@ -65,68 +67,70 @@ const CreatePostPoem = (props) => {
 
   return (
     <>
-      
-      <form onSubmit={handleSubmit}>
-        <TextField
-          id='title'
-          label='title'
-          variant='outlined'
-          inputRef={titleRef}
-        />
-        <br />
-        <TextField
-          id='attribution'
-          label='attribution'
-          variant='outlined'
-          inputRef={attributionRef}
-        />
-        
-        <TextField
-          id='date'
-          label='date'
-          variant='outlined'
-          inputRef={dateRef}
-        />
-       <br />
-      
-        <TextField
-          id='body'
-          label='body'
-          variant='outlined'
-          multiline
-          inputRef={bodyRef}
-        />
-        <br />
-        <TextField
-          id='publishedLink'
-          label='published Link'
-          variant='outlined'
-          inputRef={publishedLinkRef}
-        />
-        <TextField
-          id='buyLink'
-          label='buy Link'
-          variant='outlined'
-          inputRef={buyLinkRef}
-        />
-        <br />
-        <TextField
-          id='imageLink'
-          label='image Link'
-          variant='outlined'
-          inputRef={imageLinkRef}
-        />
-        <TextField
-          id='featuredIn'
-          label='featured In'
-          variant='outlined'
-          inputRef={imageLinkRef}
-        />
-        <br />
-        <Button type='submit' variant='contained' color='success'>
-          Create Post
-        </Button>
-      </form>
+      <Card sx={{ display: 'flex' }}>
+        <CardContent>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              id='title'
+              label='title'
+              variant='outlined'
+              inputRef={titleRef}
+            />
+            
+            <TextField
+              id='attribution'
+              label='attribution'
+              variant='outlined'
+              inputRef={attributionRef}
+            />
+
+            <TextField
+              id='date'
+              label='date'
+              variant='outlined'
+              inputRef={dateRef}
+            />
+            <TextField
+              id='publishedLink'
+              label='published Link'
+              variant='outlined'
+              inputRef={publishedLinkRef}
+            />
+            <TextField
+              id='buyLink'
+              label='buy Link'
+              variant='outlined'
+              inputRef={buyLinkRef}
+            />
+            <TextField
+              id='imageLink'
+              label='image Link'
+              variant='outlined'
+              inputRef={imageLinkRef}
+            />
+            <TextField
+              id='featuredIn'
+              label='featured In'
+              variant='outlined'
+              inputRef={imageLinkRef}
+            />
+          
+            <TextField
+              id='body'
+              label='body'
+              variant='outlined'
+              multiline
+              inputRef={bodyRef}
+            />
+            
+            <CardActions>
+              <Button type='submit' variant='contained' color='success'>
+                Create Post
+              </Button>
+            </CardActions>
+          </form>
+        </CardContent>
+      </Card>
     </>
   );
 };
