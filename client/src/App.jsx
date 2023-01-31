@@ -7,7 +7,7 @@ import IndexWorksPhysical from './components/worksPhysical/IndexWorksPhysical';
 import EditWorksPhysical from './components/worksPhysical/EditWorksPhysical';
 import IndexPostPoem from './components/postPoem/IndexPostPoem';
 import EditPostPoem from './components/postPoem/EditPostPoem';
-import Navbar from './components/navbar/Navbar';
+import Layout from './components/layout/Layout';
 
 
  function App() {
@@ -32,12 +32,12 @@ import Navbar from './components/navbar/Navbar';
   return (
     <>
    <Routes>
-    <Route path= "/" element={<Navbar/>}/>
-    <Route path="/digital" element={<IndexDigitalWorks token={sessionToken}/>}/>
+    <Route path="/:page" element={<Layout token={sessionToken}/>} />
+    {/* <Route path="/digital" element={<IndexDigitalWorks token={sessionToken}/>}/> */}
     <Route path="/digital/update/:id" element={<EditDigitalWorks token={sessionToken}/>}/>
-    <Route path="/physical" element={<IndexWorksPhysical token={sessionToken}/> }/>
+    {/* <Route path="/physical" element={<IndexWorksPhysical token={sessionToken}/> }/> */}
     <Route path="/physical/update/:id" element={<EditWorksPhysical token={sessionToken}/>}/>
-    <Route path="/post" element={<IndexPostPoem token={sessionToken}/>}/>
+    {/* <Route path="/post" element={<IndexPostPoem token={sessionToken}/>}/> */}
     <Route path="/post/update/:id" element={<EditPostPoem token={sessionToken}/>}/>
    </Routes>
     </>
