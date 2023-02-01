@@ -13,7 +13,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { Button, Card, CardContent, CardMedia } from "@mui/material";
+import { Button, Card, CardContent, CardMedia, } from "@mui/material";
 import styled from "@emotion/styled";
 
 const drawerWidth = "inherit";
@@ -35,15 +35,15 @@ export default function PermanentDrawerLeft() {
             <CardMedia
               sx={{ margin: "2vw" }}
               component="img"
-              image="http://placekitten.com/500/500"
-              alt="placeholder kitten photo"
+              image="https://res.cloudinary.com/duh9psfze/image/upload/v1674835092/Website/Cover_To_Daughter_a_Devil_epzsef.png"
+              alt="To Daughter a Devil Cover Image"
             />
             <CardContent>
               <Typography variant="p" component="p">
-                This is a sample Card . This is a sample Card. This is
-                a sample Card.
+              To Daughter a Devil explores women in horror and the horror in being woman.
               </Typography>
-              <Button />
+              <Button 
+              href='/physical' variant='contained' color='primary'>More Info</Button>
             </CardContent>
           </Box>
         </Card>
@@ -52,15 +52,15 @@ export default function PermanentDrawerLeft() {
             <CardMedia
               sx={{ margin: "2vw" }}
               component="img"
-              image="http://placekitten.com/500/500"
-              alt="placeholder kitten photo"
+              image="https://www.unsolicitedpress.com/uploads/1/8/8/2/18828530/s224039681740579826_p252_i1_w640.jpeg"
+              alt="Dwellers Cover Image"
             />
             <CardContent>
               <Typography variant="p" component="p">
-                This is a sample Card . This is a sample Card. This is
-                a sample Card.
+              Dwellers is a love letter to a girlhood that is often overlooked.
               </Typography>
-              <Button />
+              <Button 
+              href='/physical' variant='contained' color='secondary'>More Info</Button>
             </CardContent>
           </Box>
         </Card>
