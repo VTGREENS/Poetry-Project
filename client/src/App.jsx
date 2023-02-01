@@ -9,11 +9,12 @@ import EditPostPoem from "./components/postPoem/EditPostPoem";
 import Layout from "./components/layout/Layout";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+
 const theme = createTheme({
   palette: {
     mode: "light",
-    primary: "#FFCBD4",
-    secondary: "#008854",
+    primary: { main: "#FFCBD4"},
+    secondary: {main: "#008854"},
   },
 });
 
