@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Newsletter = require('../models/newsletter.model');
 
+
 // Create Newsletter Recipient
 router.post('/signup', async (req, res) => {
   console.log('newsletter signup');
@@ -20,6 +21,27 @@ router.post('/signup', async (req, res) => {
     res.json({ message: error.message });
   }
 });
+
+
+router.get("/", async (req, res) => {
+  try {
+    const newsletter = await Newsletter.find();
+    res.json({ newsletter: newsletter, message: "Retrieved Emails." });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+});
+
+
+router.get("/:id", async (req, res) => {
+  try {
+    const newsletter = await Newsletter.findById({ _id: req.params.id });
+    res.json({ newsletter: newsletter, message: "Retrieved Email." });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+});
+
 
 // Delete Recipient Email from Newsletter list
 router.delete('/delete/:id', async (req, res) => {
