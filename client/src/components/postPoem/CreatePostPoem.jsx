@@ -38,6 +38,7 @@ const CreatePostPoem = (props) => {
       publishedLink,
       buyLink,
       imageLink,
+      featuredIn
     });
 
     let myHeaders = new Headers();
@@ -112,9 +113,8 @@ const CreatePostPoem = (props) => {
               id='featuredIn'
               label='featured In'
               variant='outlined'
-              inputRef={imageLinkRef}
+              inputRef={featuredInRef}
             />
-          
             <TextField
               id='body'
               label='body'

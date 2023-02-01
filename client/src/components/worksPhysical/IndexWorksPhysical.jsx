@@ -32,7 +32,6 @@ const IndexWorksPhysical = (props) => {
 
   return (
     <>
-
     <section style={{ marginTop: "1rem"}}>
       <CreateWorksPhysical worksPhysical={worksPhysical} token={props.token} fetchWorksPhysical={fetchWorksPhysical}/>
 

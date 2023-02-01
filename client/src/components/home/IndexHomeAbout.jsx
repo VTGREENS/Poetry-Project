@@ -1,0 +1,59 @@
+import React, { useState, useEffect } from 'react';
+import CreateHomeAbout from './CreateHomeAbout';
+import DisplayHomeAbout from './DisplayHomeAbout';
+
+const IndexHomeAbout = ({token}) => {
+  const [aboutContent, setAboutContent] = useState([]);
+
+  const fetchHomeAboutContent = async () => {
+    const url = 'http://localhost:4000/about/';
+    let myHeaders = new Headers();
+    const requestOptions = { 
+      method: 'GET', 
+      headers: myHeaders 
+    };
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      if (data.message === 'success') {
+        setAboutContent(data.homeAbout);
+      }else{
+        alert(data)
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchHomeAboutContent();
+  }, []);
+
+  useEffect(() => {
+    console.log('homeAbout content state', aboutContent);
+  }, [aboutContent]);
+
+  return (
+    <>
+    <section id='home-about-section' style={{ margin: '1rem' }}>
+
+    <div style={{marginbottom: '1rem'}} >
+      <CreateHomeAbout token={token}/>
+    </div>
+     
+      {aboutContent?.map((aboutItem) => (
+        <DisplayHomeAbout
+        key={aboutItem.id}
+        aboutContentImage={aboutItem.aboutContentImage}
+        aboutContentText={aboutItem.aboutContentText}
+        _id={aboutItem._id}
+        token={token}
+        fetchHomeAboutContent={fetchHomeAboutContent}
+        />
+        ))}
+      </section>
+    </>
+  );
+};
+
+export default IndexHomeAbout;

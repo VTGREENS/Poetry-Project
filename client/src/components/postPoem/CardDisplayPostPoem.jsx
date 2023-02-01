@@ -8,7 +8,7 @@ import {
   Box,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { css } from '@emotion/react';
+
 
 // CardDisplayPostPoem houses delete function, displays posted poems onto IndexPostPoem.
 const CardDisplayPostPoem = ({

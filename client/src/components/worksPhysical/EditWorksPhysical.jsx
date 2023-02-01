@@ -5,17 +5,17 @@ import React, { useState, useEffect } from 'react';
 // Edit Physical Works
 const EditWorksPhysical = (props) => {
   const { id } = useParams();
-  const [image, setImage] = useState("");
-  const [imageAltText, setImageAltText] = useState("");
-  const [title, setTitle] = useState("");
-  const [attribution, setAttribution] = useState("");
-  const [description, setDescription] = useState("");
-  const [msrp, setMsrp] = useState("");
-  const [amazonLink, setAmazonLink] = useState("");
-  const [unsolicitedPressLink, setUnsolicitedPressLink] = useState("");
-  const [barnesAndNobleLink, setBarnesAndNobleLink] = useState("");
-  const [signedPrice, setSignedPrice] = useState("");
-  const [signedLink, setSignedLink] = useState("");
+  const [image, setImage] = useState('');
+  const [imageAltText, setImageAltText] = useState('');
+  const [title, setTitle] = useState('');
+  const [attribution, setAttribution] = useState('');
+  const [description, setDescription] = useState('');
+  const [msrp, setMsrp] = useState('');
+  const [amazonLink, setAmazonLink] = useState('');
+  const [unsolicitedPressLink, setUnsolicitedPressLink] = useState('');
+  const [barnesAndNobleLink, setBarnesAndNobleLink] = useState('');
+  const [signedPrice, setSignedPrice] = useState('');
+  const [signedLink, setSignedLink] = useState('');
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -48,10 +48,9 @@ const EditWorksPhysical = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      navigate('/physical');
       console.log(data);
-      if (data.message === 'Physical Works Info Updated') {
-        // navigate('/physical/');
+      if (data.message === 'Physical Work Info Updated') {
+        navigate('/physical');
       } else {
         alert(data.message);
       }
@@ -90,14 +89,12 @@ const EditWorksPhysical = (props) => {
   };
   useEffect(() => {
     fetchWorkPhysical();
-  },[]);
+  }, []);
 
   return (
     <>
-      <h3>Hello from Edit Works Physical</h3>
       <form onSubmit={handleSubmit}>
         <TextField
-          
           id='image'
           label='image URL'
           variant='outlined'

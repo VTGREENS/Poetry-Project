@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import Divider from "@mui/material/Divider";
 import { Box } from "@mui/material";
-
 import TabUnstyled from "@mui/base/TabUnstyled";
 import TabsListUnstyled from "@mui/base/TabsListUnstyled";
 import TabPanelUnstyled from "@mui/base/TabPanelUnstyled";
 import TabsUnstyled from "@mui/base/TabsUnstyled";
-
 import CssBaseline from "@mui/material/CssBaseline";
-
 import { useParams } from "react-router-dom";
 import IndexWorksPhysical from "../worksPhysical/IndexWorksPhysical";
-import HomeAbout from "../home/HomeAbout";
+import IndexHomeAbout from "../home/IndexHomeAbout";
 import IndexDigitalWorks from "../digital-works/IndexDigitalWorks";
 import IndexPostPoem from "../postPoem/IndexPostPoem";
 import { useEffect } from "react";
@@ -93,7 +90,7 @@ function TabBar({ token }) {
             <RightTab value="post">Posted Poems</RightTab>
           </StyledTabsList>
           <TabPanelUnstyled value="home">
-            <HomeAbout token={token} />
+            <IndexHomeAbout token={token} />
           </TabPanelUnstyled>
           <TabPanelUnstyled value="physical">
             <IndexWorksPhysical token={token} />

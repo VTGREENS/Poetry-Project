@@ -139,7 +139,7 @@ const CreateWorksPhysical = (props) => {
             variant="outlined"
             inputRef={signedLinkRef}
           />
-          <Button type="submit" variant="contained" color="success">
+          <Button type="submit" variant="contained" color="primary">
             Submit Physical Works
           </Button>
         </form>
