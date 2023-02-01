@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   CardMedia,
   Card,
@@ -9,19 +10,12 @@ import {
   Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Checkbox from "@mui/material/Checkbox";
 
-const DisplayDigitalWorksCard = ({
-  _id,
-  fetchDigitalWorks,
-  token,
-  title,
-  linkUrl,
-  imageUrl,
-  description,
-}) => {
+const DisplayNewsletterCard = ({ _id, fetchNewsletters, token, email }) => {
   const navigate = useNavigate();
-  async function deleteDigitalWorks(id) {
-    const url = `http://localhost:4000/digital/delete/${id}`;
+  async function deleteNewsletters(id) {
+    const url = `http://localhost:4000/newsletter/delete/${id}`;
     let myHeaders = new Headers();
     myHeaders.append("Authorization", token);
 
@@ -33,16 +27,21 @@ const DisplayDigitalWorksCard = ({
       let response = await fetch(url, requestOptions);
       let data = await response.json();
       console.log(data);
-      fetchDigitalWorks();
+      fetchNewsletters();
     } catch (error) {
       console.log(error.message);
     }
   }
 
+  const [checked, setChecked] = React.useState(true);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
   return (
     <>
       <Card sx={{ display: "flex", padding: 1, marginBottom: "1rem" }}>
-        <CardMedia sx={{ width: "30vw" }} component="img" image={imageUrl} />
         <Box
           sx={{
             display: "flex",
@@ -52,38 +51,17 @@ const DisplayDigitalWorksCard = ({
           }}
         >
           <CardContent>
-            <Typography variant="h5">{title}</Typography>
-            <Typography
-              sx={{ whiteSpace: "pre-wrap" }}
-              multiline
-              gutterBottom
-              variant="body1"
-            >
-              {description}
-            </Typography>
+            <Checkbox
+              onChange={handleChange}
+              inputProps={{ "aria-label": "controlled" }}
+            />
+            <Typography variant="h5">{email}</Typography>
             <Typography gutterBottom variant="subtitle">
               <CardActions>
                 <Button
-                  variant="contained"
-                  href={linkUrl}
-                  aria-label="Link"
-                  size="small"
-                >
-                  Link to Publication
-                </Button>
-              </CardActions>
-              <CardActions>
-                <Button
-                  color="success"
-                  variant="contained"
-                  onClick={() => navigate(`/digital/update/${_id}`)}
-                >
-                  Edit
-                </Button>
-                <Button
                   color="error"
                   variant="contained"
-                  onClick={() => deleteDigitalWorks(_id)}
+                  onClick={() => deleteNewsletters(_id)}
                 >
                   DELETE
                 </Button>
@@ -96,4 +74,4 @@ const DisplayDigitalWorksCard = ({
   );
 };
 
-export default DisplayDigitalWorksCard;
+export default DisplayNewsletterCard;

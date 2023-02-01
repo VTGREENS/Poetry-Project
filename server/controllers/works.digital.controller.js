@@ -3,7 +3,7 @@ const WorksDigital = require("../models/works.digital.model");
 const validateSession = require("../middleware/validate-session")
 
 //! Allows admin to add new digital work
-router.post("/create", async (req, res) => {
+router.post("/create", validateSession, async (req, res) => {
   try {
     const worksDigital = new WorksDigital({
       title: req.body.title,
@@ -42,7 +42,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //! Allows admin to update Digital Work
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:id", validateSession, async (req, res) => {
   try {
     const filter = { _id: req.params.id };
     const update = req.body;
@@ -65,7 +65,7 @@ router.put("/update/:id", async (req, res) => {
 });
 
 //! Allows admin to delete a Digital Work
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", validateSession, async (req, res) => {
   try {
     const worksDigitalRecord = await WorksDigital.findById(req.params.id);
 

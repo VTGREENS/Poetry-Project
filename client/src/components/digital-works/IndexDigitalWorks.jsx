@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CreateDigitalWorks from "./CreateDigitalWorks";
 import DisplayDigitalWorksCard from "./DisplayDigitalWorks";
+import { Box } from "@mui/material";
 
 const IndexDigitalWorks = (props) => {
   const [digitalWorks, setDigitalWorks] = useState([]);
@@ -35,6 +36,7 @@ const IndexDigitalWorks = (props) => {
           fetchDigitalWorks={fetchDigitalWorks}
         />
         <br />
+        <Box sx={{ display: "flex", flexDirection: "column-reverse" }}>
         {digitalWorks?.worksDigital?.map((digitalWork) => (
           <DisplayDigitalWorksCard
             key={digitalWork._id}
@@ -46,7 +48,9 @@ const IndexDigitalWorks = (props) => {
             _id={digitalWork._id}
             description={digitalWork.description}
           />
+          
         ))}
+        </Box>
       </section>
     </>
   );

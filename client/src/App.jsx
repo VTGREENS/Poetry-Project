@@ -7,11 +7,12 @@ import EditWorksPhysical from './components/worksPhysical/EditWorksPhysical';
 import EditPostPoem from './components/postPoem/EditPostPoem';
 import EditHomeAbout from './components/home/EditHomeAbout';
 
+
 const theme = createTheme({
   palette: {
-    mode: 'light',
-    primary: { main: '#FFCBD4' },
-    secondary: { main: '#008854' },
+    mode: "light",
+    primary: { main: "#FFCBD4"},
+    secondary: {main: "#008854"},
   },
 });
 
