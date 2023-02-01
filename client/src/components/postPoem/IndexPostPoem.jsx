@@ -1,7 +1,7 @@
-import { Box } from '@mui/system';
-import React, { useState, useEffect } from 'react';
-import CardDisplayPostPoem from './CardDisplayPostPoem';
-import CreatePostPoem from './CreatePostPoem';
+import { Box } from "@mui/system";
+import React, { useState, useEffect } from "react";
+import CardDisplayPostPoem from "./CardDisplayPostPoem";
+import CreatePostPoem from "./CreatePostPoem";
 
 const IndexPostPoem = (props) => {
   const [postPoem, setPostPoem] = useState([]);
@@ -9,7 +9,7 @@ const IndexPostPoem = (props) => {
     const url = `http://localhost:4000/post/`;
     let myHeaders = new Headers();
     const requestOptions = {
-      method: 'GET',
+      method: "GET",
       headers: myHeaders,
     };
     try {
@@ -24,35 +24,37 @@ const IndexPostPoem = (props) => {
     fetchPostPoems();
   }, []);
   useEffect(() => {
-    console.log('postPoem state', postPoem);
+    console.log("postPoem state", postPoem);
   }, [postPoem]);
 
   return (
     <>
-      <CreatePostPoem
-        postPoem={postPoem}
-        token={props.token}
-        fetchPostPoems={fetchPostPoems}
-      />
+      <section style={{marginTop: "1rem"}}>
+        <CreatePostPoem
+          postPoem={postPoem}
+          token={props.token}
+          fetchPostPoems={fetchPostPoems}
+        />
 
-      <Box sx={{ display: 'flex', flexDirection: 'column-reverse' }}>
-        {postPoem?.postPoems?.map((postPoem) => (
-          <CardDisplayPostPoem
-            key={postPoem._id}
-            title={postPoem.title}
-            attribution={postPoem.attribution}
-            date={postPoem.date}
-            body={postPoem.body}
-            publishedLink={postPoem.publishedLink}
-            buyLink={postPoem.buyLink}
-            imageLink={postPoem.imageLink}
-            featuredIn={postPoem.featuredIn}
-            _id={postPoem._id}
-            token={props.token}
-            fetchPostPoems={fetchPostPoems}
-          />
-        ))}
-      </Box>
+        <Box sx={{ display: "flex", flexDirection: "column-reverse" }}>
+          {postPoem?.postPoems?.map((postPoem) => (
+            <CardDisplayPostPoem
+              key={postPoem._id}
+              title={postPoem.title}
+              attribution={postPoem.attribution}
+              date={postPoem.date}
+              body={postPoem.body}
+              publishedLink={postPoem.publishedLink}
+              buyLink={postPoem.buyLink}
+              imageLink={postPoem.imageLink}
+              featuredIn={postPoem.featuredIn}
+              _id={postPoem._id}
+              token={props.token}
+              fetchPostPoems={fetchPostPoems}
+            />
+          ))}
+        </Box>
+      </section>
     </>
   );
 };

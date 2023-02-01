@@ -28,24 +28,26 @@ const IndexDigitalWorks = (props) => {
 
   return (
     <>
-      <CreateDigitalWorks
-        digitalWorks={digitalWorks}
-        token={props.token}
-        fetchDigitalWorks={fetchDigitalWorks}
-      />
-      <br />
-      {digitalWorks?.worksDigital?.map((digitalWork) => (
-        <DisplayDigitalWorksCard
-          key={digitalWork._id}
-          fetchDigitalWorks={fetchDigitalWorks}
+      <section style={{marginTop: "1rem"}}>
+        <CreateDigitalWorks
+          digitalWorks={digitalWorks}
           token={props.token}
-          title={digitalWork.title}
-          linkUrl={digitalWork.linkUrl}
-          imageUrl={digitalWork.imageUrl}
-          _id={digitalWork._id}
-          description={digitalWork.description}
+          fetchDigitalWorks={fetchDigitalWorks}
         />
-      ))}
+        <br />
+        {digitalWorks?.worksDigital?.map((digitalWork) => (
+          <DisplayDigitalWorksCard
+            key={digitalWork._id}
+            fetchDigitalWorks={fetchDigitalWorks}
+            token={props.token}
+            title={digitalWork.title}
+            linkUrl={digitalWork.linkUrl}
+            imageUrl={digitalWork.imageUrl}
+            _id={digitalWork._id}
+            description={digitalWork.description}
+          />
+        ))}
+      </section>
     </>
   );
 };

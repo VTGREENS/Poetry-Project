@@ -32,7 +32,8 @@ const IndexWorksPhysical = (props) => {
 
   return (
     <>
-      
+
+    <section style={{ marginTop: "1rem"}}>
       <CreateWorksPhysical worksPhysical={worksPhysical} token={props.token} fetchWorksPhysical={fetchWorksPhysical}/>
 
       {worksPhysical?.map((workPhysical) => (
@@ -54,6 +55,7 @@ const IndexWorksPhysical = (props) => {
           fetchWorksPhysical={fetchWorksPhysical}
         />
       ))}
+    </section>  
     </>
   );
 };
