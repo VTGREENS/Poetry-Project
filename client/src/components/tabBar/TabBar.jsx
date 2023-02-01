@@ -13,60 +13,99 @@ import { useParams } from "react-router-dom";
 import IndexWorksPhysical from "../worksPhysical/IndexWorksPhysical";
 import HomeAbout from "../home/HomeAbout";
 import IndexDigitalWorks from "../digital-works/IndexDigitalWorks";
-import IndexPostPoem from "../postPoem/IndexPostPoem"
+import IndexPostPoem from "../postPoem/IndexPostPoem";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "@emotion/styled";
+import { flexbox, maxWidth } from "@mui/system";
 
-function TabBar({token}) {
+// import makeStyles from "@mui/material/styles/makeStyles";
+
+const StyledTabsList = styled(TabsListUnstyled)(() => ({
+  marginLeft: "1rem",
+  display: "flex",
+  justifyContent: "space-between",
+  maxWidth: "80vw",
+  borderStyle: "solid",
+  borderColor: "black",
+  borderWidth: "2px",
+  borderRadius: "1rem",
+  backgroundColor: "black",
+}));
+
+const StyledTab = styled(TabUnstyled)(() => ({
+  textDecoration: "none",
+  color: "black",
+  backgroundColor: "#ffffff",
+  fontSize: "20px",
+  height: "2.5em",
+  flexGrow: "1",
+  marginLeft: ".15em",
+  borderStyle: "solid",
+  borderColor: "#FFffff",
+  fontWeight: "bold",
+  fontFamily: "monospace",
+  "&:hover": {
+    color: "white",
+    backgroundColor: "#008854",
+    borderColor: "#008854"
+  },
+}));
+
+const RightTab = styled(StyledTab)(() => ({
+  borderStartEndRadius: ".8rem",
+  borderEndEndRadius: ".8rem",
+}));
+
+const LeftTab = styled(StyledTab)(() => ({
+  marginLeft: "0",
+  borderEndStartRadius: ".8rem",
+  borderStartStartRadius: ".8rem",
+}));
+
+function TabBar({ token }) {
   // * Get Url Parameters
   const params = useParams();
-  const navigate = useNavigate()
-  let { page } = params
-  console.log(params)
+  const navigate = useNavigate();
+  let { page } = params;
+  console.log(params);
 
-  // * Declare Current Tab state variable
-  const [currentTab, setCurrentTab] = useState("home");
 
+
+  // ? when tab is changed, this runs, navigating to the new tab's page
   const handleChange = (event, newTab) => {
     navigate(`/${newTab}`);
   };
-
-
-  useEffect(
-    (page) => {
-      setCurrentTab(page);
-    },
-    [page]
-  );
-
   return (
     <>
-      <CssBaseline />
-      <TabsUnstyled 
-        selectionFollowsFocus 
-        defaultValue={"home"}
-        value={page}
-        onChange={handleChange}
-      >
-        <TabsListUnstyled>
-          <TabUnstyled value="home">Home/About</TabUnstyled>
-          <TabUnstyled value="physical">Physical Works</TabUnstyled>
-          <TabUnstyled value="digital">Digial Works</TabUnstyled>
-          <TabUnstyled value="post">Posted Poems</TabUnstyled>
-        </TabsListUnstyled>
-        <TabPanelUnstyled value="home">
-          <HomeAbout token={token}/>
-        </TabPanelUnstyled>
-        <TabPanelUnstyled value="physical">
-          <IndexWorksPhysical token={token}/>
-        </TabPanelUnstyled>
-        <TabPanelUnstyled value="digital">
-          <IndexDigitalWorks token={token}/>
-        </TabPanelUnstyled>
-        <TabPanelUnstyled value="post">
-          <IndexPostPoem token={token}/>
-        </TabPanelUnstyled>
-      </TabsUnstyled>
+      <main style={page !== "physical" ? {maxWidth: "50vw"} : {maxWidth: "66vw"}}>
+        <CssBaseline />
+        <TabsUnstyled
+          selectionFollowsFocus
+          defaultValue={"home"}
+          value={page}
+          onChange={handleChange}
+        >
+          <StyledTabsList>
+            <LeftTab value="home">Home/About</LeftTab>
+            <StyledTab value="physical">Physical Works</StyledTab>
+            <StyledTab value="digital">Digial Works</StyledTab>
+            <RightTab value="post">Posted Poems</RightTab>
+          </StyledTabsList>
+          <TabPanelUnstyled value="home">
+            <HomeAbout token={token} />
+          </TabPanelUnstyled>
+          <TabPanelUnstyled value="physical">
+            <IndexWorksPhysical token={token} />
+          </TabPanelUnstyled>
+          <TabPanelUnstyled value="digital">
+            <IndexDigitalWorks token={token} />
+          </TabPanelUnstyled>
+          <TabPanelUnstyled value="post">
+            <IndexPostPoem token={token} />
+          </TabPanelUnstyled>
+        </TabsUnstyled>
+      </main>
     </>
   );
 }

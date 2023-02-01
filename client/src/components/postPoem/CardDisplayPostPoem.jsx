@@ -45,7 +45,7 @@ const CardDisplayPostPoem = ({
 
   return (
     <>
-      <Card sx={{ display: 'flex', padding: 2 }}>
+      <Card sx={{ display: 'flex', padding: 2, marginBottom: "1rem" }}>
         {imageLink ? (
           <CardMedia sx={{ width: '30vw' }} component='img' image={imageLink} />
         ) : null}
