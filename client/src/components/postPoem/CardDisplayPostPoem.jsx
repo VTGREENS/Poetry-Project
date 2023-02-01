@@ -19,6 +19,7 @@ const CardDisplayPostPoem = ({
   publishedLink,
   buyLink,
   imageLink,
+  featuredIn,
   token,
   _id,
   fetchPostPoems,
@@ -44,8 +45,11 @@ const CardDisplayPostPoem = ({
 
   return (
     <>
-      <Card sx={{ display: 'flex' }}>
-        <CardMedia sx={{ width: '30vw' }} component='img' image={imageLink} />
+      <Card sx={{ display: 'flex', padding: 2, marginBottom: "1rem" }}>
+        {imageLink ? (
+          <CardMedia sx={{ width: '30vw' }} component='img' image={imageLink} />
+        ) : null}
+
         <Box
           sx={{
             display: 'flex',
@@ -56,12 +60,21 @@ const CardDisplayPostPoem = ({
         >
           <CardContent className='card-content'>
             <Typography variant='h4'>{title}</Typography>
-            <Typography gutterBottom variant='h5'>
-              {attribution} {date}
-            </Typography>
-            <Typography gutterBottom variant='body1'>
-              {body}
-            </Typography>
+            {attribution ? (
+              <Typography gutterBottom variant='h5'>
+                {attribution} {date}
+              </Typography>
+            ) : null}
+            {body ? (
+              <Typography sx={{ whiteSpace: 'pre-wrap' }}gutterBottom variant='body1' component='body'>
+                {body}
+              </Typography>
+            ) : null}
+            {featuredIn ? (
+              <Typography gutterBottom variant='h6'>
+                Featured In: {featuredIn}
+              </Typography>
+            ) : null}
 
             <CardActions>
               {publishedLink ? (

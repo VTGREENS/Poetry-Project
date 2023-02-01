@@ -30,7 +30,7 @@ export default function PermanentDrawerLeft() {
   return (
     <>
       <StyledSidebar>
-        <Card>
+        <Card sx={{marginBottom:"1rem"}}>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <CardMedia
               sx={{ margin: "2vw" }}
@@ -47,7 +47,7 @@ export default function PermanentDrawerLeft() {
             </CardContent>
           </Box>
         </Card>
-        <Card>
+        <Card sx={{marginBottom:"1rem"}}>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <CardMedia
               sx={{ margin: "2vw" }}

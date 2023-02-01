@@ -41,7 +41,7 @@ const DisplayDigitalWorksCard = ({
 
   return (
     <>
-      <Card sx={{ display: "flex", padding: 1}}>
+      <Card sx={{ display: "flex", padding: 1, marginBottom: "1rem" }}>
         <CardMedia sx={{ width: "30vw" }} component="img" image={imageUrl} />
         <Box
           sx={{
@@ -53,8 +53,11 @@ const DisplayDigitalWorksCard = ({
         >
           <CardContent>
             <Typography variant="h5">{title}</Typography>
+
             <Typography multiline gutterBottom variant="body1">
+              <pre>
               {description}
+              </pre>
             </Typography>
             <Typography gutterBottom variant="subtitle">
               <CardActions>
@@ -68,7 +71,7 @@ const DisplayDigitalWorksCard = ({
                 </Button>
               </CardActions>
               <CardActions>
-              <Button
+                <Button
                   color="success"
                   variant="contained"
                   onClick={() => navigate(`/digital/update/${_id}`)}
