@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 // Edit Physical Works
-const EditWorksPhysical = (props) => {
+const EditWorksPhysical = ({token}) => {
   const { id } = useParams();
   const [image, setImage] = useState('');
   const [imageAltText, setImageAltText] = useState('');
@@ -38,7 +38,7 @@ const EditWorksPhysical = (props) => {
 
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Authorization', props.token);
+    myHeaders.append('Authorization', token);
 
     const requestOptions = {
       headers: myHeaders,
@@ -59,7 +59,6 @@ const EditWorksPhysical = (props) => {
     }
   }
   //Fetch Physical Works
-  // TODO Token or ID needed?
   const fetchWorkPhysical = async () => {
     const url = `http://localhost:4000/physical/${id}`;
     let myHeaders = new Headers();

@@ -43,7 +43,7 @@ const IndexHomeAbout = ({token}) => {
      
       {aboutContent?.map((aboutItem) => (
         <DisplayHomeAbout
-        key={aboutItem.id}
+        key={aboutItem._id}
         aboutContentImage={aboutItem.aboutContentImage}
         aboutContentText={aboutItem.aboutContentText}
         _id={aboutItem._id}
