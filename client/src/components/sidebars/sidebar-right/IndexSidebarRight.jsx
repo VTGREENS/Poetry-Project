@@ -1,0 +1,66 @@
+import React, { useState, useEffect } from 'react';
+import CreateSidebarRightCard from './CreateSidebarRightCard';
+import CardDisplaySidebarRight from './CardDisplaySidebarRight';
+import styled from "@emotion/styled";
+
+const StyledSidebar = styled.aside`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  background: #ffdddd
+  position: sticky;
+`;
+
+const IndexSidebarRight = ({token}) => {
+  const [sidebarRight, setSidebarRight] = useState([]);
+  const fetchSidebarRightCards = async () => {
+    const url = `http://localhost:4000/sidebarright/`;
+    let myHeaders = new Headers();
+    const requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+    };
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      if (data.message === 'Retrieved Sidebar Content')
+        setSidebarRight(data.sidebarRight);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  useEffect(() => {
+    fetchSidebarRightCards();
+  }, []);
+  useEffect(() => {
+    console.log('sidebarRight state', sidebarRight);
+  }, [sidebarRight]);
+
+  return (
+    <>
+      <section>
+      <StyledSidebar>
+        <div>
+          <CreateSidebarRightCard token={token} fetchSidebarRightCards={fetchSidebarRightCards} />
+        </div>
+
+        {sidebarRight?.map((sidebarItem) => (
+          <CardDisplaySidebarRight
+            key={sidebarItem._id}
+            image={sidebarItem.image}
+            imageAltText={sidebarItem.imageAltText}
+            excerpt={sidebarItem.excerpt}
+            infoLink={sidebarItem.infoLink}
+            _id={sidebarItem._id}
+            token={token}
+            fetchSidebarRight={fetchSidebarRightCards}
+          />
+        ))}
+        </StyledSidebar>
+      </section>
+    </>
+  );
+};
+
+export default IndexSidebarRight;
