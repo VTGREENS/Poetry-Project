@@ -1,5 +1,24 @@
 import React, { useRef } from "react";
-import { TextField, Button, Card } from "@mui/material";
+import { TextField, Button, Card, CardActions } from "@mui/material";
+import styled from '@emotion/styled';
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  flexGrow: '1',
+  border: 'solid',
+  borderColor:'secondary',
+  borderWidth: "2px",
+  borderRadius: "1rem",
+}));
+
+const LongInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  width: '25vw',
+  flexGrow: '3',
+  border: 'solid',
+  borderWidth: "2px",
+  borderRadius: "1rem",
+}));
 
 const CreateWorksPhysical = (props) => {
   const imageRef = useRef();
@@ -70,78 +89,80 @@ const CreateWorksPhysical = (props) => {
   }
   return (
     <>
-      <h2>Complete Input Fields to Create Physical Work</h2>
-      <Card sx={{ display: "flex", marginBottom: "1rem" }}>
+      <Card sx={{ display: "flex", marginBottom: "1rem", border: 'solid', borderWidth: "2px", borderRadius: "1rem", }}>
         <form onSubmit={handleSubmit}>
-          <TextField
+          <StyledInputField
             id="image"
             label="image URL"
             variant="outlined"
             inputRef={imageRef}
           />
-          <TextField
+          <StyledInputField
             id="imageAltText"
             label="image Alt Text"
             variant="outlined"
             inputRef={imageAltTextRef}
           />
-          <TextField
+          <StyledInputField
             id="title"
             label="title"
             variant="outlined"
             inputRef={titleRef}
           />
-          <TextField
+          <StyledInputField
             id="attribution"
             label="attribution"
             variant="outlined"
             inputRef={attributionRef}
           />
-          <TextField
+          <LongInputField
             id="description"
             label="description"
             variant="outlined"
+            multiline
             inputRef={descriptionRef}
           />
-          <TextField
-            id="msrp"
-            label="msrp"
-            variant="outlined"
-            inputRef={msrpRef}
-          />
-          <TextField
+          <StyledInputField
             id="amazonLink"
             label="amazonLink"
             variant="outlined"
             inputRef={amazonLinkRef}
           />
-          <TextField
+          <StyledInputField
             id="unsolicitedPressLink"
             label="unsolicitedPressLink"
             variant="outlined"
             inputRef={unsolicitedPressLinkRef}
           />
-          <TextField
+          <StyledInputField
             id="barnesAndNobleLink"
             label="barnesAndNobleLink"
             variant="outlined"
             inputRef={barnesAndNobleLinkRef}
           />
-          <TextField
+          <StyledInputField
+            id="msrp"
+            label="msrp"
+            variant="outlined"
+            inputRef={msrpRef}
+          />
+          <StyledInputField
             id="signedPrice"
             label="signedPrice"
             variant="outlined"
             inputRef={signedPriceRef}
           />
-          <TextField
+          <StyledInputField
             id="signedLink"
             label="signedLink"
             variant="outlined"
             inputRef={signedLinkRef}
           />
+          <CardActions>
           <Button type="submit" variant="contained" color="primary">
             Submit Physical Works
           </Button>
+          </CardActions>
         </form>
       </Card>
     </>

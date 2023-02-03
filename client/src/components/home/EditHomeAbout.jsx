@@ -1,6 +1,18 @@
 import { Card, TextField, Button, CardActions } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import styled from '@emotion/styled';
+import StickyFooter from '../footer/StickyFooter';
+
+const LongInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  width: '25vw',
+  flexGrow: '3',
+  border: 'solid',
+  borderColor:'secondary',
+  borderWidth: "1px",
+  borderRadius: "1rem",
+}));
 
 // Edit Home/ About
 const EditHomeAbout = (props) => {
@@ -32,6 +44,7 @@ const EditHomeAbout = (props) => {
       console.log(data);
 
       if (data.message === 'Home/About was updated') {
+        alert('Home/About Content Updated!')
         navigate('/home');
       } else {
         alert(data.messege);
@@ -66,19 +79,22 @@ const EditHomeAbout = (props) => {
   }, []);
 
   return (
-    <Card sx={{ display: 'flex' }}>
+    <>
+    <Card sx={{  display: 'flex', marginTop: '1rem', padding: '1rem', border: 'solid', borderWidth: "2px", borderRadius: "1rem", }}>
       <form onSubmit={handleSubmit}>
-        <TextField
+        <LongInputField 
           id='aboutContentImage'
           label='about content image'
           variant='outlined'
+          multiline
           value={aboutContentImage}
           onChange={(e) => setAboutContentImage(e.target.value)}
         />
-        <TextField
+        <LongInputField 
           id='aboutContentText'
           label='about content text'
           variant='outlined'
+          multiline
           value={aboutContentText}
           onChange={(e) => setAboutContentText(e.target.value)}
         />
@@ -89,6 +105,8 @@ const EditHomeAbout = (props) => {
         </CardActions>
       </form>
     </Card>
+    <StickyFooter />
+    </>
   );
 };
 

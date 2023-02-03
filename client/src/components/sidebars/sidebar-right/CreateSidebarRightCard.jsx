@@ -1,5 +1,14 @@
 import React, { useRef } from 'react';
 import {Card, CardContent, TextField, Button, CardActions } from '@mui/material'
+import styled from '@emotion/styled';
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  flexGrow: '1',
+  border:'solid',
+  borderWidth: "2px",
+  borderRadius: "1rem",
+}));
 
 const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
   const imageRef = useRef();
@@ -50,29 +59,30 @@ const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
   }
   return (
     <>
-      <Card sx={{ display: 'flex' }}>
+      <Card sx={{ marginBottom:"1rem", borderRadius: '1rem', borderColor: "black", borderStyle: "solid", borderWidth:'2px', width:'15vw' }}>
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <TextField
+            <StyledInputField
               id='image'
               label='image'
               variant='outlined'
               inputRef={imageRef}
             />
-            <TextField
+            <StyledInputField
               id='imageAltText'
               label='imageAltText'
               variant='outlined'
               inputRef={imageAltTextRef}
             />
             <br />
-            <TextField
+            <StyledInputField
               id='excerpt'
               label='excerpt'
               variant='outlined'
+              multiline
               inputRef={excerptRef}
             />
-            <TextField
+            <StyledInputField
               id='infoLink'
               label='info link'
               variant='outlined'

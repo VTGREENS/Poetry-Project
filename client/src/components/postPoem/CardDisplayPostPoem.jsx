@@ -45,7 +45,18 @@ const CardDisplayPostPoem = ({
 
   return (
     <>
-      <Card sx={{ display: 'flex', padding: 2, marginBottom: "1rem" }}>
+      <Card sx={{ display: 'flex',
+          justifyContent: 'flex-start',
+          // alignItems: 'flex-start',
+          alignContent: 'start',
+          // margin: 'auto',
+          marginTop: '1rem',
+          paddingTop: '1rem',
+          backgroundColor: '#FFFFFF',
+          border:'solid',
+          borderRadius:"1rem",
+          borderWidth:"2px",
+          width: '49vw' }}>
         {imageLink ? (
           <CardMedia sx={{ width: '30vw' }} component='img' image={imageLink} />
         ) : null}
@@ -113,7 +124,7 @@ const CardDisplayPostPoem = ({
               <Button
                 type='submit'
                 variant='contained'
-                color='error'
+                color='primary'
                 onClick={() => deletePostPoem(_id)}
               >
                 Delete

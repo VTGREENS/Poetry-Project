@@ -7,6 +7,27 @@ import {
 } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import styled from '@emotion/styled';
+import StickyFooter from '../footer/StickyFooter';
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  flexGrow: '1',
+  border: 'solid',
+  borderColor:'secondary',
+  borderWidth: "1px",
+  borderRadius: "1rem",
+}));
+
+const LongInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  width: '25vw',
+  flexGrow: '3',
+  border: 'solid',
+  borderColor:'secondary',
+  borderWidth: "1px",
+  borderRadius: "1rem",
+}));
 
 // Edit Post Poem
 const EditPostPoem = (props) => {
@@ -49,6 +70,7 @@ const EditPostPoem = (props) => {
       const data = await response.json();
       console.log(data);
       if (data.message === 'Post/Poem updated') {
+        alert('Poem Post Has Been Updated!')
         navigate('/post');
       } else {
         alert(data.message);
@@ -91,31 +113,31 @@ const EditPostPoem = (props) => {
   }, []);
   return (
     <>
-      <Card sx={{ display: 'flex' }}>
+      <Card sx={{ display: 'flex', display: 'flex', marginTop: '1rem', padding: '1rem', border: 'solid', borderWidth: "2px", borderRadius: "1rem",  }}>
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <TextField
+            <StyledInputField
               id='title'
               label='title'
               variant='outlined'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <TextField
+            <StyledInputField
               id='attribution'
               label='attribution'
               variant='outlined'
               value={attribution}
               onChange={(e) => setAttribution(e.target.value)}
             />
-            <TextField
+            <StyledInputField
               id='date'
               label='date'
               variant='outlined'
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
-            <TextField
+            <StyledInputField
               id='publishedLink'
               label='published Link'
               variant='outlined'
@@ -123,28 +145,28 @@ const EditPostPoem = (props) => {
               onChange={(e) => setPublishedLink(e.target.value)}
             />
             <br />
-            <TextField
+            <StyledInputField
               id='buyLink'
               label='buy Link'
               variant='outlined'
               value={buyLink}
               onChange={(e) => setBuyLink(e.target.value)}
             />
-            <TextField
+            <StyledInputField
               id='imageLink'
               label='image Link'
               variant='outlined'
               value={imageLink}
               onChange={(e) => setImageLink(e.target.value)}
             />
-            <TextField
+            <StyledInputField
               id='featuredIn'
               label='Featured In'
               variant='outlined'
               value={featuredIn}
               onChange={(e) => setFeaturedIn(e.target.value)}
             />
-            <TextField
+            <LongInputField
               id='body'
               label='body'
               variant='outlined'
@@ -160,6 +182,7 @@ const EditPostPoem = (props) => {
           </form>
         </CardContent>
       </Card>
+      <StickyFooter/>
     </>
   );
 };

@@ -26,7 +26,7 @@ const Layout = ({ token }) => {
           </h1>
         </header>
         <Container fluid sx={{display:"flex", justifyContent: 'center', }} >
-          <SidebarLeft sx={{position: 'sticky', top: '0'}}/>
+          {/* <SidebarLeft sx={{position: 'sticky', top: '0'}}/> */}
           <TabBar token={token}/>
           {page !== "physical" ? <IndexSidebarRight token={token} sx={{}}/> : null}
         </Container>

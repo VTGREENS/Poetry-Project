@@ -1,10 +1,14 @@
 import React, { useRef } from 'react';
-import {
-  TextField,
-  Button,
-  Card,
-  CardActions,
-} from '@mui/material';
+import { TextField, Button, Card, CardActions } from '@mui/material';
+import styled from '@emotion/styled';
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  flexGrow: '1',
+  border: 'solid',
+  borderWidth: '2px',
+  borderRadius: '1rem',
+}));
 
 const CreateHomeAbout = (props) => {
   const aboutContentImageRef = useRef();
@@ -37,6 +41,7 @@ const CreateHomeAbout = (props) => {
       console.log(data);
 
       if (data.message === 'Your content has been added') {
+        alert('Home/About Content Created!');
       } else {
         alert(data.message);
       }
@@ -47,15 +52,26 @@ const CreateHomeAbout = (props) => {
 
   return (
     <>
-      <Card sx={{ display: 'flex' }}>
+      <Card
+        sx={{
+          marginBottom: '1rem',
+          borderRadius: '1rem',
+          borderColor: 'black',
+          borderStyle: 'solid',
+          borderWidth: '2px',
+          width: '48vw',
+          justifyContent: 'center',
+        }}
+      >
         <form onSubmit={handleSubmit}>
-          <TextField
+          <StyledInputField
             id='aboutContentImage'
             label='about content image'
             variant='outlined'
+            multiline
             inputRef={aboutContentImageRef}
           />
-          <TextField
+          <StyledInputField
             id='aboutContentText'
             label='about content text'
             variant='outlined'
