@@ -42,7 +42,7 @@ const DisplayNewsletterCard = ({ _id, fetchNewsletters, token, email }) => {
           borderColor: "black",
           borderStyle: "solid",
           borderWidth: "2px",
-          width: "33.5vw",
+          width: "34vw",
         }}
       >
         <Box

@@ -10,6 +10,7 @@ const adminController = require ('./controllers/admin.controller');
 const newsletterController = require('./controllers/newsletter.controller');
 const worksPhysicalController = require('./controllers/works.physical.controller');
 const sidebarRightController = require ('./controllers/sidebar.right.controller');
+const galleryController = require ('./controllers/gallery.controller')
 
 
 // ! Connect to the DB
@@ -31,7 +32,7 @@ app.use('/admin', adminController);
 app.use('/newsletter', newsletterController);
 app.use('/physical', worksPhysicalController);
 app.use('/sidebarright', sidebarRightController);
-
+app.use('/gallery', galleryController)
 // If using validation method in app.js, do not use it in another controller or route. It is important to not have a validate method above the user controller. Best method is to validate each item individually and not globablly
 // app.use(validateSession);
 
