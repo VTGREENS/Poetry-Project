@@ -9,6 +9,18 @@ import {
   Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import styled from "@emotion/styled"
+
+const StyledInputField = styled(Typography)(() => ({
+  margin: "1rem",
+  flexGrow: "1"
+}))
+
+const LongInputField = styled(Typography)(() => ({
+  margin: "1rem",
+  width: "25vw",
+  flexGrow: "3"
+}))
 
 const DisplayDigitalWorksCard = ({
   _id,
@@ -78,7 +90,7 @@ const DisplayDigitalWorksCard = ({
                   variant="contained"
                   onClick={() => navigate(`/digital/update/${_id}`)}
                 >
-                  Edit
+                  Update
                 </Button>
                 <Button
                   color="error"

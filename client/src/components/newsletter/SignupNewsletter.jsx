@@ -6,7 +6,17 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Card } from "@mui/material";
+import { Card, CardActions } from "@mui/material";
+import { Container } from "@mui/system";
+import styled from "@emotion/styled";
+
+const StyledInputField = styled(TextField)(() => ({
+  //  padding: '1',
+  flexGrow: "1",
+  border: "solid",
+  borderWidth: "2px",
+  borderRadius: "1rem",
+}));
 
 const theme = createTheme();
 
@@ -50,7 +60,16 @@ const SignupNewsletter = (props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Card sx={{ display: "flex", padding: 1, marginBottom: "1rem" }}>
+      <Card
+        sx={{
+          marginBottom: "1rem",
+          borderRadius: "1rem",
+          borderColor: "black",
+          borderStyle: "solid",
+          borderWidth: "2px",
+          width: "15vw",
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
@@ -60,23 +79,27 @@ const SignupNewsletter = (props) => {
             alignItems: "flex-start",
           }}
         >
-          <Typography component="h1" variant="h5">
-            Newsletter Sign Up
-          </Typography>
-          <form onSubmit={handleSubmit}>
-            <TextField
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              inputRef={emailRef}
-            />
-            <Button type="submit" fullWidth variant="contained">
-              Sign Up
-            </Button>
-          </form>
+          <Container padding-leftmaxWidth="sm">
+            <Typography component="h1" variant="h6">
+              Newsletter Sign Up
+            </Typography>
+            <form onSubmit={handleSubmit}>
+              <StyledInputField
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                inputRef={emailRef}
+              />
+              <CardActions>
+                <Button type="submit" fullWidth variant="contained">
+                  Sign Up
+                </Button>
+              </CardActions>
+            </form>
+          </Container>
         </Box>
       </Card>
     </ThemeProvider>

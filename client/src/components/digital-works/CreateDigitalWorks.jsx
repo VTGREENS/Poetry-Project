@@ -1,6 +1,15 @@
 import React, { useRef } from "react";
 import { Card, CardContent, CardActions } from "@mui/material";
 import { TextField, Button } from "@mui/material";
+import styled from "@emotion/styled";
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: "1rem",
+  flexGrow: "1",
+  border: "solid",
+  borderWidth: "2px",
+  borderRadius: "1rem",
+}));
 
 const CreateDigitalWorks = (props) => {
   const titleRef = useRef();
@@ -51,31 +60,40 @@ const CreateDigitalWorks = (props) => {
 
   return (
     <>
-      <Card sx={{ display:"flex" }}>
+      <Card
+        sx={{
+          marginBottom: "1rem",
+          borderRadius: "1rem",
+          borderColor: "black",
+          borderStyle: "solid",
+          borderWidth: "2px",
+          width: "33.5vw",
+        }}
+      >
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <TextField
+            <StyledInputField
               multiline
               id="title"
               label="Title"
               variant="outlined"
               inputRef={titleRef}
             />
-            <TextField
+            <StyledInputField
               multiline
               id="linkUrl"
               label="Link to Publication"
               variant="outlined"
               inputRef={linkUrlRef}
             />
-            <TextField
+            <StyledInputField
               multiline
               id="imageUrl"
               label="Image URL"
               variant="outlined"
               inputRef={imageUrlRef}
             />
-            <TextField
+            <StyledInputField
               multiline
               id="description"
               label="Description"
@@ -83,9 +101,9 @@ const CreateDigitalWorks = (props) => {
               inputRef={descriptionRef}
             />
             <CardActions>
-            <Button type="submit" variant="contained" color="success">
-              Submit Digital Work
-            </Button>
+              <Button type="submit" variant="contained" color="success">
+                Submit Digital Work
+              </Button>
             </CardActions>
           </form>
         </CardContent>
