@@ -6,6 +6,25 @@ import {
   CardContent,
   CardActions,
 } from '@mui/material';
+import styled from '@emotion/styled';
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  flexGrow: '1',
+  border: 'solid',
+  borderWidth: '2px',
+  borderRadius: '1rem',
+}));
+
+const LongInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  width: '25vw',
+  flexGrow: '3',
+  border: 'solid',
+  borderColor: 'secondary',
+  borderWidth: '2px',
+  borderRadius: '1rem',
+}));
 
 const CreatePostPoem = (props) => {
   const titleRef = useRef();
@@ -38,7 +57,7 @@ const CreatePostPoem = (props) => {
       publishedLink,
       buyLink,
       imageLink,
-      featuredIn
+      featuredIn,
     });
 
     let myHeaders = new Headers();
@@ -68,63 +87,70 @@ const CreatePostPoem = (props) => {
 
   return (
     <>
-      <Card sx={{ display: 'flex' }}>
+      <Card
+        sx={{
+          marginBottom: '1rem',
+          borderRadius: '1rem',
+          borderColor: 'black',
+          borderStyle: 'solid',
+          borderWidth: '2px',
+          width: '48vw',
+          justifyContent: 'center',
+        }}
+      >
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <TextField
+            <StyledInputField
               id='title'
               label='title'
               variant='outlined'
               inputRef={titleRef}
             />
-            
-            <TextField
+            <StyledInputField
               id='attribution'
               label='attribution'
               variant='outlined'
               inputRef={attributionRef}
             />
-
-            <TextField
+            <StyledInputField
               id='date'
               label='date'
               variant='outlined'
               inputRef={dateRef}
             />
-            <TextField
+            <StyledInputField
               id='publishedLink'
               label='published Link'
               variant='outlined'
               inputRef={publishedLinkRef}
             />
-            <TextField
+            <StyledInputField
               id='buyLink'
               label='buy Link'
               variant='outlined'
               inputRef={buyLinkRef}
             />
-            <TextField
+            <StyledInputField
               id='imageLink'
               label='image Link'
               variant='outlined'
               inputRef={imageLinkRef}
             />
-            <TextField
+            <StyledInputField
               id='featuredIn'
               label='featured In'
               variant='outlined'
               inputRef={featuredInRef}
             />
-            <TextField
+            <LongInputField
               id='body'
               label='body'
               variant='outlined'
               multiline
               inputRef={bodyRef}
             />
-            
             <CardActions>
-              <Button type='submit' variant='contained' color='success'>
+              <Button type='submit' variant='contained' color='primary'>
                 Create Post
               </Button>
             </CardActions>

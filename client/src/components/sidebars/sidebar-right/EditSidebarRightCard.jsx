@@ -1,6 +1,18 @@
 import { TextField, Button, Card, CardActions } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import styled from '@emotion/styled';
+import StickyFooter from '../../footer/StickyFooter';
+
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  flexGrow: '1',
+  border: 'solid',
+  borderColor:'secondary',
+  borderWidth: "1px",
+  borderRadius: "1rem",
+}));
 
 // Edit SidebarRightCard
 const EditSidebarRightCard = ({ token }) => {
@@ -73,33 +85,37 @@ const EditSidebarRightCard = ({ token }) => {
 
   return (
     <>
-    <Card sx={{ display: 'flex', margin: '1rem', justifyContent: 'center', borderRadius: '1rem', borderColor: 'black' }}>
+    <Card sx={{ display: 'flex', margin: '1rem', justifyContent: 'center',border: 'solid', borderRadius: '1rem', borderColor: 'black', borderWidth: "2px"}}>
       <form onSubmit={handleSubmit}>
-        <TextField
+        <StyledInputField
           id='image'
           label='image URL'
           variant='outlined'
+          multiline
           value={image}
           onChange={(e) => setImage(e.target.value)}
           />
-        <TextField
+        <StyledInputField
           id='imageAltText'
           label='image Alt Text'
           variant='outlined'
+          multiline
           value={imageAltText}
           onChange={(e) => setImageAltText(e.target.value)}
           />
-        <TextField
+        <StyledInputField
           id='excerpt'
           label='excerpt'
           variant='outlined'
+          multiline
           value={excerpt}
           onChange={(e) => setExcerpt(e.target.value)}
           />
-        <TextField
+        <StyledInputField
           id='image'
           label='image URL'
           variant='outlined'
+          multiline
           value={infoLink}
           onChange={(e) => setInfoLink(e.target.value)}
           />
@@ -109,7 +125,8 @@ const EditSidebarRightCard = ({ token }) => {
         </Button>
           </CardActions>
       </form>
-          </Card>
+      </Card>
+      <StickyFooter />
     </>
   );
 };

@@ -1,9 +1,30 @@
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, Card, CardActions, Box } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import styled from '@emotion/styled';
+import StickyFooter from '../footer/StickyFooter';
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  flexGrow: '1',
+  border: 'solid',
+  borderColor:'secondary',
+  borderWidth: "1px",
+  borderRadius: "1rem",
+}));
+
+const LongInputField = styled(TextField)(() => ({
+  margin: '1rem',
+  width: '25vw',
+  flexGrow: '3',
+  border: 'solid',
+  borderColor:'secondary',
+  borderWidth: "1px",
+  borderRadius: "1rem",
+}));
 
 // Edit Physical Works
-const EditWorksPhysical = ({token}) => {
+const EditWorksPhysical = ({ token }) => {
   const { id } = useParams();
   const [image, setImage] = useState('');
   const [imageAltText, setImageAltText] = useState('');
@@ -50,6 +71,7 @@ const EditWorksPhysical = ({token}) => {
       const data = await response.json();
       console.log(data);
       if (data.message === 'Physical Work Info Updated') {
+        alert('Physical Work Updated!');
         navigate('/physical');
       } else {
         alert(data.message);
@@ -92,88 +114,112 @@ const EditWorksPhysical = ({token}) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          id='image'
-          label='image URL'
-          variant='outlined'
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-        <TextField
-          id='imageAltText'
-          label='image Alt Text'
-          variant='outlined'
-          value={imageAltText}
-          onChange={(e) => setImageAltText(e.target.value)}
-        />
-        <TextField
-          id='title'
-          label='title'
-          variant='outlined'
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <TextField
-          id='attribution'
-          label='attribution'
-          variant='outlined'
-          value={attribution}
-          onChange={(e) => setAttribution(e.target.value)}
-        />
-        <TextField
-          id='description'
-          label='description'
-          variant='outlined'
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <TextField
-          id='msrp'
-          label='msrp'
-          variant='outlined'
-          value={msrp}
-          onChange={(e) => setMsrp(e.target.value)}
-        />
-        <TextField
-          id='amazonLink'
-          label='amazonLink'
-          variant='outlined'
-          value={amazonLink}
-          onChange={(e) => setAmazonLink(e.target.value)}
-        />
-        <TextField
-          id='unsolcitedPressLink'
-          label='unsolicitedPressLink'
-          variant='outlined'
-          value={unsolicitedPressLink}
-          onChange={(e) => setUnsolicitedPressLink(e.target.value)}
-        />
-        <TextField
-          id='barnesAndNobleLink'
-          label='barnesAndNobleLink'
-          variant='outlined'
-          value={barnesAndNobleLink}
-          onChange={(e) => setBarnesAndNobleLink(e.target.value)}
-        />
-        <TextField
-          id='signedPrice'
-          label='signedPrice'
-          variant='outlined'
-          value={signedPrice}
-          onChange={(e) => setSignedPrice(e.target.value)}
-        />
-        <TextField
-          id='linkSigned'
-          label='linkSigned'
-          variant='outlined'
-          value={signedLink}
-          onChange={(e) => setSignedLink(e.target.value)}
-        />
-        <Button type='submit' variant='contained' color='success'>
-          Submit Edit
-        </Button>
-      </form>
+    <Box sx={{}}>
+      <Card sx={{ display: 'flex', marginTop: '1rem', padding: '1rem', border: 'solid', borderWidth: "2px", borderRadius: "1rem", }}>
+        <form
+          sx={{
+            marginTop: '5rem',
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            alignItems: 'flex-start',
+            flexWrap: 'wrap',
+            
+          }}
+          onSubmit={handleSubmit}
+        >
+          <StyledInputField
+            id='image'
+            label='image URL'
+            variant='outlined'
+            multiline
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
+          <StyledInputField
+            id='imageAltText'
+            label='image Alt Text'
+            variant='outlined'
+            multiline
+            value={imageAltText}
+            onChange={(e) => setImageAltText(e.target.value)}
+          />
+          <StyledInputField
+            id='title'
+            label='title'
+            variant='outlined'
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <StyledInputField
+            id='attribution'
+            label='attribution'
+            variant='outlined'
+            value={attribution}
+            onChange={(e) => setAttribution(e.target.value)}
+          />
+          <LongInputField
+            id='description'
+            label='description'
+            variant='outlined'
+            multiline
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <StyledInputField
+            id='amazonLink'
+            label='amazonLink'
+            variant='outlined'
+            multiline
+            value={amazonLink}
+            onChange={(e) => setAmazonLink(e.target.value)}
+          />
+          <StyledInputField
+            id='unsolcitedPressLink'
+            label='unsolicitedPressLink'
+            variant='outlined'
+            multiline
+            value={unsolicitedPressLink}
+            onChange={(e) => setUnsolicitedPressLink(e.target.value)}
+          />
+          <StyledInputField
+            id='barnesAndNobleLink'
+            label='barnesAndNobleLink'
+            variant='outlined'
+            multiline
+            value={barnesAndNobleLink}
+            onChange={(e) => setBarnesAndNobleLink(e.target.value)}
+          />
+          <StyledInputField
+            id='linkSigned'
+            label='linkSigned'
+            variant='outlined'
+            multiline
+            value={signedLink}
+            onChange={(e) => setSignedLink(e.target.value)}
+          />
+          <StyledInputField
+            id='msrp'
+            label='msrp'
+            variant='outlined'
+            value={msrp}
+            onChange={(e) => setMsrp(e.target.value)}
+          />
+          <StyledInputField
+            id='signedPrice'
+            label='signedPrice'
+            variant='outlined'
+            value={signedPrice}
+            onChange={(e) => setSignedPrice(e.target.value)}
+          />
+          <CardActions>
+            <Button type='submit' variant='contained' color='secondary'>
+              Submit Edit
+            </Button>
+          </CardActions>
+        </form>
+      </Card>
+      </Box>
+      <StickyFooter />
     </>
   );
 };

@@ -46,6 +46,10 @@ const DisplayHomeAbout = ({
           marginTop: '1rem',
           paddingTop: '1rem',
           backgroundColor: '#FFFFFF',
+          border:'solid',
+          borderRadius:"1rem",
+          borderWidth:"2px",
+          width: '48vw'
         }}
       >
         <Container sx={{display:'flex', flexDirection: "column"}}>
@@ -70,17 +74,19 @@ const DisplayHomeAbout = ({
               alt='Photo of Mary Megan Moore'
             />
           </figure>
-          <ButtonGroup>
+          <ButtonGroup sx={{padding:'3px', margin:'1rem', gap:'10px'}}>
             <Button
               type='submit'
               color='secondary'
+              variant='contained'
               onClick={() => navigate(`/about/update/${_id}`)}
             >
               Edit
             </Button>
             <Button
               type='submit'
-              color='error'
+              color='primary'
+              variant='contained'
               onClick={() => deleteHomeAbout(_id)}
             >
               Delete

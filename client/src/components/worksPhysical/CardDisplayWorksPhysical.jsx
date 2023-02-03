@@ -47,7 +47,7 @@ const CardDisplayWorksPhysical = ({
 
   return (
     <>
-      <Card sx={{ display: "flex", marginBottom: "1rem" }}>
+      <Card sx={{ display: "flex", marginBottom: "1rem", border:'solid', borderWidth:'2px', borderRadius:'1rem' }}>
         <CardMedia
           sx={{ width: "30vw" }}
           component="img"

@@ -66,14 +66,16 @@ const CardDisplaySidebarRight = ({
         <CardActions>
           <Button
             type='submit'
-            color='success'
+            color='secondary'
+            variant='contained'
             onClick={() => navigate(`/sidebarright/update/${_id}`)}
           >
             Edit
           </Button>
           <Button
             type='submit'
-            color='error'
+            variant='contained'
+            color='primary'
             onClick={() => deleteSidebarRight(_id)}
           >
             Delete
