@@ -59,7 +59,7 @@ const SignupNewsletter = (props) => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    
       <Card
         sx={{
           marginBottom: "1rem",
@@ -102,7 +102,7 @@ const SignupNewsletter = (props) => {
           </Container>
         </Box>
       </Card>
-    </ThemeProvider>
+    
   );
 };
 

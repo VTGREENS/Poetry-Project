@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import CardDisplayWorksPhysical from './CardDisplayWorksPhysical';
 import CreateWorksPhysical from './CreateWorksPhysical';
+import jwt_decode from "jwt-decode"
 
 
-const IndexWorksPhysical = (props) => {
+const IndexWorksPhysical = ({token}) => {
   const [worksPhysical, setWorksPhysical] = useState([]);
+  let decodedToken = token ? jwt_decode(token) : null 
   const fetchWorksPhysical = async () => {
     const url = `http://localhost:4000/physical/`;
     let myHeaders = new Headers();
@@ -33,7 +35,8 @@ const IndexWorksPhysical = (props) => {
   return (
     <>
     <section style={{ marginTop: "1rem"}}>
-      <CreateWorksPhysical worksPhysical={worksPhysical} token={props.token} fetchWorksPhysical={fetchWorksPhysical}/>
+      { decodedToken ? 
+      <CreateWorksPhysical worksPhysical={worksPhysical} token={token} fetchWorksPhysical={fetchWorksPhysical}/> : null }
 
       {worksPhysical?.map((workPhysical) => (
         <CardDisplayWorksPhysical
@@ -50,7 +53,7 @@ const IndexWorksPhysical = (props) => {
           signedPrice={workPhysical.signedPrice}
           signedLink={workPhysical.signedLink}
           _id={workPhysical._id}
-          token={props.token}
+          token={token}
           fetchWorksPhysical={fetchWorksPhysical}
         />
       ))}

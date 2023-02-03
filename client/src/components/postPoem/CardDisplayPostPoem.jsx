@@ -8,6 +8,7 @@ import {
   Box,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import jwt_decode from "jwt-decode"
 
 
 // CardDisplayPostPoem houses delete function, displays posted poems onto IndexPostPoem.
@@ -25,6 +26,7 @@ const CardDisplayPostPoem = ({
   fetchPostPoems,
 }) => {
   const navigate = useNavigate();
+  let decodedToken = token ? jwt_decode(token) : null
   async function deletePostPoem(_id) {
     const url = `http://localhost:4000/post/delete/${_id}`;
     let myHeaders = new Headers();
@@ -112,6 +114,7 @@ const CardDisplayPostPoem = ({
               ) : null}
               {/* <div css={css`display: block;`}> </div> */}
             </CardActions>
+            { decodedToken ? 
             <CardActions>
               <Button
                 type='submit'
@@ -129,7 +132,7 @@ const CardDisplayPostPoem = ({
               >
                 Delete
               </Button>
-            </CardActions>
+            </CardActions> : null}
           </CardContent>
         </Box>
       </Card>

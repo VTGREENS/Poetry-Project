@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 import StickyFooter from '../footer/StickyFooter';
+import jwt_decode from "jwt-decode"
 
 const LongInputField = styled(TextField)(() => ({
   margin: '1rem',
@@ -15,11 +16,12 @@ const LongInputField = styled(TextField)(() => ({
 }));
 
 // Edit Home/ About
-const EditHomeAbout = (props) => {
+const EditHomeAbout = ({token}) => {
   const { id } = useParams();
   const [aboutContentImage, setAboutContentImage] = useState('');
   const [aboutContentText, setAboutContentText] = useState('');
   const navigate = useNavigate();
+  let decodedToken = token ? jwt_decode(token) : null 
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -31,7 +33,7 @@ const EditHomeAbout = (props) => {
     });
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Authorization', props.token);
+    myHeaders.append('Authorization', token);
 
     const requestOptions = {
       headers: myHeaders,
@@ -80,6 +82,7 @@ const EditHomeAbout = (props) => {
 
   return (
     <>
+    {decodedToken ? 
     <Card sx={{  display: 'flex', marginTop: '1rem', padding: '1rem', border: 'solid', borderWidth: "2px", borderRadius: "1rem", }}>
       <form onSubmit={handleSubmit}>
         <LongInputField 
@@ -104,7 +107,7 @@ const EditHomeAbout = (props) => {
           </Button>
         </CardActions>
       </form>
-    </Card>
+    </Card> : null}
     <StickyFooter />
     </>
   );

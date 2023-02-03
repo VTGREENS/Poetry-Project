@@ -16,6 +16,13 @@ const theme = createTheme({
     primary: { main: "#FFCBD4"},
     secondary: {main: "#008854"},
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+      root: { border:'thin solid black'
+
+    }}}
+  }
 });
 
 function App() {

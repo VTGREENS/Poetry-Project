@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CreateSidebarRightCard from './CreateSidebarRightCard';
 import CardDisplaySidebarRight from './CardDisplaySidebarRight';
 import styled from "@emotion/styled";
+import jwt_decode from "jwt-decode"
 
 const StyledSidebar = styled.aside`
   display: flex;
@@ -14,7 +15,9 @@ const StyledSidebar = styled.aside`
 
 const IndexSidebarRight = ({token}) => {
   const [sidebarRight, setSidebarRight] = useState([]);
+  const decodedToken = token ? jwt_decode(token) : null
   const fetchSidebarRightCards = async () => {
+    
     const url = `http://localhost:4000/sidebarright/`;
     let myHeaders = new Headers();
     const requestOptions = {
@@ -42,7 +45,9 @@ const IndexSidebarRight = ({token}) => {
       <section>
       <StyledSidebar>
         <div>
+          {decodedToken ? 
           <CreateSidebarRightCard token={token} fetchSidebarRightCards={fetchSidebarRightCards} />
+          : null }
         </div>
 
         {sidebarRight?.map((sidebarItem) => (

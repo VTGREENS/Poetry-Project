@@ -6,7 +6,6 @@ const validateSession = require ('../middleware/validate-session');
 
 // Create New Admin
 router.post('/signup', async (req, res) => {
-  console.log('signup');
   try {
     const admin = new Admin({
       firstName: req.body.firstName,
@@ -69,7 +68,7 @@ router.put('/update/:id', validateSession,  async (req, res) => {
 
     res.json({
       message: admin ? 'admin info updated' : "owner id doesn't match",
-      message: admin ? admin : {},
+      admin: admin ? admin : {},
     });
   } catch (error) {
     res.json({ message: error.message});

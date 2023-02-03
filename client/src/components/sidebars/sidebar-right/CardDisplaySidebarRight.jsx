@@ -8,6 +8,8 @@ import {
   Button,
   CardActions,
 } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import jwt_decode from "jwt-decode"
 
 // DisplaySidebarRight houses delete function, displays sidebar content onto IndexSidebarRight.
 
@@ -20,7 +22,9 @@ const CardDisplaySidebarRight = ({
   _id,
   fetchSidebarRight,
 }) => {
+  const decodedToken = token ? jwt_decode(token) : null 
   const navigate = useNavigate();
+  const theme = useTheme();
   async function deleteSidebarRight(_id) {
     const url = `http://localhost:4000/sidebarright/delete/${_id}`;
     let myHeaders = new Headers();
@@ -57,30 +61,33 @@ const CardDisplaySidebarRight = ({
             <Button 
             href={infoLink} 
             variant='contained' 
-            color='primary'>
+            color='primary'
+            aria-label="More info"
+            >
               More Info
             </Button>
             </CardActions>
           </CardContent>
         </Box>
+        { decodedToken ? 
         <CardActions>
-          <Button
-            type='submit'
-            color='secondary'
+          <Button sx={{color:'white', backgroundColor: theme.palette.secondary.main,
+            }}
             variant='contained'
+            type='submit'
             onClick={() => navigate(`/sidebarright/update/${_id}`)}
           >
             Edit
           </Button>
-          <Button
+          <Button sx={{color:'black', backgroundColor: theme.palette.primary.main,
+            }}
             type='submit'
             variant='contained'
-            color='primary'
             onClick={() => deleteSidebarRight(_id)}
           >
             Delete
           </Button>
-        </CardActions>
+        </CardActions> : null}
       </Card>
     </>
   );
