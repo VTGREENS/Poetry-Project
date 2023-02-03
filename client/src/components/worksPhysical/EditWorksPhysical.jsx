@@ -1,6 +1,18 @@
 import { TextField, Button } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import styled from "@emotion/styled"
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: "1rem",
+  flexGrow: "1"
+}))
+
+const LongInputField = styled(TextField)(() => ({
+  margin: "1rem",
+  width: "25vw",
+  flexGrow: "3"
+}))
 
 // Edit Physical Works
 const EditWorksPhysical = ({token}) => {
@@ -93,77 +105,77 @@ const EditWorksPhysical = ({token}) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <TextField
+        <StyledInputField
           id='image'
           label='image URL'
           variant='outlined'
           value={image}
           onChange={(e) => setImage(e.target.value)}
         />
-        <TextField
+        <StyledInputField
           id='imageAltText'
           label='image Alt Text'
           variant='outlined'
           value={imageAltText}
           onChange={(e) => setImageAltText(e.target.value)}
         />
-        <TextField
+        <StyledInputField
           id='title'
           label='title'
           variant='outlined'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <TextField
+        <StyledInputField
           id='attribution'
           label='attribution'
           variant='outlined'
           value={attribution}
           onChange={(e) => setAttribution(e.target.value)}
         />
-        <TextField
+        <LongInputField
           id='description'
           label='description'
           variant='outlined'
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <TextField
+        <StyledInputField
           id='msrp'
           label='msrp'
           variant='outlined'
           value={msrp}
           onChange={(e) => setMsrp(e.target.value)}
         />
-        <TextField
+        <StyledInputField
           id='amazonLink'
           label='amazonLink'
           variant='outlined'
           value={amazonLink}
           onChange={(e) => setAmazonLink(e.target.value)}
         />
-        <TextField
+        <StyledInputField
           id='unsolcitedPressLink'
           label='unsolicitedPressLink'
           variant='outlined'
           value={unsolicitedPressLink}
           onChange={(e) => setUnsolicitedPressLink(e.target.value)}
         />
-        <TextField
+        <StyledInputField
           id='barnesAndNobleLink'
           label='barnesAndNobleLink'
           variant='outlined'
           value={barnesAndNobleLink}
           onChange={(e) => setBarnesAndNobleLink(e.target.value)}
         />
-        <TextField
+        <StyledInputField
           id='signedPrice'
           label='signedPrice'
           variant='outlined'
           value={signedPrice}
           onChange={(e) => setSignedPrice(e.target.value)}
         />
-        <TextField
+        <StyledInputField
           id='linkSigned'
           label='linkSigned'
           variant='outlined'
