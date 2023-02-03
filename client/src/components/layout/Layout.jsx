@@ -5,7 +5,7 @@ import AppBar from "@mui/material/AppBar";
 import TabBar from "../tabBar/TabBar";
 import Typography from "@mui/material/Typography";
 import SidebarLeft from "../sidebars/sidebar-left/SidebarLeft";
-import SidebarRight from "../sidebars/sidebar-right/SidebarRight";
+import IndexSidebarRight from '../sidebars/sidebar-right/IndexSidebarRight'
 import StickyFooter from "../footer/StickyFooter";
 import { useParams } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
@@ -25,19 +25,10 @@ const Layout = ({ token }) => {
             Megan Mary Moore
           </h1>
         </header>
-        <Container
-          fluid
-          sx={{
-            display: "flex",
-            justifyContent: "space-evenly",
-            alignItems: "flex-start",
-          }}
-        >
-          <SidebarLeft sx={{ position: "sticky", top: "0" }} />
-          <TabBar token={token} />
-          {page !== "physical" ? (
-            <SidebarLeft sx={{ position: "sticky", top: "0" }} />
-          ) : null}
+        <Container fluid sx={{display:"flex", justifyContent: 'center', }} >
+          <SidebarLeft sx={{position: 'sticky', top: '0'}}/>
+          <TabBar token={token}/>
+          {page !== "physical" ? <IndexSidebarRight token={token} sx={{}}/> : null}
         </Container>
 
         {/* <Grid container spacing={0}>

@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-// CardDisplayHomeAbout houses delete function, displays about content onto IndexHomeAbout.
+//DisplayHomeAbout houses delete function, displays about content onto IndexHomeAbout.
 
 const DisplayHomeAbout = ({
   aboutContentImage,
@@ -83,7 +83,7 @@ const DisplayHomeAbout = ({
               color='error'
               onClick={() => deleteHomeAbout(_id)}
             >
-              delete
+              Delete
             </Button>
           </ButtonGroup>
         </Container>

@@ -6,6 +6,7 @@ import EditDigitalWorks from './components/digital-works/EditDigitalWorks';
 import EditWorksPhysical from './components/worksPhysical/EditWorksPhysical';
 import EditPostPoem from './components/postPoem/EditPostPoem';
 import EditHomeAbout from './components/home/EditHomeAbout';
+import EditSidebarRightCard from './components/sidebars/sidebar-right/EditSidebarRightCard';
 
 
 const theme = createTheme({
@@ -54,6 +55,10 @@ function App() {
           <Route
             path='/about/update/:id'
             element={<EditHomeAbout token={sessionToken} />}
+          />
+          <Route
+          path='/sidebarright/update/:id'
+          element={<EditSidebarRightCard token={sessionToken} />}
           />
         </Routes>
       </ThemeProvider>
