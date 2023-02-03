@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import StickyFooter from '../footer/StickyFooter';
+import jwt_decode from 'jwt-decode'
 
 const StyledInputField = styled(TextField)(() => ({
   margin: '1rem',
@@ -38,6 +39,7 @@ const EditWorksPhysical = ({ token }) => {
   const [signedPrice, setSignedPrice] = useState('');
   const [signedLink, setSignedLink] = useState('');
   const navigate = useNavigate();
+  const decodedToken = token ? jwt_decode(token) : null 
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -114,6 +116,8 @@ const EditWorksPhysical = ({ token }) => {
 
   return (
     <>
+    { }
+    {decodedToken ? 
     <Box sx={{}}>
       <Card sx={{ display: 'flex', marginTop: '1rem', padding: '1rem', border: 'solid', borderWidth: "2px", borderRadius: "1rem", }}>
         <form
@@ -218,7 +222,7 @@ const EditWorksPhysical = ({ token }) => {
           </CardActions>
         </form>
       </Card>
-      </Box>
+      </Box> : null}
       <StickyFooter />
     </>
   );

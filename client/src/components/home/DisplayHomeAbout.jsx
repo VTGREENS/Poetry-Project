@@ -5,6 +5,7 @@ import {
   ButtonGroup,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import jwt_decode from "jwt-decode"
 
 //DisplayHomeAbout houses delete function, displays about content onto IndexHomeAbout.
 
@@ -16,6 +17,7 @@ const DisplayHomeAbout = ({
   fetchHomeAboutContent,
 }) => {
   const navigate = useNavigate();
+  let decodedToken = token ? jwt_decode(token) : null 
   async function deleteHomeAbout(_id) {
     const url = `http://localhost:4000/about/delete/${_id}`;
     let myHeaders = new Headers();
@@ -74,6 +76,7 @@ const DisplayHomeAbout = ({
               alt='Photo of Mary Megan Moore'
             />
           </figure>
+          {decodedToken ? 
           <ButtonGroup sx={{padding:'3px', margin:'1rem', gap:'10px'}}>
             <Button
               type='submit'
@@ -91,7 +94,7 @@ const DisplayHomeAbout = ({
             >
               Delete
             </Button>
-          </ButtonGroup>
+          </ButtonGroup> : null}
         </Container>
         <Typography sx={{ width: '20vw' }} variant='p' component='p'>
           {aboutContentText}

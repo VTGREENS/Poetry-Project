@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import CreateHomeAbout from './CreateHomeAbout';
 import DisplayHomeAbout from './DisplayHomeAbout';
+import jwt_decode from "jwt-decode"
 
 const IndexHomeAbout = ({token}) => {
   const [aboutContent, setAboutContent] = useState([]);
+  let decodedToken = token ? jwt_decode(token) : null 
 
   const fetchHomeAboutContent = async () => {
     const url = 'http://localhost:4000/about/';
@@ -38,7 +40,8 @@ const IndexHomeAbout = ({token}) => {
     <section id='home-about-section' style={{ margin: '1rem' }}>
 
     <div style={{marginbottom: '1rem'}} >
-      <CreateHomeAbout token={token}/>
+      {decodedToken ? 
+      <CreateHomeAbout token={token}/> : null}
     </div>
      
       {aboutContent?.map((aboutItem) => (

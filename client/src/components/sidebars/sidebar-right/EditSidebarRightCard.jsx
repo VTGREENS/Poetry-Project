@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import StickyFooter from '../../footer/StickyFooter';
+import jwt_decode from "jwt-decode"
 
 
 const StyledInputField = styled(TextField)(() => ({
@@ -22,6 +23,7 @@ const EditSidebarRightCard = ({ token }) => {
   const [excerpt, setExcerpt] = useState('');
   const [infoLink, setInfoLink] = useState('');
   const navigate = useNavigate();
+  const decodedToken = token ? jwt_decode(token) : null 
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -85,6 +87,7 @@ const EditSidebarRightCard = ({ token }) => {
 
   return (
     <>
+    {decodedToken ? 
     <Card sx={{ display: 'flex', margin: '1rem', justifyContent: 'center',border: 'solid', borderRadius: '1rem', borderColor: 'black', borderWidth: "2px"}}>
       <form onSubmit={handleSubmit}>
         <StyledInputField
@@ -125,7 +128,7 @@ const EditSidebarRightCard = ({ token }) => {
         </Button>
           </CardActions>
       </form>
-      </Card>
+      </Card> : null }
       <StickyFooter />
     </>
   );

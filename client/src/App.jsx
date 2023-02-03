@@ -15,12 +15,19 @@ const theme = createTheme({
     primary: { main: "#FFCBD4"},
     secondary: {main: "#008854"},
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+      root: { border:'thin solid black'
+
+    }}}
+  }
 });
 
 function App() {
   // TODO Remove sampleToken after implementing AUTH aasdf
   let sampleToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NTI4NDA0MCwiZXhwIjoxNjc1NTQzMjQwfQ.lEaU1oJQjAL9En8g4QnDx-2aIZPRUjhMpePAFM4tEdk';
+    '';
   const [sessionToken, setSessionToken] = useState(sampleToken);
 
   const updateToken = (newToken) => {

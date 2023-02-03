@@ -2,9 +2,11 @@ import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
 import CardDisplayPostPoem from "./CardDisplayPostPoem";
 import CreatePostPoem from "./CreatePostPoem";
+import jwt_decode from "jwt-decode"
 
-const IndexPostPoem = (props) => {
+const IndexPostPoem = ({token}) => {
   const [postPoem, setPostPoem] = useState([]);
+  let decodedToken = token ? jwt_decode(token) : null
   const fetchPostPoems = async () => {
     const url = `http://localhost:4000/post/`;
     let myHeaders = new Headers();
@@ -30,11 +32,12 @@ const IndexPostPoem = (props) => {
   return (
     <>
       <section style={{marginTop: "1rem"}}>
+        { decodedToken ? 
         <CreatePostPoem
           postPoem={postPoem}
-          token={props.token}
+          token={token}
           fetchPostPoems={fetchPostPoems}
-        />
+        />: null }
 
         <Box sx={{ display: "flex", flexDirection: "column-reverse" }}>
           {postPoem?.postPoems?.map((postPoem) => (
@@ -49,7 +52,7 @@ const IndexPostPoem = (props) => {
               imageLink={postPoem.imageLink}
               featuredIn={postPoem.featuredIn}
               _id={postPoem._id}
-              token={props.token}
+              token={token}
               fetchPostPoems={fetchPostPoems}
             />
           ))}

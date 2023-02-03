@@ -54,7 +54,7 @@ const DisplayNewsletterCard = ({ _id, fetchNewsletters, token, email }) => {
           }}
         >
           <CardContent>
-            <Checkbox inputProps={{ "aria-label": "controlled" }} />
+            <Checkbox color='secondary' inputProps={{ "aria-label": "controlled" }} />
             <Typography variant="h5">{email}</Typography>
             <Typography gutterBottom variant="subtitle">
               <CardActions>

@@ -8,6 +8,8 @@ import {
   Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
+import jwt_decode from 'jwt-decode'
 
 // Physical Works Table hosts delete Physical Works function and rendors the data from the create Physical Works function
 const CardDisplayWorksPhysical = ({
@@ -26,7 +28,11 @@ const CardDisplayWorksPhysical = ({
   token,
   fetchWorksPhysical,
 }) => {
+
+  const decodedToken = token ? jwt_decode(token) : null 
   const navigate = useNavigate();
+  const theme = useTheme();
+
   async function deleteWorksPhysical(_id) {
     const url = `http://localhost:4000/physical/delete/${_id}`;
     let myHeaders = new Headers();
@@ -120,24 +126,26 @@ const CardDisplayWorksPhysical = ({
                 </Button>
               ) : null}
             </CardActions>
+            { decodedToken ? 
             <CardActions>
-              <Button
+              <Button sx={{color:'white', backgroundColor: theme.palette.secondary.main}}
                 type="submit"
                 variant="contained"
-                color="success"
                 onClick={() => navigate(`/physical/update/${_id}`)}
+                aria-label={`Edit ${title}`} 
               >
-                Update
+                Edit
               </Button>
-              <Button
+              <Button sx={{color:'black', backgroundColor: theme.palette.primary.main}}
                 type="submit"
                 variant="contained"
-                color="error"
                 onClick={() => deleteWorksPhysical(_id)}
+                aria-label={`Delete ${title}`}
               >
                 Delete
               </Button>
-            </CardActions>
+            </CardActions> : null}
+
           </CardContent>
         </Box>
       </Card>
