@@ -7,6 +7,7 @@ import EditWorksPhysical from './components/worksPhysical/EditWorksPhysical';
 import EditPostPoem from './components/postPoem/EditPostPoem';
 import EditHomeAbout from './components/home/EditHomeAbout';
 import EditSidebarRightCard from './components/sidebars/sidebar-right/EditSidebarRightCard';
+import EditGalleryPost from './components/gallery/EditGalleryPost';
 
 
 const theme = createTheme({
@@ -20,7 +21,7 @@ const theme = createTheme({
 function App() {
   // TODO Remove sampleToken after implementing AUTH aasdf
   let sampleToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NTI4NDA0MCwiZXhwIjoxNjc1NTQzMjQwfQ.lEaU1oJQjAL9En8g4QnDx-2aIZPRUjhMpePAFM4tEdk';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NTQ1ODE3NCwiZXhwIjoxNjc1NzE3Mzc0fQ.Lq-xwqe7FU-HKnNY9PokrN2-2Wo4uoasFwe6rMZCA6Q';
   const [sessionToken, setSessionToken] = useState(sampleToken);
 
   const updateToken = (newToken) => {
@@ -59,6 +60,10 @@ function App() {
           <Route
           path='/sidebarright/update/:id'
           element={<EditSidebarRightCard token={sessionToken} />}
+          />
+            <Route
+          path='/gallery/update/:id'
+          element={<EditGalleryPost token={sessionToken} />}
           />
         </Routes>
       </ThemeProvider>

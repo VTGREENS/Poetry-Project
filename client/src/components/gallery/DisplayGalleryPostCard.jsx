@@ -11,18 +11,19 @@ import {
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled"
 
-const DisplayDigitalWorksCard = ({
+
+const DisplayGalleryPostCard = ({
   _id,
-  fetchDigitalWorks,
+  fetchGalleryPosts,
   token,
-  title,
-  linkUrl,
-  imageUrl,
+  imageURL,
+  altImageText,
+  attribution,
   description,
 }) => {
   const navigate = useNavigate();
-  async function deleteDigitalWorks(id) {
-    const url = `http://localhost:4000/digital/delete/${id}`;
+  async function deleteGalleryPost(id) {
+    const url = `http://localhost:4000/gallery/delete/${id}`;
     let myHeaders = new Headers();
     myHeaders.append("Authorization", token);
 
@@ -34,7 +35,7 @@ const DisplayDigitalWorksCard = ({
       let response = await fetch(url, requestOptions);
       let data = await response.json();
       console.log(data);
-      fetchDigitalWorks();
+      fetchGalleryPosts();
     } catch (error) {
       console.log(error.message);
     }
@@ -43,7 +44,7 @@ const DisplayDigitalWorksCard = ({
   return (
     <>
        <Card sx={{ display: "flex", marginBottom: "1rem", border:'solid', borderWidth:'2px', borderRadius:'1rem' }}>
-        <CardMedia sx={{ width: "30vw" }} component="img" image={imageUrl} />
+        <CardMedia sx={{ width: "30vw" }} component="img" image={imageURL} />
         <Box
           sx={{
             display: "flex",
@@ -53,7 +54,12 @@ const DisplayDigitalWorksCard = ({
           }}
         >
           <CardContent>
-            <Typography variant="h5">{title}</Typography>
+            <Typography>
+                {imageURL}
+            </Typography>
+            <Typography>
+                {altImageText}
+            </Typography>
             <Typography
               sx={{ whiteSpace: "pre-wrap" }}
               multiline
@@ -62,29 +68,23 @@ const DisplayDigitalWorksCard = ({
             >
               {description}
             </Typography>
+            <Typography>
+                {attribution}
+            </Typography>
             <Typography gutterBottom variant="subtitle">
-              <CardActions>
-                <Button
-                  variant="contained"
-                  href={linkUrl}
-                  aria-label="Link"
-                  size="small"
-                >
-                  Link to Publication
-                </Button>
-              </CardActions>
+              
               <CardActions>
                 <Button
                   color="success"
                   variant="contained"
-                  onClick={() => navigate(`/digital/update/${_id}`)}
+                  onClick={() => navigate(`/gallery/update/${_id}`)}
                 >
                   Update
                 </Button>
                 <Button
                   color="error"
                   variant="contained"
-                  onClick={() => deleteDigitalWorks(_id)}
+                  onClick={() => deleteGalleryPost(_id)}
                 >
                   DELETE
                 </Button>
@@ -97,4 +97,4 @@ const DisplayDigitalWorksCard = ({
   );
 };
 
-export default DisplayDigitalWorksCard;
+export default DisplayGalleryPostCard;
