@@ -11,25 +11,25 @@ const StyledInputField = styled(TextField)(() => ({
   borderRadius: "1rem",
 }));
 
-const CreateDigitalWorks = (props) => {
-  const titleRef = useRef();
-  const linkUrlRef = useRef();
-  const imageUrlRef = useRef();
+const CreateGalleryPost = (props) => {
+  const imageURLRef = useRef();
+  const altImageTextRef = useRef();
+  const attributionRef = useRef();
   const descriptionRef = useRef();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const title = titleRef.current.value;
-    const linkUrl = linkUrlRef.current.value;
-    const imageUrl = imageUrlRef.current.value;
+    const imageURL = imageURLRef.current.value;
+    const altImageText = altImageTextRef.current.value;
+    const attribution = attributionRef.current.value;
     const description = descriptionRef.current.value;
 
-    let url = `http://localhost:4000/digital/create`;
+    let url = `http://localhost:4000/gallery/create`;
 
     let bodyObject = JSON.stringify({
-      title,
-      linkUrl,
-      imageUrl,
+      imageURL,
+      altImageText,
+      attribution,
       description,
     });
 
@@ -46,10 +46,10 @@ const CreateDigitalWorks = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      props.fetchDigitalWorks();
+      props.fetchGalleryPosts();
       console.log(data);
 
-      if (data.message === "Digital Works Created") {
+      if (data.message === "Gallery Post Created") {
       } else {
         alert(data.message);
       }
@@ -74,24 +74,24 @@ const CreateDigitalWorks = (props) => {
           <form onSubmit={handleSubmit}>
             <StyledInputField
               multiline
-              id="title"
-              label="Title"
-              variant="outlined"
-              inputRef={titleRef}
-            />
-            <StyledInputField
-              multiline
-              id="linkUrl"
-              label="Link to Publication"
-              variant="outlined"
-              inputRef={linkUrlRef}
-            />
-            <StyledInputField
-              multiline
-              id="imageUrl"
+              id="imageURL"
               label="Image URL"
               variant="outlined"
-              inputRef={imageUrlRef}
+              inputRef={imageURLRef}
+            />
+            <StyledInputField
+              multiline
+              id="AltImageText"
+              label="Alt Image Text"
+              variant="outlined"
+              inputRef={altImageTextRef}
+            />
+            <StyledInputField
+              multiline
+              id="attribution"
+              label="Attribution"
+              variant="outlined"
+              inputRef={attributionRef}
             />
             <StyledInputField
               multiline
@@ -102,7 +102,7 @@ const CreateDigitalWorks = (props) => {
             />
             <CardActions>
               <Button type="submit" variant="contained" color="success">
-                Submit Digital Work
+                Submit Gallery Post
               </Button>
             </CardActions>
           </form>
@@ -112,4 +112,4 @@ const CreateDigitalWorks = (props) => {
   );
 };
 
-export default CreateDigitalWorks;
+export default CreateGalleryPost;

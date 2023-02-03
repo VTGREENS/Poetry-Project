@@ -16,22 +16,22 @@ const LongInputField = styled(TextField)(() => ({
   flexGrow: "3"
 }))
 
-const EditDigitalWorks = (props) => {
+const EditGalleryPost = (props) => {
   const { id } = useParams();
-  const [title, setTitle] = useState("");
-  const [linkUrl, setLinkUrl] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageURL, setImageURL] = useState("");
+  const [altImageText, setAltImageText] = useState("");
+  const [attribution, setAttribution] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    let url = `http://localhost:4000/digital/update/${id}`;
+    let url = `http://localhost:4000/gallery/update/${id}`;
 
     let bodyObj = JSON.stringify({
-      title,
-      linkUrl,
-      imageUrl,
+      imageURL,
+      altImageText,
+      attribution,
       description,
     });
 
@@ -48,9 +48,9 @@ const EditDigitalWorks = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      navigate("/digital");
+      navigate("/gallery");
       console.log(data);
-      if (data.message === "Digital Work updated") {
+      if (data.message === "Gallery Post updated") {
         // navigate('/digital')
       } else {
         alert(data.message);
@@ -59,8 +59,8 @@ const EditDigitalWorks = (props) => {
       console.log(error);
     }
   }
-  const fetchDigitalWork = async () => {
-    const url = `http://localhost:4000/digital/${id}`;
+  const fetchGalleryPosts = async () => {
+    const url = `http://localhost:4000/gallery/${id}`;
     let myHeaders = new Headers();
     myHeaders.append("Authorization", props.token);
 
@@ -73,17 +73,17 @@ const EditDigitalWorks = (props) => {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
       console.log(data);
-      setTitle(data.workDigital.title);
-      setLinkUrl(data.workDigital.linkUrl);
-      setImageUrl(data.workDigital.imageUrl);
-      setDescription(data.workDigital.description);
+      setImageURL(data.galleryPost.imageURL);
+      setAltImageText(data.galleryPost.altImageText);
+      setAttribution(data.galleryPost.attribution);
+      setDescription(data.galleryPost.description);
     } catch (err) {
       console.log(err.message);
     }
   };
 
   useEffect(() => {
-    fetchDigitalWork();
+    fetchGalleryPosts();
   }, []);
 
   return (
@@ -101,27 +101,27 @@ const EditDigitalWorks = (props) => {
             <form onSubmit={handleSubmit}>
               <StyledInputField
                 multiline
-                id="title"
-                label="Title"
+                id="imageURL"
+                label="Image URL"
                 variant="outlined"
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
+                value={imageURL}
+                onChange={(event) => setImageURL(event.target.value)}
               />
               <StyledInputField
                 multiline
-                id="linkUrl"
-                label="Link Url"
+                id="imageAltText"
+                label="Image Alt Text"
                 variant="outlined"
-                value={linkUrl}
-                onChange={(event) => setLinkUrl(event.target.value)}
+                value={altImageText}
+                onChange={(event) => setAltImageText(event.target.value)}
               />
               <StyledInputField
                 multiline
-                id="imageUrl"
-                label="Image Url"
+                id="attribution"
+                label="Attribution"
                 variant="outlined"
-                value={imageUrl}
-                onChange={(event) => setImageUrl(event.target.value)}
+                value={attribution}
+                onChange={(event) => setAttribution(event.target.value)}
               />
               <LongInputField
                 multiline
@@ -143,4 +143,4 @@ const EditDigitalWorks = (props) => {
   );
 };
 
-export default EditDigitalWorks;
+export default EditGalleryPost;

@@ -3,7 +3,6 @@ import CreateDigitalWorks from "./CreateDigitalWorks";
 import DisplayDigitalWorksCard from "./DisplayDigitalWorks";
 import { Box } from "@mui/material";
 
-import IndexNewsletter from "../newsletter/IndexNewsletter";
 
 const IndexDigitalWorks = (props) => {
   const [digitalWorks, setDigitalWorks] = useState([]);
@@ -31,7 +30,6 @@ const IndexDigitalWorks = (props) => {
 
   return (
     <>
-    <IndexNewsletter />
       <section style={{marginTop: "1rem"}}>
         <CreateDigitalWorks
           digitalWorks={digitalWorks}
