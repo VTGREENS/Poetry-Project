@@ -86,7 +86,7 @@ function TabBar({ token }) {
           <StyledTabsList>
             <LeftTab value="home">Home/About</LeftTab>
             <StyledTab value="physical">Physical Works</StyledTab>
-            <StyledTab value="digital">Digial Works</StyledTab>
+            <StyledTab value="digital">Digital Works</StyledTab>
             <RightTab value="post">Posted Poems</RightTab>
           </StyledTabsList>
           <TabPanelUnstyled value="home">

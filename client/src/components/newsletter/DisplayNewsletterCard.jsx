@@ -33,15 +33,18 @@ const DisplayNewsletterCard = ({ _id, fetchNewsletters, token, email }) => {
     }
   }
 
-  // const [checked, setChecked] = React.useState(true);
-
-  // const handleChange = (event) => {
-  //   setChecked(event.target.checked);
-  // };
-
   return (
     <>
-      <Card sx={{ display: "flex", padding: 1, marginBottom: "1rem" }}>
+      <Card
+        sx={{
+          marginBottom: "1rem",
+          borderRadius: "1rem",
+          borderColor: "black",
+          borderStyle: "solid",
+          borderWidth: "2px",
+          width: "33.5vw",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -51,10 +54,7 @@ const DisplayNewsletterCard = ({ _id, fetchNewsletters, token, email }) => {
           }}
         >
           <CardContent>
-            <Checkbox
-              // onChange={handleChange}
-              inputProps={{ "aria-label": "controlled" }}
-            />
+            <Checkbox inputProps={{ "aria-label": "controlled" }} />
             <Typography variant="h5">{email}</Typography>
             <Typography gutterBottom variant="subtitle">
               <CardActions>

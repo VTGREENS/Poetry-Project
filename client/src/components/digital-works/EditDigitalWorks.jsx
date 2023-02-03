@@ -2,6 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Card, CardContent } from "@mui/material";
 import { TextField, Button, Box } from "@mui/material";
+import styled from "@emotion/styled"
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: "1rem",
+  flexGrow: "1"
+}))
+
+const LongInputField = styled(TextField)(() => ({
+  margin: "1rem",
+  width: "25vw",
+  flexGrow: "3"
+}))
 
 const EditDigitalWorks = (props) => {
   const { id } = useParams();
@@ -86,7 +98,7 @@ const EditDigitalWorks = (props) => {
         >
           <CardContent>
             <form onSubmit={handleSubmit}>
-              <TextField
+              <StyledInputField
                 multiline
                 id="title"
                 label="Title"
@@ -94,7 +106,7 @@ const EditDigitalWorks = (props) => {
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
               />
-              <TextField
+              <StyledInputField
                 multiline
                 id="linkUrl"
                 label="Link Url"
@@ -102,7 +114,7 @@ const EditDigitalWorks = (props) => {
                 value={linkUrl}
                 onChange={(event) => setLinkUrl(event.target.value)}
               />
-              <TextField
+              <StyledInputField
                 multiline
                 id="imageUrl"
                 label="Image Url"
@@ -110,7 +122,7 @@ const EditDigitalWorks = (props) => {
                 value={imageUrl}
                 onChange={(event) => setImageUrl(event.target.value)}
               />
-              <TextField
+              <LongInputField
                 multiline
                 id="description"
                 label="Description"
@@ -119,7 +131,7 @@ const EditDigitalWorks = (props) => {
                 onChange={(event) => setDescription(event.target.value)}
               />
               <Button color="success" type="submit" variant="contained">
-                Submit Edit
+                Submit Update
               </Button>
             </form>
           </CardContent>
