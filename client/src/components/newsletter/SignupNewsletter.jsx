@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Card } from "@mui/material";
+import { Container } from "@mui/system";
 
 const theme = createTheme();
 
@@ -54,12 +55,14 @@ const SignupNewsletter = (props) => {
         <CssBaseline />
         <Box
           sx={{
+            
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
             alignItems: "flex-start",
           }}
         >
+          <Container padding-leftmaxWidth="sm">
           <Typography component="h1" variant="h5">
             Newsletter Sign Up
           </Typography>
@@ -77,6 +80,7 @@ const SignupNewsletter = (props) => {
               Sign Up
             </Button>
           </form>
+          </Container>
         </Box>
       </Card>
     </ThemeProvider>

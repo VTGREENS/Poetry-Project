@@ -33,11 +33,11 @@ const DisplayNewsletterCard = ({ _id, fetchNewsletters, token, email }) => {
     }
   }
 
-  const [checked, setChecked] = React.useState(true);
+  // const [checked, setChecked] = React.useState(true);
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
+  // const handleChange = (event) => {
+  //   setChecked(event.target.checked);
+  // };
 
   return (
     <>
@@ -52,7 +52,7 @@ const DisplayNewsletterCard = ({ _id, fetchNewsletters, token, email }) => {
         >
           <CardContent>
             <Checkbox
-              onChange={handleChange}
+              // onChange={handleChange}
               inputProps={{ "aria-label": "controlled" }}
             />
             <Typography variant="h5">{email}</Typography>
