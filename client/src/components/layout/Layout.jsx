@@ -8,25 +8,28 @@ import SidebarLeft from "../sidebars/sidebar-left/SidebarLeft";
 import IndexSidebarRight from '../sidebars/sidebar-right/IndexSidebarRight'
 import StickyFooter from "../footer/StickyFooter";
 import { useParams } from "react-router-dom";
-import { useTheme } from "@mui/material/styles"
+import { useTheme } from "@mui/material/styles";
 
 const Layout = ({ token }) => {
-  const params = useParams()
-  let { page } = params
+  const params = useParams();
+  let { page } = params;
   // const theme = useTheme()
   // console.log(theme)
   return (
     <>
-      <Box sx={{backgroundColor: "#FFCBD4", paddingTop: '0', marginTop: '0'}}>
-        <header style={{ margin: "auto", maxWidth:"90vw", background: "#ffvbd4" }}>
-          <h1 style={{margin: "auto", fontFamily: "monospace"}}>Megan Mary Moore</h1>
+      <Box sx={{ backgroundColor: "#FFCBD4", paddingTop: "0", marginTop: "0" }}>
+        <header
+          style={{ margin: "auto", maxWidth: "90vw", background: "#ffvbd4" }}
+        >
+          <h1 style={{ margin: "auto", fontFamily: "monospace" }}>
+            Megan Mary Moore
+          </h1>
         </header>
         <Container fluid sx={{display:"flex", justifyContent: 'center', }} >
           <SidebarLeft sx={{position: 'sticky', top: '0'}}/>
           <TabBar token={token}/>
           {page !== "physical" ? <IndexSidebarRight token={token} sx={{}}/> : null}
         </Container>
-
 
         {/* <Grid container spacing={0}>
           <SidebarLeft item xs={2} />
