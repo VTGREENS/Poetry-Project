@@ -7,7 +7,7 @@ router.post("/create", validateSession, async (req, res) => {
   try {
     const gallery = new Gallery({
       imageURL: req.body.imageURL,
-      altImageText: req.body.altImageText,
+      imageAltText: req.body.imageAltText,
       attribution: req.body.attribution,
       description: req.body.description,
     });

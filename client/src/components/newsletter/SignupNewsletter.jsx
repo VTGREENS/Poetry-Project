@@ -11,11 +11,16 @@ import { Container } from "@mui/system";
 import styled from "@emotion/styled";
 
 const StyledInputField = styled(TextField)(() => ({
-  //  padding: '1',
+  margin: "1rem",
   flexGrow: "1",
-  border: "solid",
-  borderWidth: "2px",
-  borderRadius: "1rem",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
 }));
 
 const theme = createTheme();
@@ -91,6 +96,7 @@ const SignupNewsletter = (props) => {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                color="success"
                 inputRef={emailRef}
               />
               <CardActions>

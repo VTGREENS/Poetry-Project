@@ -1,13 +1,18 @@
-import React, { useRef } from 'react';
-import { TextField, Button, Card, CardActions } from '@mui/material';
-import styled from '@emotion/styled';
+import React, { useRef } from "react";
+import { TextField, Button, Card, CardActions } from "@mui/material";
+import styled from "@emotion/styled";
 
 const StyledInputField = styled(TextField)(() => ({
-  margin: '1rem',
-  flexGrow: '1',
-  border: 'solid',
-  borderWidth: '2px',
-  borderRadius: '1rem',
+  margin: "1rem",
+  flexGrow: "1",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
 }));
 
 const CreateHomeAbout = (props) => {
@@ -19,20 +24,20 @@ const CreateHomeAbout = (props) => {
     const aboutContentImage = aboutContentImageRef?.current?.value;
     const aboutContentText = aboutContentTextRef?.current?.value;
 
-    let url = 'http://localhost:4000/about/create';
+    let url = "http://localhost:4000/about/create";
 
     let bodyObject = JSON.stringify({
       aboutContentImage,
       aboutContentText,
     });
     let myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Authorization', props.token);
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", props.token);
 
     const requestOptions = {
       headers: myHeaders,
       body: bodyObject,
-      method: 'Post',
+      method: "Post",
     };
 
     try {
@@ -40,8 +45,8 @@ const CreateHomeAbout = (props) => {
       const data = await response.json();
       console.log(data);
 
-      if (data.message === 'Your content has been added') {
-        alert('Home/About Content Created!');
+      if (data.message === "Your content has been added") {
+        alert("Home/About Content Created!");
       } else {
         alert(data.message);
       }
@@ -54,32 +59,34 @@ const CreateHomeAbout = (props) => {
     <>
       <Card
         sx={{
-          marginBottom: '1rem',
-          borderRadius: '1rem',
-          borderColor: 'black',
-          borderStyle: 'solid',
-          borderWidth: '2px',
-          width: '48vw',
-          justifyContent: 'center',
+          marginBottom: "1rem",
+          borderRadius: "1rem",
+          borderColor: "black",
+          borderStyle: "solid",
+          borderWidth: "2px",
+          width: "48vw",
+          justifyContent: "center",
         }}
       >
         <form onSubmit={handleSubmit}>
           <StyledInputField
-            id='aboutContentImage'
-            label='about content image'
-            variant='outlined'
+            id="aboutContentImage"
+            label="about content image"
+            variant="outlined"
             multiline
+            color="success"
             inputRef={aboutContentImageRef}
           />
           <StyledInputField
-            id='aboutContentText'
-            label='about content text'
-            variant='outlined'
+            id="aboutContentText"
+            label="about content text"
+            variant="outlined"
             multiline
+            color="success"
             inputRef={aboutContentTextRef}
           />
           <CardActions>
-            <Button type='submit' variant='contained' color='primary'>
+            <Button type="submit" variant="contained" color="primary">
               Create Home/About
             </Button>
           </CardActions>

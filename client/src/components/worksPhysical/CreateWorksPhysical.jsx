@@ -3,21 +3,30 @@ import { TextField, Button, Card, CardActions } from "@mui/material";
 import styled from '@emotion/styled';
 
 const StyledInputField = styled(TextField)(() => ({
-  margin: '1rem',
-  flexGrow: '1',
-  border: 'solid',
-  borderColor:'secondary',
-  borderWidth: "2px",
-  borderRadius: "1rem",
+  margin: "1rem",
+  flexGrow: "1",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
 }));
 
 const LongInputField = styled(TextField)(() => ({
-  margin: '1rem',
   width: '25vw',
+  margin: "1rem",
   flexGrow: '3',
-  border: 'solid',
-  borderWidth: "2px",
-  borderRadius: "1rem",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
 }));
 
 const CreateWorksPhysical = (props) => {
@@ -95,30 +104,35 @@ const CreateWorksPhysical = (props) => {
             id="image"
             label="image URL"
             variant="outlined"
+            color="success"
             inputRef={imageRef}
           />
           <StyledInputField
             id="imageAltText"
             label="image Alt Text"
             variant="outlined"
+            color="success"
             inputRef={imageAltTextRef}
           />
           <StyledInputField
             id="title"
             label="title"
             variant="outlined"
+            color="success"
             inputRef={titleRef}
           />
           <StyledInputField
             id="attribution"
             label="attribution"
             variant="outlined"
+            color="success"
             inputRef={attributionRef}
           />
           <LongInputField
             id="description"
             label="description"
             variant="outlined"
+            color="success"
             multiline
             inputRef={descriptionRef}
           />
@@ -138,24 +152,28 @@ const CreateWorksPhysical = (props) => {
             id="barnesAndNobleLink"
             label="barnesAndNobleLink"
             variant="outlined"
+            color="success"
             inputRef={barnesAndNobleLinkRef}
           />
           <StyledInputField
             id="msrp"
             label="msrp"
             variant="outlined"
+            color="success"
             inputRef={msrpRef}
           />
           <StyledInputField
             id="signedPrice"
             label="signedPrice"
             variant="outlined"
+            color="success"
             inputRef={signedPriceRef}
           />
           <StyledInputField
             id="signedLink"
             label="signedLink"
             variant="outlined"
+            color="success"
             inputRef={signedLinkRef}
           />
           <CardActions>
