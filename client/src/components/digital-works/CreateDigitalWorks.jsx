@@ -6,9 +6,14 @@ import styled from "@emotion/styled";
 const StyledInputField = styled(TextField)(() => ({
   margin: "1rem",
   flexGrow: "1",
-  border: "solid",
-  borderWidth: "2px",
-  borderRadius: "1rem",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
 }));
 
 const CreateDigitalWorks = (props) => {
@@ -67,7 +72,7 @@ const CreateDigitalWorks = (props) => {
           borderColor: "black",
           borderStyle: "solid",
           borderWidth: "2px",
-          width: "34vw",
+          width: "100%",
         }}
       >
         <CardContent>
@@ -77,6 +82,7 @@ const CreateDigitalWorks = (props) => {
               id="title"
               label="Title"
               variant="outlined"
+              color="success"
               inputRef={titleRef}
             />
             <StyledInputField
@@ -84,6 +90,7 @@ const CreateDigitalWorks = (props) => {
               id="linkUrl"
               label="Link to Publication"
               variant="outlined"
+              color="success"
               inputRef={linkUrlRef}
             />
             <StyledInputField
@@ -91,6 +98,7 @@ const CreateDigitalWorks = (props) => {
               id="imageUrl"
               label="Image URL"
               variant="outlined"
+              color="success"
               inputRef={imageUrlRef}
             />
             <StyledInputField
@@ -98,6 +106,7 @@ const CreateDigitalWorks = (props) => {
               id="description"
               label="Description"
               variant="outlined"
+              color="success"
               inputRef={descriptionRef}
             />
             <CardActions>

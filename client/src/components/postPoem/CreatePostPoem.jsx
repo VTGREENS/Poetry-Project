@@ -9,21 +9,30 @@ import {
 import styled from '@emotion/styled';
 
 const StyledInputField = styled(TextField)(() => ({
-  margin: '1rem',
-  flexGrow: '1',
-  border: 'solid',
-  borderWidth: '2px',
-  borderRadius: '1rem',
+  margin: "1rem",
+  flexGrow: "1",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
 }));
 
 const LongInputField = styled(TextField)(() => ({
-  margin: '1rem',
+  margin: "1rem",
+  flexGrow: "1",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
   width: '25vw',
-  flexGrow: '3',
-  border: 'solid',
-  borderColor: 'secondary',
-  borderWidth: '2px',
-  borderRadius: '1rem',
 }));
 
 const CreatePostPoem = (props) => {
@@ -101,51 +110,59 @@ const CreatePostPoem = (props) => {
         <CardContent>
           <form onSubmit={handleSubmit}>
             <StyledInputField
-              id='title'
+              id='title-input'
               label='title'
               variant='outlined'
+              color="success"
               inputRef={titleRef}
             />
             <StyledInputField
-              id='attribution'
+              id='attribution-input'
               label='attribution'
               variant='outlined'
+              color="success"
               inputRef={attributionRef}
             />
             <StyledInputField
-              id='date'
+              id='date-input'
               label='date'
               variant='outlined'
+              color="success"
               inputRef={dateRef}
             />
             <StyledInputField
-              id='publishedLink'
+              id='published-link-input'
               label='published Link'
               variant='outlined'
+              color="success"
               inputRef={publishedLinkRef}
             />
             <StyledInputField
-              id='buyLink'
+              id='buy-link-input'
               label='buy Link'
               variant='outlined'
+              color="success"
               inputRef={buyLinkRef}
             />
             <StyledInputField
-              id='imageLink'
+              id='image-link-input'
               label='image Link'
               variant='outlined'
+              color="success"
               inputRef={imageLinkRef}
             />
             <StyledInputField
-              id='featuredIn'
+              id='featured-in-input'
               label='featured In'
               variant='outlined'
+              color="success"
               inputRef={featuredInRef}
             />
             <LongInputField
-              id='body'
+              id='body-input'
               label='body'
               variant='outlined'
+              color="success"
               multiline
               inputRef={bodyRef}
             />

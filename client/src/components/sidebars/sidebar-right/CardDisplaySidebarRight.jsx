@@ -45,7 +45,7 @@ const CardDisplaySidebarRight = ({
 
   return (
     <>
-      <Card sx={{marginBottom:"1rem", borderRadius: '1rem', borderColor: "black", borderStyle: "solid", width:'15vw'}}>
+      <Card sx={{marginBottom:"1rem", borderRadius: '1rem', borderColor: "black", borderStyle: "solid", width:'17vw'}}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <CardMedia
             sx={{ margin: ".6rem 0 .6rem .6rem", width: "80%" }}

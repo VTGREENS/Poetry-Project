@@ -13,14 +13,14 @@ const StyledInputField = styled(TextField)(() => ({
 
 const CreateGalleryPost = (props) => {
   const imageURLRef = useRef();
-  const altImageTextRef = useRef();
+  const imageAltTextRef = useRef();
   const attributionRef = useRef();
   const descriptionRef = useRef();
 
   async function handleSubmit(e) {
     e.preventDefault();
     const imageURL = imageURLRef.current.value;
-    const altImageText = altImageTextRef.current.value;
+    const imageAltText = imageAltTextRef.current.value;
     const attribution = attributionRef.current.value;
     const description = descriptionRef.current.value;
 
@@ -28,7 +28,7 @@ const CreateGalleryPost = (props) => {
 
     let bodyObject = JSON.stringify({
       imageURL,
-      altImageText,
+      imageAltText,
       attribution,
       description,
     });
@@ -74,28 +74,28 @@ const CreateGalleryPost = (props) => {
           <form onSubmit={handleSubmit}>
             <StyledInputField
               multiline
-              id="imageURL"
+              id="image-URL-input"
               label="Image URL"
               variant="outlined"
               inputRef={imageURLRef}
             />
             <StyledInputField
               multiline
-              id="AltImageText"
+              id="image-alt-text-input"
               label="Alt Image Text"
               variant="outlined"
-              inputRef={altImageTextRef}
+              inputRef={imageAltTextRef}
             />
             <StyledInputField
               multiline
-              id="attribution"
+              id="attribution-input"
               label="Attribution"
               variant="outlined"
               inputRef={attributionRef}
             />
             <StyledInputField
               multiline
-              id="description"
+              id="description-input"
               label="Description"
               variant="outlined"
               inputRef={descriptionRef}

@@ -3,11 +3,16 @@ import {Card, CardContent, TextField, Button, CardActions } from '@mui/material'
 import styled from '@emotion/styled';
 
 const StyledInputField = styled(TextField)(() => ({
-  margin: '1rem',
-  flexGrow: '1',
-  border:'solid',
-  borderWidth: "2px",
-  borderRadius: "1rem",
+  margin: "1rem",
+  flexGrow: "1",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
 }));
 
 const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
@@ -59,19 +64,21 @@ const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
   }
   return (
     <>
-      <Card sx={{ marginBottom:"1rem", borderRadius: '1rem', borderColor: "black", borderStyle: "solid", borderWidth:'2px', width:'15vw' }}>
+      <Card sx={{ marginBottom:"1rem", borderRadius: '1rem', borderColor: "black", borderStyle: "solid", borderWidth:'2px', width:'17vw' }}>
         <CardContent>
           <form onSubmit={handleSubmit}>
             <StyledInputField
               id='image'
               label='image'
               variant='outlined'
+              color="success"
               inputRef={imageRef}
             />
             <StyledInputField
               id='imageAltText'
               label='imageAltText'
               variant='outlined'
+              color="success"
               inputRef={imageAltTextRef}
             />
             <br />
@@ -79,6 +86,7 @@ const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
               id='excerpt'
               label='excerpt'
               variant='outlined'
+              color="success"
               multiline
               inputRef={excerptRef}
             />
@@ -86,6 +94,7 @@ const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
               id='infoLink'
               label='info link'
               variant='outlined'
+              color="success"
               inputRef={infoLinkRef}
             />
             <CardActions>

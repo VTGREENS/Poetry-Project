@@ -19,7 +19,7 @@ import { flexbox, maxWidth } from "@mui/system";
 // import makeStyles from "@mui/material/styles/makeStyles";
 
 const StyledTabsList = styled(TabsListUnstyled)(() => ({
-  marginLeft: "1rem",
+  marginRight: "1.5rem",
   display: "flex",
   justifyContent: "space-between",
   maxWidth: "80vw",
@@ -48,6 +48,10 @@ const StyledTab = styled(TabUnstyled)(() => ({
     borderColor: "#008854"
   },
 }));
+
+const StyledTabPanel = styled(TabPanelUnstyled)(() => ({
+  marginRight: "1.5rem"
+}))
 
 const RightTab = styled(StyledTab)(() => ({
   borderStartEndRadius: ".8rem",
@@ -89,18 +93,18 @@ function TabBar({ token }) {
             <StyledTab value="digital">Digital Works</StyledTab>
             <RightTab value="post">Posted Poems</RightTab>
           </StyledTabsList>
-          <TabPanelUnstyled value="home">
+          <StyledTabPanel value="home">
             <IndexHomeAbout token={token} />
-          </TabPanelUnstyled>
-          <TabPanelUnstyled value="physical">
+          </StyledTabPanel>
+          <StyledTabPanel value="physical">
             <IndexWorksPhysical token={token} />
-          </TabPanelUnstyled>
-          <TabPanelUnstyled value="digital">
+          </StyledTabPanel>
+          <StyledTabPanel value="digital">
             <IndexDigitalWorks token={token} />
-          </TabPanelUnstyled>
-          <TabPanelUnstyled value="post">
+          </StyledTabPanel>
+          <StyledTabPanel value="post">
             <IndexPostPoem token={token} />
-          </TabPanelUnstyled>
+          </StyledTabPanel>
         </TabsUnstyled>
       </main>
     </>
