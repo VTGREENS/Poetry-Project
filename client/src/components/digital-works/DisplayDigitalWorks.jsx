@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled"
+import jwt_decode from 'jwt-decode'
 
 const DisplayDigitalWorksCard = ({
   _id,
@@ -20,6 +21,8 @@ const DisplayDigitalWorksCard = ({
   imageUrl,
   description,
 }) => {
+
+  const decodedToken = token ? jwt_decode(token) : null 
   const navigate = useNavigate();
   async function deleteDigitalWorks(id) {
     const url = `http://localhost:4000/digital/delete/${id}`;
@@ -73,6 +76,7 @@ const DisplayDigitalWorksCard = ({
                   Link to Publication
                 </Button>
               </CardActions>
+              { decodedToken ?
               <CardActions>
                 <Button
                   color="success"
@@ -88,7 +92,7 @@ const DisplayDigitalWorksCard = ({
                 >
                   DELETE
                 </Button>
-              </CardActions>
+              </CardActions> : null}
             </Typography>
           </CardContent>
         </Box>

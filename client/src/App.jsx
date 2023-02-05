@@ -47,30 +47,30 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path='/:page' element={<Layout token={sessionToken} />} />
+          <Route path='/:page' element={<Layout />} />
           <Route
             path='/digital/update/:id'
-            element={<EditDigitalWorks token={sessionToken} />}
+            element={<EditDigitalWorks />}
           />
           <Route
             path='/physical/update/:id'
-            element={<EditWorksPhysical token={sessionToken} />}
+            element={<EditWorksPhysical />}
           />
           <Route
             path='/post/update/:id'
-            element={<EditPostPoem token={sessionToken} />}
+            element={<EditPostPoem />}
           />
           <Route
             path='/about/update/:id'
-            element={<EditHomeAbout token={sessionToken} />}
+            element={<EditHomeAbout />}
           />
           <Route
           path='/sidebarright/update/:id'
-          element={<EditSidebarRightCard token={sessionToken} />}
+          element={<EditSidebarRightCard />}
           />
             <Route
           path='/gallery/update/:id'
-          element={<EditGalleryPost token={sessionToken} />}
+          element={<EditGalleryPost />}
           />
         </Routes>
       </ThemeProvider>
