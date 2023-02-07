@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Container } from '@mui/material'
 import CardDisplayWorksPhysical from './CardDisplayWorksPhysical';
 import CreateWorksPhysical from './CreateWorksPhysical';
 import jwt_decode from "jwt-decode"
@@ -34,10 +35,11 @@ const IndexWorksPhysical = ({token}) => {
 
   return (
     <>
-    <section style={{ marginTop: "1rem"}}>
+    <section style={{ marginTop: "1rem", }}>
       { decodedToken ? 
       <CreateWorksPhysical worksPhysical={worksPhysical} token={token} fetchWorksPhysical={fetchWorksPhysical}/> : null }
 
+      <Container sx={{display:'flex', flexDirection:'column-reverse'}}>
       {worksPhysical?.map((workPhysical) => (
         <CardDisplayWorksPhysical
           key={workPhysical._id}
@@ -55,8 +57,9 @@ const IndexWorksPhysical = ({token}) => {
           _id={workPhysical._id}
           token={token}
           fetchWorksPhysical={fetchWorksPhysical}
-        />
-      ))}
+          />
+          ))}
+          </Container>
     </section>  
     </>
   );

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled"
+import jwt_decode from 'jwt-decode'
 
 
 const DisplayGalleryPostCard = ({
@@ -21,6 +22,7 @@ const DisplayGalleryPostCard = ({
   attribution,
   description,
 }) => {
+  const decodedToken = token ? jwt_decode(token) : null
   const navigate = useNavigate();
   async function deleteGalleryPost(id) {
     const url = `http://localhost:4000/gallery/delete/${id}`;
@@ -72,7 +74,7 @@ const DisplayGalleryPostCard = ({
                 {attribution}
             </Typography>
             <Typography gutterBottom variant="subtitle">
-              
+              {decodedToken ?
               <CardActions>
                 <Button
                   color="success"
@@ -89,6 +91,7 @@ const DisplayGalleryPostCard = ({
                   DELETE
                 </Button>
               </CardActions>
+              : null }
             </Typography>
           </CardContent>
         </Box>

@@ -57,36 +57,41 @@ const CreateHomeAbout = (props) => {
 
   return (
     <>
+  
       <Card
         sx={{
+          display:'flex',
           marginBottom: "1rem",
           borderRadius: "1rem",
           borderColor: "black",
           borderStyle: "solid",
           borderWidth: "2px",
           width: "48vw",
-          justifyContent: "center",
+          justifyContent:'space-around'
         }}
       >
         <form onSubmit={handleSubmit}>
-          <StyledInputField
+          <StyledInputField sx={{flexGrow:'1'}}
             id="aboutContentImage"
-            label="about content image"
+            label="About Content Image"
             variant="outlined"
             multiline
             color="success"
             inputRef={aboutContentImageRef}
           />
-          <StyledInputField
+          <StyledInputField sx={{flexGrow:'1'}}
             id="aboutContentText"
-            label="about content text"
+            label="About Content Text"
             variant="outlined"
             multiline
             color="success"
             inputRef={aboutContentTextRef}
           />
-          <CardActions>
-            <Button type="submit" variant="contained" color="primary">
+          <CardActions sx={{display:'flex', justifyContent:'center'}}>
+            <Button 
+            type="submit" 
+            variant="contained" 
+            color="primary">
               Create Home/About
             </Button>
           </CardActions>

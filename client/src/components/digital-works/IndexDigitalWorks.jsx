@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import CreateDigitalWorks from "./CreateDigitalWorks";
 import DisplayDigitalWorksCard from "./DisplayDigitalWorks";
 import { Box } from "@mui/material";
+import jwt_decode from "jwt-decode"
 
-
-const IndexDigitalWorks = (props) => {
+const IndexDigitalWorks = ({token}) => {
   const [digitalWorks, setDigitalWorks] = useState([]);
+  let decodedToken = token ? jwt_decode(token) : null 
   const fetchDigitalWorks = async () => {
     const url = `http://localhost:4000/digital/`;
     let myHeaders = new Headers();
@@ -31,18 +32,19 @@ const IndexDigitalWorks = (props) => {
   return (
     <>
       <section style={{marginTop: "1rem"}}>
+        {decodedToken ?
         <CreateDigitalWorks
           digitalWorks={digitalWorks}
-          token={props.token}
+          token={token}
           fetchDigitalWorks={fetchDigitalWorks}
-        />
+        /> : null}
         <br />
         <Box sx={{ display: "flex", flexDirection: "column-reverse" }}>
         {digitalWorks?.worksDigital?.map((digitalWork) => (
           <DisplayDigitalWorksCard
             key={digitalWork._id}
             fetchDigitalWorks={fetchDigitalWorks}
-            token={props.token}
+            token={token}
             title={digitalWork.title}
             linkUrl={digitalWork.linkUrl}
             imageUrl={digitalWork.imageUrl}

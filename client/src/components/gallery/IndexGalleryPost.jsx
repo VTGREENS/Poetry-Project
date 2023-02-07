@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import CreateGalleryPost from "./CreateGalleryPost";
 import DisplayGalleryPostCard from "./DisplayGalleryPostCard";
 import { Box } from "@mui/material";
+import jwt_decode from "jwt-decode"
 
-const IndexGalleryPost = (props) => {
+const IndexGalleryPost = ({token}) => {
   const [galleryPosts, setGalleryPosts] = useState([]);
+  let decodedToken = token ? jwt_decode(token) : null 
   const fetchGalleryPosts = async () => {
     const url = `http://localhost:4000/gallery/`;
     let myHeaders = new Headers();
-    myHeaders.append("Authorization", props.token);
+    myHeaders.append("Authorization", token);
     const requestOptions = {
       method: "GET",
       headers: myHeaders,
@@ -30,11 +32,12 @@ const IndexGalleryPost = (props) => {
   return (
     <>
       <section style={{marginTop: "1rem"}}>
+        { decodedToken ?
         <CreateGalleryPost
           galleryPosts={galleryPosts}
           token={props.token}
           fetchGalleryPosts={fetchGalleryPosts}
-        />
+        /> : null}
         <br />
         <Box sx={{ display: "flex", flexDirection: "column-reverse" }}>
         {galleryPosts?.galleryPost?.map((galleryPost) => (
