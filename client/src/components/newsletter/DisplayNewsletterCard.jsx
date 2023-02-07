@@ -11,8 +11,11 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
+import jwt_decode from 'jwt-decode'
+
 
 const DisplayNewsletterCard = ({ _id, fetchNewsletters, token, email }) => {
+  const decodedToken = token ? jwt_decode(token) : null 
   const navigate = useNavigate();
   async function deleteNewsletters(id) {
     const url = `http://localhost:4000/newsletter/delete/${id}`;
@@ -35,6 +38,7 @@ const DisplayNewsletterCard = ({ _id, fetchNewsletters, token, email }) => {
 
   return (
     <>
+    {decodedToken ?
       <Card
         sx={{
           marginBottom: "1rem",
@@ -70,6 +74,7 @@ const DisplayNewsletterCard = ({ _id, fetchNewsletters, token, email }) => {
           </CardContent>
         </Box>
       </Card>
+      : null}
     </>
   );
 };

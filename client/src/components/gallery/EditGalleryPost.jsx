@@ -4,6 +4,7 @@ import { Card, CardContent } from "@mui/material";
 import { TextField, Button, Box } from "@mui/material";
 import styled from "@emotion/styled"
 import StickyFooter from "../footer/StickyFooter";
+import jwt_decode from 'jwt-decode'
 
 const StyledInputField = styled(TextField)(() => ({
   margin: "1rem",
@@ -16,13 +17,14 @@ const LongInputField = styled(TextField)(() => ({
   flexGrow: "3"
 }))
 
-const EditGalleryPost = (props) => {
+const EditGalleryPost = ({token}) => {
   const { id } = useParams();
   const [imageURL, setImageURL] = useState("");
   const [altImageText, setAltImageText] = useState("");
   const [attribution, setAttribution] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
+  const decodedToken = token ? jwt_decode(token) : null 
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -36,7 +38,7 @@ const EditGalleryPost = (props) => {
     });
 
     let myHeaders = new Headers();
-    myHeaders.append("Authorization", props.token);
+    myHeaders.append("Authorization", token);
     myHeaders.append("Content-Type", "application/json");
 
     const requestOptions = {
@@ -62,7 +64,7 @@ const EditGalleryPost = (props) => {
   const fetchGalleryPosts = async () => {
     const url = `http://localhost:4000/gallery/${id}`;
     let myHeaders = new Headers();
-    myHeaders.append("Authorization", props.token);
+    myHeaders.append("Authorization", token);
 
     const requestOptions = {
       method: "GET",
@@ -88,6 +90,8 @@ const EditGalleryPost = (props) => {
 
   return (
     <>
+    { }
+    { decodedToken ?
       <Card sx={{ Display: "flex", padding: 5, border: "solid" }}>
         <Box
           sx={{
@@ -138,6 +142,7 @@ const EditGalleryPost = (props) => {
           </CardContent>
         </Box>
       </Card>
+      : null}
       <StickyFooter />
     </>
   );
