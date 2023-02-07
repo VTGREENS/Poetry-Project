@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import SignupNewsletter from "./SignupNewsletter";
 import { Box } from "@mui/material";
 import DisplayNewsletterCard from "./DisplayNewsletterCard";
+import jwt_decode from "jwt-decode"
 
-const IndexNewsletter = (props) => {
+const IndexNewsletter = ({token}) => {
   const [newsletters, setNewsletters] = useState([]);
+  let decodedToken = token ? jwt_decode(token) : null 
   const fetchNewsletters = async () => {
     const url = `http://localhost:4000/newsletter/`;
     let myHeaders = new Headers();
-    // myHeaders.append("Authorization", props.token);
+    myHeaders.append("Authorization", token);
     const requestOptions = {
       method: "GET",
       headers: myHeaders,
@@ -35,6 +37,7 @@ const IndexNewsletter = (props) => {
           token={props.token}
           fetchNewsletters={fetchNewsletters}
         />
+         { decodedToken ?
         <Box sx={{ display: "flex", flexDirection: "column-reverse" }}>
           {newsletters?.newsletter?.map((newsletter) => (
             <DisplayNewsletterCard
@@ -43,9 +46,9 @@ const IndexNewsletter = (props) => {
               token={props.token}
               email={newsletter.email}
               _id={newsletter._id}
-            />
+            /> 
           ))}
-        </Box>
+        </Box> : null}
         <br />
       </section>
     </>
