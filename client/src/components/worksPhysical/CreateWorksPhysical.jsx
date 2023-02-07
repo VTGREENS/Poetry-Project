@@ -89,6 +89,7 @@ const CreateWorksPhysical = (props) => {
       console.log(data);
 
       if (data.message === "Physical Works Created") {
+        alert("Physical Work Created")
       } else {
         alert(data.message);
       }
@@ -102,35 +103,35 @@ const CreateWorksPhysical = (props) => {
         <form onSubmit={handleSubmit}>
           <StyledInputField
             id="image"
-            label="image URL"
+            label="Image URL"
             variant="outlined"
             color="success"
             inputRef={imageRef}
           />
           <StyledInputField
             id="imageAltText"
-            label="image Alt Text"
+            label="Image Alt Text"
             variant="outlined"
             color="success"
             inputRef={imageAltTextRef}
           />
           <StyledInputField
             id="title"
-            label="title"
+            label="Title"
             variant="outlined"
             color="success"
             inputRef={titleRef}
           />
           <StyledInputField
             id="attribution"
-            label="attribution"
+            label="Attribution"
             variant="outlined"
             color="success"
             inputRef={attributionRef}
           />
           <LongInputField
             id="description"
-            label="description"
+            label="Description"
             variant="outlined"
             color="success"
             multiline
@@ -138,46 +139,46 @@ const CreateWorksPhysical = (props) => {
           />
           <StyledInputField
             id="amazonLink"
-            label="amazonLink"
+            label="Amazon Link"
             variant="outlined"
             inputRef={amazonLinkRef}
           />
           <StyledInputField
             id="unsolicitedPressLink"
-            label="unsolicitedPressLink"
+            label="Unsolicited Press Link"
             variant="outlined"
             inputRef={unsolicitedPressLinkRef}
           />
           <StyledInputField
             id="barnesAndNobleLink"
-            label="barnesAndNobleLink"
+            label="Barnes and Noble Link"
             variant="outlined"
             color="success"
             inputRef={barnesAndNobleLinkRef}
           />
           <StyledInputField
             id="msrp"
-            label="msrp"
+            label="MSRP"
             variant="outlined"
             color="success"
             inputRef={msrpRef}
           />
           <StyledInputField
             id="signedPrice"
-            label="signedPrice"
+            label="Signed Price"
             variant="outlined"
             color="success"
             inputRef={signedPriceRef}
           />
           <StyledInputField
             id="signedLink"
-            label="signedLink"
+            label="Signed Link"
             variant="outlined"
             color="success"
             inputRef={signedLinkRef}
           />
           <CardActions>
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary" label='Submit Physical Works'>
             Submit Physical Works
           </Button>
           </CardActions>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CreateSidebarRightCard from './CreateSidebarRightCard';
 import CardDisplaySidebarRight from './CardDisplaySidebarRight';
+import { Container } from '@mui/material'
 import styled from "@emotion/styled";
 import jwt_decode from "jwt-decode"
 
@@ -44,12 +45,13 @@ const IndexSidebarRight = ({token}) => {
     <>
       <section>
       <StyledSidebar>
-        <div>
+        <Container>
           {decodedToken ? 
           <CreateSidebarRightCard token={token} fetchSidebarRightCards={fetchSidebarRightCards} />
           : null }
-        </div>
-
+        </Container>
+          
+        <Container sx={{display:'flex', flexDirection:'column-reverse'}}>
         {sidebarRight?.map((sidebarItem) => (
           <CardDisplaySidebarRight
             key={sidebarItem._id}
@@ -62,6 +64,7 @@ const IndexSidebarRight = ({token}) => {
             fetchSidebarRight={fetchSidebarRightCards}
           />
         ))}
+        </Container>
         </StyledSidebar>
       </section>
     </>

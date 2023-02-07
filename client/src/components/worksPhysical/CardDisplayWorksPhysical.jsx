@@ -53,7 +53,7 @@ const CardDisplayWorksPhysical = ({
 
   return (
     <>
-      <Card sx={{ display: "flex", marginBottom: "1rem", border:'solid', borderWidth:'2px', borderRadius:'1rem' }}>
+      <Card sx={{ display: "flex", marginBottom: "1rem", border:'solid', borderWidth:'2px', borderRadius:'1rem'}}>
         <CardMedia
           sx={{ width: "30vw" }}
           component="img"
@@ -83,7 +83,7 @@ const CardDisplayWorksPhysical = ({
               MSRP: ${msrp}
             </Typography>
             <CardActions>
-              <Button
+              <Button sx={{height:'3.3rem', textAlign:'center'}}
                 variant="contained"
                 href={signedLink}
                 aria-label="Purchase signed copy from Megan Mary Moore"
@@ -93,7 +93,7 @@ const CardDisplayWorksPhysical = ({
                 Signed Copy
               </Button>
               {unsolicitedPressLink ? (
-                <Button
+                <Button sx={{height:'3.3rem',textAlign:'center'}}
                   variant="contained"
                   href={unsolicitedPressLink}
                   aria-label="Purchase from Unsolicited press"
@@ -104,7 +104,7 @@ const CardDisplayWorksPhysical = ({
                 </Button>
               ) : null}
               {amazonLink ? (
-                <Button
+                <Button sx={{height:'3.3rem', textAlign:'center'}}
                   variant="contained"
                   href={amazonLink}
                   aria-label="Purchase on Amazon dot com"
@@ -115,7 +115,7 @@ const CardDisplayWorksPhysical = ({
                 </Button>
               ) : null}
               {barnesAndNobleLink ? (
-                <Button
+                <Button sx={{height:'3.3rem', textAlign:'center'}}
                   variant="contained"
                   href={barnesAndNobleLink}
                   aria-label="Purchase on Barnes and Noble dot com"
@@ -131,12 +131,15 @@ const CardDisplayWorksPhysical = ({
               <Button sx={{color:'white', backgroundColor: theme.palette.secondary.main}}
                 type="submit"
                 variant="contained"
+                label='edit button'
                 onClick={() => navigate(`/physical/update/${_id}`)}
                 aria-label={`Edit ${title}`} 
               >
                 Edit
               </Button>
               <Button sx={{color:'black', backgroundColor: theme.palette.primary.main}}
+                label='delete button'
+                id='deleteButton'
                 type="submit"
                 variant="contained"
                 onClick={() => deleteWorksPhysical(_id)}
@@ -145,7 +148,6 @@ const CardDisplayWorksPhysical = ({
                 Delete
               </Button>
             </CardActions> : null}
-
           </CardContent>
         </Box>
       </Card>
