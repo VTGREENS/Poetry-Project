@@ -1,11 +1,13 @@
 import SignUp from "./signup/Signup";
 import SignIn from "./login/Login";
+import { CssBaseline } from "@mui/material";
 
-const Auth = () => {
+const Auth = ({updateToken, token}) => {
     return ( 
         <>
-        <SignIn />
-        <SignUp />
+        <CssBaseline/>
+        <SignIn updateToken={updateToken}/>
+        <SignUp updateToken={updateToken}/>
         </>
      );
 }

@@ -9,6 +9,7 @@ import IndexSidebarRight from "../sidebars/sidebar-right/IndexSidebarRight";
 import StickyFooter from "../footer/StickyFooter";
 import { useParams } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import Banner from "../banner/Banner";
 
 const Layout = ({ token }) => {
   const params = useParams();
@@ -18,13 +19,7 @@ const Layout = ({ token }) => {
   return (
     <>
       <Box sx={{ backgroundColor: "#FFCBD4", paddingTop: "0", marginTop: "0" }}>
-        <header
-          style={{ margin: "auto", maxWidth: "90vw", background: "#ffvbd4" }}
-        >
-          <h1 style={{ margin: "auto", fontFamily: "monospace" }}>
-            Megan Mary Moore
-          </h1>
-        </header>
+        <Banner token={token}></Banner>
         <Container
           fluid
           sx={{ display: "flex", justifyContent: "center", overflow: "scroll" }}

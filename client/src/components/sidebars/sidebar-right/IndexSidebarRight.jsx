@@ -9,7 +9,7 @@ const StyledSidebar = styled.aside`
   flex-direction: column;
   justify-content: space-around;
   width: 100%;
-  background: #ffdddd
+  background: #ffdddd;
   position: sticky;
 `;
 

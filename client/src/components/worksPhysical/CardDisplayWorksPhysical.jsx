@@ -69,17 +69,17 @@ const CardDisplayWorksPhysical = ({
           }}
         >
           <CardContent className="card-content">
-            <Typography variant="h3">{title}</Typography>
-            <Typography gutterBottom variant="h5">
+            <Typography variant="h4" component="h2">{title}</Typography>
+            <Typography gutterBottom variant="h5" component="h3">
               {attribution}
             </Typography>
             <Typography gutterBottom variant="body1">
               {description}
             </Typography>
-            <Typography _id={_id + "signedPrice"}>
+            <Typography id={_id + "signedPrice"} variant="body1" component="h4">
               Signed Price: ${signedPrice}
             </Typography>
-            <Typography _id={_id + "msrp"} gutterBottom variant="body1">
+            <Typography id={_id + "msrp"} gutterBottom variant="body1" component="h4">
               MSRP: ${msrp}
             </Typography>
             <CardActions>
