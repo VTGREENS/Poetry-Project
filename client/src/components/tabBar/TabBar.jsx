@@ -50,7 +50,8 @@ const StyledTab = styled(TabUnstyled)(() => ({
 }));
 
 const StyledTabPanel = styled(TabPanelUnstyled)(() => ({
-  marginRight: "1.5rem"
+  marginRight: "3rem",
+  width: "100%"
 }))
 
 const RightTab = styled(StyledTab)(() => ({
@@ -79,15 +80,17 @@ function TabBar({ token }) {
   };
   return (
     <>
-      <main style={page !== "physical" ? {maxWidth: "50vw"} : {maxWidth: "66vw"}}>
+      <main style={page !== "physical" ? {maxWidth: "52vw"} : {maxWidth: "66vw"}}>
         <CssBaseline />
         <TabsUnstyled
           selectionFollowsFocus
           defaultValue={"home"}
           value={page}
           onChange={handleChange}
+          sx={{display: "flex", flexDirection: "column", justifyContent: "center",
+        alignItems: "center"}}
         >
-          <StyledTabsList>
+          <StyledTabsList style={page !== "physical" ? {maxWidth: "52vw"} : {maxWidth: "66vw"}}>
             <LeftTab value="home">Home/About</LeftTab>
             <StyledTab value="physical">Physical Works</StyledTab>
             <StyledTab value="digital">Digital Works</StyledTab>
