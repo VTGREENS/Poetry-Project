@@ -45,7 +45,7 @@ const CardDisplaySidebarRight = ({
 
   return (
     <>
-      <Card sx={{marginBottom:"1rem", borderRadius: '1rem', borderColor: "black", borderStyle: "solid", width:'17vw'}}>
+      <Card sx={{marginBottom:"1rem", borderRadius: '1rem', borderColor: "black", borderStyle: "solid", borderWidth:'2px', width:'17vw'}}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <CardMedia
             sx={{ margin: ".6rem 0 .6rem .6rem", width: "80%" }}
@@ -60,6 +60,8 @@ const CardDisplaySidebarRight = ({
             <CardActions>
             <Button 
             href={infoLink} 
+            id='moreInfoButton'
+            label='More Info Button'
             variant='contained' 
             color='primary'
             aria-label="More info"
@@ -75,12 +77,15 @@ const CardDisplaySidebarRight = ({
             }}
             variant='contained'
             type='submit'
+            label='edit button'
             onClick={() => navigate(`/sidebarright/update/${_id}`)}
           >
             Edit
           </Button>
           <Button sx={{color:'black', backgroundColor: theme.palette.primary.main,
             }}
+            id='deleteButton'
+            label='delete button'
             type='submit'
             variant='contained'
             onClick={() => deleteSidebarRight(_id)}

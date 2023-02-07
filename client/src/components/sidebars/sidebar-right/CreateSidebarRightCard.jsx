@@ -69,14 +69,14 @@ const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
           <form onSubmit={handleSubmit}>
             <StyledInputField
               id='image'
-              label='image'
+              label='Image'
               variant='outlined'
               color="success"
               inputRef={imageRef}
             />
             <StyledInputField
               id='imageAltText'
-              label='imageAltText'
+              label='Image Alt Text'
               variant='outlined'
               color="success"
               inputRef={imageAltTextRef}
@@ -84,7 +84,7 @@ const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
             <br />
             <StyledInputField
               id='excerpt'
-              label='excerpt'
+              label='Excerpt'
               variant='outlined'
               color="success"
               multiline
@@ -92,7 +92,7 @@ const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
             />
             <StyledInputField
               id='infoLink'
-              label='info link'
+              label='Information Link'
               variant='outlined'
               color="success"
               inputRef={infoLinkRef}
