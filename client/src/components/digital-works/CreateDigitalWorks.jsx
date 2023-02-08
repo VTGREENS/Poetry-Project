@@ -96,6 +96,7 @@ const CreateDigitalWorks = (props) => {
               color="success"
               inputRef={linkUrlRef}
             />
+            <br />
             <StyledInputField
               multiline
               id="imageUrl"
