@@ -33,6 +33,7 @@ function App() {
   let sampleToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGVkOGI2NzYyODVmNmU4ZGNhNjUwOSIsImlhdCI6MTY3NTc5MTM5NiwiZXhwIjoxNjc2MDUwNTk2fQ.b1sLFicGvEh9sRCy904Znrk2KACzfy1Kdu19sqZkpRw";
 
+
   const [sessionToken, setSessionToken] = useState(sampleToken);
 
   const updateToken = (newToken) => {
