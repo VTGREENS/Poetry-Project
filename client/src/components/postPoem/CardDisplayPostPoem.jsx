@@ -16,7 +16,7 @@ const CardDisplayPostPoem = ({
   title,
   attribution,
   date,
-  body,
+  poemAltText,
   publishedLink,
   buyLink,
   imageLink,
@@ -49,9 +49,7 @@ const CardDisplayPostPoem = ({
     <>
       <Card sx={{ display: 'flex',
           justifyContent: 'flex-start',
-          // alignItems: 'flex-start',
           alignContent: 'start',
-          // margin: 'auto',
           marginTop: '1rem',
           paddingTop: '1rem',
           backgroundColor: '#FFFFFF',
@@ -60,9 +58,8 @@ const CardDisplayPostPoem = ({
           borderWidth:"2px",
           width: '49vw' }}>
         {imageLink ? (
-          <CardMedia sx={{ width: '30vw' }} component='img' image={imageLink} />
+          <CardMedia sx={{ width:'30vw' }} component='img' image={imageLink} alt={poemAltText} />
         ) : null}
-
         <Box
           sx={{
             display: 'flex',
@@ -78,11 +75,11 @@ const CardDisplayPostPoem = ({
                 {attribution} {date}
               </Typography>
             ) : null}
-            {body ? (
+            {/* {poemAltText ? (
               <Typography sx={{ whiteSpace: 'pre-wrap' }}gutterBottom variant='body1' component='body'>
-                {body}
+                {poemAltText}
               </Typography>
-            ) : null}
+            ) : null} */}
             {featuredIn ? (
               <Typography gutterBottom variant='h6'>
                 Featured In: {featuredIn}
@@ -112,7 +109,7 @@ const CardDisplayPostPoem = ({
                   Buy Collection
                 </Button>
               ) : null}
-              {/* <div css={css`display: block;`}> </div> */}
+              
             </CardActions>
             { decodedToken ? 
             <CardActions>

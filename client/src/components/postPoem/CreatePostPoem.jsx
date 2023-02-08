@@ -32,14 +32,14 @@ const LongInputField = styled(TextField)(() => ({
       borderRadius: "1rem"
     },
   },
-  width: '25vw',
+  // width: '20vw',
 }));
 
 const CreatePostPoem = (props) => {
   const titleRef = useRef();
   const attributionRef = useRef();
   const dateRef = useRef();
-  const bodyRef = useRef();
+  const poemAltTextRef = useRef();
   const publishedLinkRef = useRef();
   const buyLinkRef = useRef();
   const imageLinkRef = useRef();
@@ -50,7 +50,7 @@ const CreatePostPoem = (props) => {
     const title = titleRef?.current?.value;
     const attribution = attributionRef?.current?.value;
     const date = dateRef?.current?.value;
-    const body = bodyRef?.current?.value;
+    const poemAltText = poemAltTextRef?.current?.value;
     const publishedLink = publishedLinkRef?.current?.value;
     const buyLink = buyLinkRef?.current?.value;
     const imageLink = imageLinkRef?.current?.value;
@@ -62,7 +62,7 @@ const CreatePostPoem = (props) => {
       title,
       attribution,
       date,
-      body,
+      poemAltText,
       publishedLink,
       buyLink,
       imageLink,
@@ -83,6 +83,7 @@ const CreatePostPoem = (props) => {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
       props.fetchPostPoems();
+      document.getElementById('postPoem-form').reset();
       console.log(data);
 
       if (data.message === 'Your post has been added') {
@@ -103,12 +104,11 @@ const CreatePostPoem = (props) => {
           borderColor: 'black',
           borderStyle: 'solid',
           borderWidth: '2px',
-          width: '48vw',
-          justifyContent: 'center',
+          width: '48vw', 
         }}
       >
         <CardContent>
-          <form onSubmit={handleSubmit}>
+          <form id='postPoem-form' onSubmit={handleSubmit} style={{textAlign:'center'}}>
             <StyledInputField
               id='title-input'
               label='title'
@@ -160,14 +160,17 @@ const CreatePostPoem = (props) => {
             />
             <LongInputField
               id='body-input'
-              label='body'
+              label='Poem Alt Text'
               variant='outlined'
               color="success"
               multiline
-              inputRef={bodyRef}
+              inputRef={poemAltTextRef}
             />
-            <CardActions>
-              <Button type='submit' variant='contained' color='primary'>
+            <CardActions sx={{display:'flex', justifyContent:'center'}}>
+              <Button sx={{width:'12rem'}}
+              type='submit'
+              variant='contained' 
+              color='primary'>
                 Create Post
               </Button>
             </CardActions>

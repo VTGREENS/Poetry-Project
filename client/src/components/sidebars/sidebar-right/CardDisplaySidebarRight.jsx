@@ -72,7 +72,7 @@ const CardDisplaySidebarRight = ({
           </CardContent>
         </Box>
         { decodedToken ? 
-        <CardActions>
+        <CardActions sx={{display:'flex', justifyContent:'center'}}>
           <Button sx={{color:'white', backgroundColor: theme.palette.secondary.main,
             }}
             variant='contained'

@@ -51,6 +51,7 @@ const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
       fetchSidebarRightCards();
+      document.getElementById('sidebar-form').reset();
       console.log(data);
 
       if (data.message === 'Content Created') {
@@ -66,7 +67,7 @@ const CreateSidebarRightCard = ({token, fetchSidebarRightCards}) => {
     <>
       <Card sx={{ marginBottom:"1rem", borderRadius: '1rem', borderColor: "black", borderStyle: "solid", borderWidth:'2px', width:'17vw' }}>
         <CardContent>
-          <form onSubmit={handleSubmit}>
+          <form id='sidebar-form' onSubmit={handleSubmit}>
             <StyledInputField
               id='image'
               label='Image'
