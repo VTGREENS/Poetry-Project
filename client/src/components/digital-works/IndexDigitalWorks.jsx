@@ -32,13 +32,7 @@ const IndexDigitalWorks = ({token}) => {
   return (
     <>
       <section style={{marginTop: "1rem"}}>
-        {decodedToken ?
-        <CreateDigitalWorks
-          digitalWorks={digitalWorks}
-          token={token}
-          fetchDigitalWorks={fetchDigitalWorks}
-        /> : null}
-        <br />
+       
         <Box sx={{ display: "flex", flexDirection: "column-reverse" }}>
         {digitalWorks?.worksDigital?.map((digitalWork) => (
           <DisplayDigitalWorksCard
@@ -53,6 +47,12 @@ const IndexDigitalWorks = ({token}) => {
           />
           
         ))}
+         {decodedToken ?
+        <CreateDigitalWorks
+          digitalWorks={digitalWorks}
+          token={token}
+          fetchDigitalWorks={fetchDigitalWorks}
+        /> : null}
         </Box>
       </section>
     </>

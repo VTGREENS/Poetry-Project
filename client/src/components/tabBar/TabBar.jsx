@@ -21,8 +21,7 @@ import { flexbox, maxWidth } from "@mui/system";
 const StyledTabsList = styled(TabsListUnstyled)(() => ({
   marginRight: "1.5rem",
   display: "flex",
-  justifyContent: "space-between",
-  maxWidth: "80vw",
+  justifyContent: "stretch",
   borderStyle: "solid",
   borderColor: "black",
   borderWidth: "2px",
@@ -49,11 +48,6 @@ const StyledTab = styled(TabUnstyled)(() => ({
   },
 }));
 
-const StyledTabPanel = styled(TabPanelUnstyled)(() => ({
-  marginRight: "3rem",
-  width: "100%"
-}))
-
 const RightTab = styled(StyledTab)(() => ({
   borderStartEndRadius: ".8rem",
   borderEndEndRadius: ".8rem",
@@ -62,8 +56,13 @@ const RightTab = styled(StyledTab)(() => ({
 const LeftTab = styled(StyledTab)(() => ({
   marginLeft: "0",
   borderEndStartRadius: ".8rem",
-  borderStartStartRadius: ".8rem",
+  borderStartStartRadius: ".8rem"
 }));
+
+const StyledTabPanel = styled(TabPanelUnstyled)(() => ({
+  marginRight: "3rem",
+  width: "100%"
+}))
 
 function TabBar({ token }) {
   // * Get Url Parameters
@@ -78,7 +77,7 @@ function TabBar({ token }) {
   const handleChange = (event, newTab) => {
     navigate(`/${newTab}`);
   };
-  let style = page !== "physical" ? {maxWidth: "80%"} : {maxWidth: "100%"}
+  let style = page === "physical" ? {maxWidth: "80%"} : {width: "90vw"}
   return (
     <>
       <CssBaseline />
