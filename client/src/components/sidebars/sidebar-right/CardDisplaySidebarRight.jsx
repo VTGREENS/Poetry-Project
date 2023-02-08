@@ -45,19 +45,19 @@ const CardDisplaySidebarRight = ({
 
   return (
     <>
-      <Card sx={{marginBottom:"1rem", borderRadius: '1rem', borderColor: "black", borderStyle: "solid", borderWidth:'2px', width:'17vw'}}>
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Card sx={{ marginBottom:"1rem", borderRadius: '1rem', borderColor: "black", borderStyle: "solid", borderWidth:'2px', width:'17vw' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column'}}>
           <CardMedia
-            sx={{ margin: ".6rem 0 .6rem .6rem", width: "80%" }}
+            sx={{display:'flex', justifyContent:'center'}}
             component='img'
             image={image}
             alt={imageAltText}
           />
-          <CardContent>
+          <CardContent sx={{textAlign:'center', justifyContent:'center'}}>
             <Typography variant='p' component='p'>
               {excerpt}
             </Typography>
-            <CardActions>
+            <CardActions sx={{display:'flex', justifyContent:'center'}}>
             <Button 
             href={infoLink} 
             id='moreInfoButton'
