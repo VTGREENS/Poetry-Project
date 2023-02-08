@@ -86,6 +86,7 @@ const CreateWorksPhysical = (props) => {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
       props.fetchWorksPhysical();
+      document.getElementById('physical-form').reset();
       console.log(data);
 
       if (data.message === "Physical Works Created") {
@@ -99,8 +100,8 @@ const CreateWorksPhysical = (props) => {
   }
   return (
     <>
-      <Card sx={{ display: "flex", marginBottom: "1rem", border: 'solid', borderWidth: "2px", borderRadius: "1rem", }}>
-        <form onSubmit={handleSubmit}>
+      <Card sx={{ display: "flex", marginBottom: "1rem", border: 'solid', borderWidth: "2px", borderRadius: "1rem"}}>
+        <form id='physical-form' onSubmit={handleSubmit}>
           <StyledInputField
             id="image"
             label="Image URL"
@@ -177,7 +178,7 @@ const CreateWorksPhysical = (props) => {
             color="success"
             inputRef={signedLinkRef}
           />
-          <CardActions>
+          <CardActions sx={{display:'flex', justifyContent:'center'}}>
           <Button type="submit" variant="contained" color="primary" label='Submit Physical Works'>
             Submit Physical Works
           </Button>
