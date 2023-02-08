@@ -178,7 +178,7 @@ const EditPostPoem = ({token}) => {
               onChange={(e) => setBody(e.target.value)}
             />
             <CardActions>
-              <Button type='submit' variant='contained' color='success'>
+              <Button type='submit' variant='contained' color='secondary'>
                 Edit Poem Post
               </Button>
             </CardActions>
