@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Card, CardContent } from "@mui/material";
+import { Card, CardActions, CardContent } from "@mui/material";
 import { TextField, Button, Box } from "@mui/material";
 import styled from "@emotion/styled"
 import StickyFooter from "../footer/StickyFooter";
@@ -25,6 +25,7 @@ const EditDigitalWorks = ({token}) => {
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
   const decodedToken = token ? jwt_decode(token) : null 
+
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -53,7 +54,8 @@ const EditDigitalWorks = ({token}) => {
       navigate("/digital");
       console.log(data);
       if (data.message === "Digital Work updated") {
-        // navigate('/digital')
+        alert('Digital Work Updated!');
+        navigate('/digital')
       } else {
         alert(data.message);
       }
@@ -135,9 +137,12 @@ const EditDigitalWorks = ({token}) => {
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
               />
-              <Button color="success" type="submit" variant="contained">
+              <CardActions sx={{display: "flex",
+          justifyContent: "center"}}>
+              <Button sx={{width: "20rem"}} color="secondary" type="submit" variant="contained">
                 Submit Update
               </Button>
+              </CardActions>
             </form>
           </CardContent>
         </Box>

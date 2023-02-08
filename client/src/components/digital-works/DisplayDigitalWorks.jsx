@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled"
 import jwt_decode from 'jwt-decode'
+import { useTheme } from "@mui/material/styles";
 
 const DisplayDigitalWorksCard = ({
   _id,
@@ -24,6 +25,8 @@ const DisplayDigitalWorksCard = ({
 
   const decodedToken = token ? jwt_decode(token) : null 
   const navigate = useNavigate();
+  const theme = useTheme();
+
   async function deleteDigitalWorks(id) {
     const url = `http://localhost:4000/digital/delete/${id}`;
     let myHeaders = new Headers();
@@ -68,6 +71,7 @@ const DisplayDigitalWorksCard = ({
             <Typography gutterBottom variant="subtitle">
               <CardActions>
                 <Button
+                sx={{width: '14.5rem'}}
                   variant="contained"
                   href={linkUrl}
                   aria-label="Link"
@@ -78,17 +82,19 @@ const DisplayDigitalWorksCard = ({
               </CardActions>
               { decodedToken ?
               <CardActions>
-                <Button
-                  color="success"
+                <Button sx={{color:'white', width: "7rem", backgroundColor: theme.palette.secondary.main}}
                   variant="contained"
+                  type="submit"
                   onClick={() => navigate(`/digital/update/${_id}`)}
+                  aria-label={`Edit ${title}`} 
                 >
-                  Update
+                 EDIT
                 </Button>
-                <Button
-                  color="error"
+                <Button sx={{color:'black', width: "7rem", backgroundColor: theme.palette.primary.main}}
                   variant="contained"
+                  type="submit"
                   onClick={() => deleteDigitalWorks(_id)}
+                  aria-label={`Delete ${title}`}
                 >
                   DELETE
                 </Button>
