@@ -8,8 +8,7 @@ import {
   Box,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import jwt_decode from "jwt-decode"
-
+import jwt_decode from 'jwt-decode';
 
 // CardDisplayPostPoem houses delete function, displays posted poems onto IndexPostPoem.
 const CardDisplayPostPoem = ({
@@ -26,7 +25,7 @@ const CardDisplayPostPoem = ({
   fetchPostPoems,
 }) => {
   const navigate = useNavigate();
-  let decodedToken = token ? jwt_decode(token) : null
+  let decodedToken = token ? jwt_decode(token) : null;
   async function deletePostPoem(_id) {
     const url = `http://localhost:4000/post/delete/${_id}`;
     let myHeaders = new Headers();
@@ -47,45 +46,55 @@ const CardDisplayPostPoem = ({
 
   return (
     <>
-      <Card sx={{ display: 'flex',
-          justifyContent: 'flex-start',
+      <Card
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
           alignContent: 'start',
           marginTop: '1rem',
           paddingTop: '1rem',
           backgroundColor: '#FFFFFF',
-          border:'solid',
-          borderRadius:"1rem",
-          borderWidth:"2px",
-          width: '49vw' }}>
-        {imageLink ? (
-          <CardMedia sx={{ width:'30vw' }} component='img' image={imageLink} alt={poemAltText} />
-        ) : null}
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-start',
-            alignItems: 'flex-start',
-          }}
-        >
-          <CardContent className='card-content'>
-            <Typography variant='h4'>{title}</Typography>
-            {attribution ? (
-              <Typography gutterBottom variant='h5'>
-                {attribution} {date}
-              </Typography>
-            ) : null}
-            {/* {poemAltText ? (
-              <Typography sx={{ whiteSpace: 'pre-wrap' }}gutterBottom variant='body1' component='body'>
-                {poemAltText}
-              </Typography>
-            ) : null} */}
+          border: 'solid',
+          borderRadius: '1rem',
+          borderWidth: '2px',
+          width: '49vw',
+        }}
+      >
+        <CardContent className='card-content'>
+          <Typography variant='h4'>{title}</Typography>
+          {attribution ? (
+            <Typography gutterBottom variant='h5'>
+              {attribution} {date}
+            </Typography>
+          ) : null}
+          {/* {poemAltText ? (
+                <Typography sx={{ whiteSpace: 'pre-wrap' }}gutterBottom variant='body1' component='body'>
+                  {poemAltText}
+                </Typography>
+              ) : null} */}
+
+          {imageLink ? (
+            <CardMedia
+              sx={{ width: '100%' }}
+              component='img'
+              image={imageLink}
+              alt={poemAltText}
+            />
+          ) : null}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+            }}
+          >
             {featuredIn ? (
               <Typography gutterBottom variant='h6'>
                 Featured In: {featuredIn}
               </Typography>
             ) : null}
-
             <CardActions>
               {publishedLink ? (
                 <Button
@@ -109,31 +118,31 @@ const CardDisplayPostPoem = ({
                   Buy Collection
                 </Button>
               ) : null}
-              
             </CardActions>
-            { decodedToken ? 
-            <CardActions>
-              <Button
-                type='submit'
-                variant='contained'
-                color='success'
-                onClick={() => navigate(`/post/update/${_id}`)}
-              >
-                Update
-              </Button>
-              <Button
-                type='submit'
-                variant='contained'
-                color='primary'
-                onClick={() => deletePostPoem(_id)}
-              >
-                Delete
-              </Button>
-            </CardActions> : null}
-          </CardContent>
-        </Box>
+
+            {decodedToken ? (
+              <CardActions>
+                <Button
+                  type='submit'
+                  variant='contained'
+                  color='secondary'
+                  onClick={() => navigate(`/post/update/${_id}`)}
+                >
+                  Update
+                </Button>
+                <Button
+                  type='submit'
+                  variant='contained'
+                  color='primary'
+                  onClick={() => deletePostPoem(_id)}
+                >
+                  Delete
+                </Button>
+              </CardActions>
+            ) : null}
+          </Box>
+        </CardContent>
       </Card>
-      <></>
     </>
   );
 };
