@@ -78,10 +78,11 @@ function TabBar({ token }) {
   const handleChange = (event, newTab) => {
     navigate(`/${newTab}`);
   };
+  let style = page !== "physical" ? {maxWidth: "80%"} : {maxWidth: "100%"}
   return (
     <>
-      <main style={page !== "physical" ? {maxWidth: "52vw"} : {maxWidth: "66vw"}}>
-        <CssBaseline />
+      <CssBaseline />
+      <main>
         <TabsUnstyled
           selectionFollowsFocus
           defaultValue={"home"}
@@ -90,7 +91,7 @@ function TabBar({ token }) {
           sx={{display: "flex", flexDirection: "column", justifyContent: "center",
         alignItems: "center"}}
         >
-          <StyledTabsList style={page !== "physical" ? {maxWidth: "52vw"} : {maxWidth: "66vw"}}>
+          <StyledTabsList sx={style}>
             <LeftTab value="home">Home/About</LeftTab>
             <StyledTab value="physical">Physical Works</StyledTab>
             <StyledTab value="digital">Digital Works</StyledTab>
