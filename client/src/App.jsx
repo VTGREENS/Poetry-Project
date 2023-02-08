@@ -31,7 +31,7 @@ const theme = createTheme({
 function App() {
   // TODO Remove sampleToken after implementing AUTH aasdf
   let sampleToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2VhYjQ3ZWUxMDRmNjBjMDMwZmVmZCIsImlhdCI6MTY3NTQ1ODE3NCwiZXhwIjoxNjc1NzE3Mzc0fQ.Lq-xwqe7FU-HKnNY9PokrN2-2Wo4uoasFwe6rMZCA6Q";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTJjMWQzMGM0ZmQxYmM2NTY0ZWJjYyIsImlhdCI6MTY3NTgwNTE0MCwiZXhwIjoxNjc2MDY0MzQwfQ.AZJEfA2iazXlFITxRGI-EJxKSD9pxaAcz1kPCPvKZhk";
 
   const [sessionToken, setSessionToken] = useState(sampleToken);
 

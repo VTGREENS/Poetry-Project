@@ -34,7 +34,7 @@ const IndexNewsletter = ({token}) => {
       <section style={{ marginTop: "1rem" }}>
         <SignupNewsletter
           newsletters={newsletters}
-          token={props.token}
+          token={token}
           fetchNewsletters={fetchNewsletters}
         />
          { decodedToken ?
@@ -43,7 +43,7 @@ const IndexNewsletter = ({token}) => {
             <DisplayNewsletterCard
               key={newsletter._id}
               fetchNewsletters={fetchNewsletters}
-              token={props.token}
+              token={token}
               email={newsletter.email}
               _id={newsletter._id}
             /> 

@@ -110,7 +110,7 @@ const CreateDigitalWorks = (props) => {
               inputRef={descriptionRef}
             />
             <CardActions>
-              <Button type="submit" variant="contained" color="success">
+              <Button type="submit" variant="contained" color="primary">
                 Submit Digital Work
               </Button>
             </CardActions>
