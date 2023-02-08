@@ -11,9 +11,8 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-
+import { useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -33,98 +32,116 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+export default function LogIn({ updateToken }) {
+  // * Define hooks for use in submit handler function
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const navigate = useNavigate();
+  const params = useParams()
+  let page = params.page ?? "home"
 
-export default function SignIn({ updateToken }) {
-  const navigate = useNavigate()
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    if (data.message === "success") {
-      updateToken(data.token);
-      navigate("/home")
-      console.log({
-        email: data.get("email"),
-        password: data.get("password"),
-      });
-    } else {
-      throw new Error(data.message)
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    // * Grab current values from form
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    // * Build fetch request to log in user
+    let url = `http://localhost:4000/admin/login`;
+    let bodyObject = JSON.stringify({ email, password });
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      headers: myHeaders,
+      body: bodyObject,
+      method: "POST",
+    };
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      console.log(data);
+      if (data.message === "success") {
+        // !  We are free to navigate back
+        // * Store valid token in local storage
+        updateToken(data.token);
+        // * Navigate to home page 
+        navigate(`/${page}`);
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
     }
-    
-  };
-
+  }
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            inputRef={emailRef}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="password"
+            label="Password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            inputRef={passwordRef}
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
             </Grid>
-          </Box>
+            <Grid item>
+              {/* <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link> */}
+            </Grid>
+          </Grid>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+      </Box>
+      <Copyright sx={{ mt: 8, mb: 4 }} />
+    </Container>
   );
 }

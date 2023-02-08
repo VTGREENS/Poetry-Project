@@ -61,10 +61,9 @@ const DisplayDigitalWorksCard = ({
           <CardContent>
             <Typography variant="h5">{title}</Typography>
             <Typography
-              sx={{ whiteSpace: "pre-wrap" }}
-              multiline
-              gutterBottom
               variant="body1"
+              sx={{ whiteSpace: "pre-wrap" }}
+              gutterBottom
             >
               {description}
             </Typography>

@@ -6,9 +6,12 @@ import { useParams } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import Banner from '../banner/Banner';
 
-const Layout = ({ token }) => {
+const Layout = ({ token, updateToken }) => {
   const params = useParams();
-  let { page } = params;
+  console.log(params.page)
+  let page = params.page ?? "home";
+  console.log(page)
+
   const theme = useTheme();
   return (
     <>
@@ -19,9 +22,9 @@ const Layout = ({ token }) => {
           marginTop: '0'
         }}
       >
-        <Banner token={token}></Banner>
+        <Banner page={page} token={token} updateToken={updateToken} />
         <Container
-          sx={{ display: 'flex', justifyContent: 'space-around'}}
+          sx={{ display: 'flex', justifyContent: 'center'}}
         >
           <TabBar token={token} />
           {page !== 'physical' ? <IndexSidebarRight token={token} /> : null}

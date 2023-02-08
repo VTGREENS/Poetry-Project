@@ -2,11 +2,10 @@ import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import IndexNewsletter from "../newsletter/IndexNewsletter"
+import IndexNewsletter from "../newsletter/IndexNewsletter";
 
-
-const Banner = ({ token }) => {
-  const navigate = useNavigate()
+const Banner = ({ page, token, updateToken }) => {
+  const navigate = useNavigate();
   const decodedToken = token ? jwt_decode(token) : null;
 
   const StyledHeader = styled.header`
@@ -14,24 +13,42 @@ const Banner = ({ token }) => {
     margin: auto;
     display: flex;
     justify-content: space-between;
-    width: 66vw;
+    width: 80%;
     align-items: center;
   `;
 
-  const handleClick = (e) => {
-    navigate("/admin")
+  const handleAdminClick = (e) => {
+    navigate(`/login/${page}`);
+  };
+  
+  const handleLogOutClick = (e) => {
+    updateToken('')
+    navigate(`/${page}`)
   }
 
   return (
     <>
       <StyledHeader>
-        <h1>
-          Megan Mary Moore 
-        </h1>
-       
-
-        <Button variant="contained" onClick={handleClick} color="secondary" sx={{justifySelf: "flex-end"}}>ADMIN</Button>
-      
+        <h1>Megan Mary Moore</h1>
+        {!decodedToken ? (
+          <Button
+            variant="contained"
+            onClick={handleAdminClick}
+            color="secondary"
+            sx={{ justifySelf: "flex-end" }}
+          >
+            ADMIN
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            onClick={handleLogOutClick}
+            color="secondary"
+            sx={{ justifySelf: "flex-end" }}
+          >
+            LOG OUT
+          </Button>
+        )}
       </StyledHeader>
     </>
   );

@@ -32,13 +32,6 @@ const IndexPostPoem = ({token}) => {
   return (
     <>
       <section style={{marginTop: "1rem"}}>
-        { decodedToken ? 
-        <CreatePostPoem
-          postPoem={postPoem}
-          token={token}
-          fetchPostPoems={fetchPostPoems}
-        />: null }
-
         <Box sx={{ display: "flex", flexDirection: "column-reverse" }}>
           {postPoem?.postPoems?.map((postPoem) => (
             <CardDisplayPostPoem
@@ -56,6 +49,13 @@ const IndexPostPoem = ({token}) => {
               fetchPostPoems={fetchPostPoems}
             />
           ))}
+          { decodedToken ? 
+        <CreatePostPoem
+          postPoem={postPoem}
+          token={token}
+          fetchPostPoems={fetchPostPoems}
+        />: null }
+
         </Box>
       </section>
     </>
