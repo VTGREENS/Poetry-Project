@@ -21,6 +21,7 @@ const CreateDigitalWorks = (props) => {
   const linkUrlRef = useRef();
   const imageUrlRef = useRef();
   const descriptionRef = useRef();
+  const formRef = useRef()
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -52,6 +53,8 @@ const CreateDigitalWorks = (props) => {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
       props.fetchDigitalWorks();
+      document.getElementById('digital-form').reset();
+      formRef.current.reset();
       console.log(data);
 
       if (data.message === "Digital Works Created") {
@@ -76,7 +79,7 @@ const CreateDigitalWorks = (props) => {
         }}
       >
         <CardContent>
-          <form onSubmit={handleSubmit}>
+          <form id='digital-form' onSubmit={handleSubmit} style={{textAlign: "center"}}>
             <StyledInputField
               multiline
               id="title"
@@ -109,8 +112,9 @@ const CreateDigitalWorks = (props) => {
               color="success"
               inputRef={descriptionRef}
             />
-            <CardActions>
-              <Button type="submit" variant="contained" color="primary">
+            <CardActions sx={{display: "flex",
+          justifyContent: "center"}}>
+              <Button type="submit" variant="contained" color="primary" sx={{width: "20rem"}}>
                 Submit Digital Work
               </Button>
             </CardActions>
