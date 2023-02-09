@@ -1,18 +1,23 @@
-import { TextField, Button, Card, CardActions } from '@mui/material';
+import { TextField, Button, Card, CardActions, CssBaseline } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import StickyFooter from '../../footer/StickyFooter';
 import jwt_decode from "jwt-decode"
+import { Container } from '@mui/system';
 
 
 const StyledInputField = styled(TextField)(() => ({
-  margin: '1rem',
-  flexGrow: '1',
-  border: 'solid',
-  borderColor:'secondary',
-  borderWidth: "1px",
-  borderRadius: "1rem",
+  margin: "1rem",
+  flexGrow: "1",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
 }));
 
 // Edit SidebarRightCard
@@ -87,8 +92,11 @@ const EditSidebarRightCard = ({ token }) => {
 
   return (
     <>
+    <CssBaseline/>
+    <Container>
     {decodedToken ? 
-    <Card sx={{ display: 'flex', margin: '1rem', justifyContent: 'center',border: 'solid', borderRadius: '1rem', borderColor: 'black', borderWidth: "2px"}}>
+    
+    <Card sx={{ display: 'flex', margin: '1rem', justifyContent: 'center',border: 'solid', borderRadius: '1rem', borderColor: 'black', borderWidth: "2px", backgroundColor: "#FFFFFF" }}>
       <form onSubmit={handleSubmit}>
         <StyledInputField
           id='image'
@@ -129,7 +137,8 @@ const EditSidebarRightCard = ({ token }) => {
           </CardActions>
       </form>
       </Card> : null }
-      <StickyFooter />
+      <StickyFooter  />
+          </Container>
     </>
   );
 };

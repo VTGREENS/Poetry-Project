@@ -77,7 +77,7 @@ function TabBar({ token }) {
   const handleChange = (event, newTab) => {
     navigate(`/${newTab}`);
   };
-  let style = page === "physical" ? {maxWidth: "80%"} : {width: "90vw"}
+  let style = page === "physical" ? {maxWidth: "100%"} : {width: "90vw"};
   return (
     <>
       <CssBaseline />

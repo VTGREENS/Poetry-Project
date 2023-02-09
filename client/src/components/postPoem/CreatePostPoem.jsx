@@ -104,7 +104,8 @@ const CreatePostPoem = (props) => {
           borderColor: 'black',
           borderStyle: 'solid',
           borderWidth: '2px',
-          width: '48vw', 
+          width: '49vw', 
+          backgroundColor: "#FFFFFF",
         }}
       >
         <CardContent>

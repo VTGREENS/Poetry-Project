@@ -13,6 +13,20 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import styled from "@emotion/styled";
+
+const StyledInputField = styled(TextField)(() => ({
+  margin: "1rem",
+  flexGrow: "1",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
+}));
 
 function Copyright(props) {
   return (
@@ -93,7 +107,7 @@ export default function LogIn({ updateToken }) {
           Sign in
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
+          <StyledInputField
             margin="normal"
             required
             fullWidth
@@ -104,7 +118,7 @@ export default function LogIn({ updateToken }) {
             autoFocus
             inputRef={emailRef}
           />
-          <TextField
+          <StyledInputField
             margin="normal"
             required
             fullWidth
@@ -127,18 +141,18 @@ export default function LogIn({ updateToken }) {
           >
             Sign In
           </Button>
-          <Grid container>
+          {/* <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              {/* <Link href="#" variant="body2">
+              <Link href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Link> */}
+              </Link>
             </Grid>
-          </Grid>
+          </Grid> */}
         </Box>
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />

@@ -19,7 +19,9 @@ const Layout = ({ token, updateToken }) => {
         sx={{
           backgroundColor: theme.palette.primary.main,
           paddingTop: '0',
-          marginTop: '0'
+          marginTop: '0',
+          display: 'flex',
+          flexDirection: 'column'
         }}
       >
         <Banner page={page} token={token} updateToken={updateToken} />

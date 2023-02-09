@@ -75,11 +75,12 @@ const CreateDigitalWorks = (props) => {
           borderColor: "black",
           borderStyle: "solid",
           borderWidth: "2px",
-          width: "100%",
+          width: "100%", 
+          backgroundColor: "#FFFFFF" 
         }}
       >
         <CardContent>
-          <form id='digital-form' onSubmit={handleSubmit} style={{textAlign: "center"}}>
+          <form id='digital-form' onSubmit={handleSubmit} style={{textAlign: "center", }}>
             <StyledInputField
               multiline
               id="title"
