@@ -48,7 +48,7 @@ const DisplayDigitalWorksCard = ({
 
   return (
     <>
-       <Card sx={{ display: "flex", marginBottom: "1rem", border:'solid', borderWidth:'2px', borderRadius:'1rem' }}>
+       <Card sx={{ display: "flex", marginBottom: "1rem", border:'solid', borderWidth:'2px', borderRadius:'1rem', backgroundColor: "#FFFFFF" }}>
         <CardMedia sx={{ width: "30vw" }} component="img" image={imageUrl} />
         <Box
           sx={{

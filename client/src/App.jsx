@@ -11,25 +11,45 @@ import EditGalleryPost from "./components/gallery/EditGalleryPost";
 import LogIn from "./components/auth/login/Login";
 
 const theme = createTheme({
+  styleOverrides: {
+    root: {
+      '.Mui-focused': {
+        borderColor: 'secondary'
+      }
+    }
+  },
   palette: {
     mode: "light",
     primary: { main: "#FFCBD4" },
     secondary: { main: "#008854" },
+    background: "primary",
   },
   typography: {
     fontFamily: ["courier", "monospace"].join(","),
   },
+
   components: {
     MuiButton: {
       styleOverrides: {
         root: { border: "thin solid black" },
       },
     },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          "&.Mui-focused": {
+            root: {
+
+              borderColor: "secondary",
+            }
+          },
+        },
+      },
+    },
   },
 });
 
 function App() {
-
   const [sessionToken, setSessionToken] = useState("");
 
   const updateToken = (newToken) => {
@@ -48,7 +68,7 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <Routes>
-        <Route
+          <Route
             index
             element={<Layout updateToken={updateToken} token={sessionToken} />}
           />

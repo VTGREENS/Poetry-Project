@@ -53,7 +53,7 @@ const CardDisplayWorksPhysical = ({
 
   return (
     <>
-      <Card sx={{ display: "flex", marginBottom: "1rem", border:'solid', borderWidth:'2px', borderRadius:'1rem'}}>
+      <Card sx={{ display: "flex", marginBottom: "1rem", border:'solid', borderWidth:'2px', borderRadius:'1rem', backgroundColor: "#FFFFFF" }}>
         <CardMedia
           sx={{ width: "30vw" }}
           component="img"
@@ -104,7 +104,7 @@ const CardDisplayWorksPhysical = ({
                 </Button>
               ) : null}
               {amazonLink ? (
-                <Button sx={{height:'3.3rem', textAlign:'center'}}
+                <Button sx={{height:'3.3rem', textAlign:'center', minWidth: '6.5rem'}}
                   variant="contained"
                   href={amazonLink}
                   aria-label="Purchase on Amazon dot com"

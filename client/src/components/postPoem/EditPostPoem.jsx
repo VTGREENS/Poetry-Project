@@ -4,6 +4,7 @@ import {
   CardContent,
   Card,
   CardActions,
+  CssBaseline,
 } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
@@ -12,22 +13,21 @@ import jwt_decode from "jwt-decode"
 import StickyFooter from '../footer/StickyFooter';
 
 const StyledInputField = styled(TextField)(() => ({
-  margin: '1rem',
-  flexGrow: '1',
-  border: 'solid',
-  borderColor:'secondary',
-  borderWidth: "1px",
-  borderRadius: "1rem",
+  margin: "1rem",
+  flexGrow: "1",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem"
+    },
+  },
 }));
 
-const LongInputField = styled(TextField)(() => ({
-  margin: '1rem',
+const LongInputField = styled(StyledInputField)(() => ({
   width: '25vw',
   flexGrow: '3',
-  border: 'solid',
-  borderColor:'secondary',
-  borderWidth: "1px",
-  borderRadius: "1rem",
 }));
 
 // Edit Post Poem
@@ -115,6 +115,7 @@ const EditPostPoem = ({token}) => {
   }, []);
   return (
     <>
+    <CssBaseline/>
     {decodedToken ? 
       <Card sx={{ display: 'flex', display: 'flex', marginTop: '1rem', padding: '1rem', border: 'solid', borderWidth: "2px", borderRadius: "1rem",  }}>
         <CardContent>

@@ -100,7 +100,7 @@ const CreateWorksPhysical = (props) => {
   }
   return (
     <>
-      <Card sx={{ display: "flex", marginBottom: "1rem", border: 'solid', borderWidth: "2px", borderRadius: "1rem"}}>
+      <Card sx={{ display: "flex", marginBottom: "1rem", border: 'solid', borderWidth: "2px", borderRadius: "1rem", backgroundColor: "#FFFFFF" }}>
         <form id='physical-form' onSubmit={handleSubmit}>
           <StyledInputField
             id="image"

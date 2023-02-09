@@ -1,17 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Card, CardActions, CardContent } from "@mui/material";
+import { Card, CardActions, CardContent, CssBaseline, useTheme } from "@mui/material";
 import { TextField, Button, Box } from "@mui/material";
 import styled from "@emotion/styled"
 import StickyFooter from "../footer/StickyFooter";
 import jwt_decode from 'jwt-decode'
 
-const StyledInputField = styled(TextField)(() => ({
-  margin: "1rem",
-  flexGrow: "1"
-}))
 
-const LongInputField = styled(TextField)(() => ({
+const StyledInputField = styled(TextField)(({ theme }) => ({
+  margin: "1rem",
+  flexGrow: "1",
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderStyle: "solid",
+      borderColor: 'black',
+      borderWidth: "2px",
+      borderRadius: "1rem",
+      '&.Mui-focused': {
+        borderColor: 'green'
+      }
+    }
+  },
+}));
+
+
+const LongInputField = styled(StyledInputField)(() => ({
   margin: "1rem",
   width: "25vw",
   flexGrow: "3"
@@ -25,7 +38,7 @@ const EditDigitalWorks = ({token}) => {
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
   const decodedToken = token ? jwt_decode(token) : null 
-
+  const theme = useTheme()
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -92,7 +105,7 @@ const EditDigitalWorks = ({token}) => {
 
   return (
     <>
-    { }
+    <CssBaseline/>
     {decodedToken ?
       <Card sx={{ Display: "flex", padding: 5, border: "solid" }}>
         <Box
