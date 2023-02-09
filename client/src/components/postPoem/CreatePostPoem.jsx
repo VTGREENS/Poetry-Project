@@ -111,49 +111,49 @@ const CreatePostPoem = (props) => {
           <form id='postPoem-form' onSubmit={handleSubmit} style={{textAlign:'center'}}>
             <StyledInputField
               id='title-input'
-              label='title'
+              label='Title'
               variant='outlined'
               color="success"
               inputRef={titleRef}
             />
             <StyledInputField
               id='attribution-input'
-              label='attribution'
+              label='Attribution'
               variant='outlined'
               color="success"
               inputRef={attributionRef}
             />
             <StyledInputField
               id='date-input'
-              label='date'
+              label='Date'
               variant='outlined'
               color="success"
               inputRef={dateRef}
             />
             <StyledInputField
               id='published-link-input'
-              label='published Link'
+              label='Published Link'
               variant='outlined'
               color="success"
               inputRef={publishedLinkRef}
             />
             <StyledInputField
               id='buy-link-input'
-              label='buy Link'
+              label='Buy Link'
               variant='outlined'
               color="success"
               inputRef={buyLinkRef}
             />
             <StyledInputField
               id='image-link-input'
-              label='image Link'
+              label='Image Link'
               variant='outlined'
               color="success"
               inputRef={imageLinkRef}
             />
             <StyledInputField
               id='featured-in-input'
-              label='featured In'
+              label='Featured In'
               variant='outlined'
               color="success"
               inputRef={featuredInRef}
